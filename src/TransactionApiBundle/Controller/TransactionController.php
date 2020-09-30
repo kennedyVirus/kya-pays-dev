@@ -32,7 +32,7 @@ class TransactionController extends BaseController
         $res=$this->sendZedekaMessage('22893643212','just a test from kya');
         return new JsonResponse(0);
     }
-
+//
     /*
     * @Kya sol design payment  init
     * @Payement via Flooz or T-money

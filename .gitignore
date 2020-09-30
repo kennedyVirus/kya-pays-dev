@@ -16,3 +16,4 @@
 /vendor/
 /web/bundles/
 kya-pays-dev/
+*.php___jb_tmp___

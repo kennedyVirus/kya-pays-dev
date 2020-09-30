@@ -1,0 +1,611 @@
+{% extends 'TransactionApiBundle:Default:base2.html.twig' %}
+
+
+    {% block additionnalcss %}
+        {#<link rel="stylesheet" href="{{ asset('assets/css/pay-form.css') }}">#}
+        <style>
+
+        </style>
+
+    {% endblock %}
+
+
+    {#{% block page_title %}Tableau de Bord {% endblock %}#}
+
+{% block mainpage  %}
+    {% for message in app.session.flashbag.get('transaction_success') %}
+        <div class="card green accent-4">
+            <div class="card-content white-text">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('transaction_error') %}
+        <div class="card red">
+            <div class="card-content white-text">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div id="app">
+        <!-- ======= About Video Section ======= -->
+        <section id="about-video" class="about-video">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+
+                    <div class="col-lg-6 video-box align-self-baseline" data-aos="fade-right" data-aos-delay="100">
+                        <img src="{{ asset('asset/assets/img/about-video.png') }}" class="img-fluid" alt="KYA-SolDesign">
+                        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+                    </div>
+
+                    <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
+                        <h3>DESCRIPTION DU LOGICIEL KYA-SolDesign.</h3>
+                        <p >
+                            KYA-SolDesign est un logiciel professionnel de dimensionnement et de simulation des systèmes solaires photovoltaïques. Il basé sur une la méthode KEG (KEG étant l’acronyme de KYA-Energy Group). Il a été conçu au sein de l’unité de recherche et développement de KYA-Energy Group.
+                            Le dimensionnement est effectué en prenant en compte les données météo, la consommation des équipements, le type d’équipements, le pourcentage de consommation diurne, et les caractéristiques des équipements choisis.
+                            Une évaluation du comportement de chaque système dimensionné est possible grâce à l’outil de simulation intégré KEGSIM_PV, le simulateur permet à partir des données météo du site de prédire le comportement du système dimensionné.
+                            KYA-SolDesign permet le dimensionnement de cinq (05) types de systèmes solaires :
+
+                        </p>
+                        <ul>
+                            <li><i class="bx bx-check-double"></i> Système PV autonome.</li>
+                            <li><i class="bx"></i> Système PV couplé réseau.</li>
+                            <li><i class="bx "></i> Système PV /diesel.</li>
+                            <li><i class="bx "></i> Lampadaire solaire. </li>
+                            <li><i class="bx "></i> Pompage au fil du soleil. </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End About Video Section -->
+
+
+
+
+        <!-- ======= Frequently Asked Questions Section ======= -->
+        <section id="faq" class="faq section-bg">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Configuration requise</h2>
+                </div>
+
+                <div class="faq-list">
+                    <p>1 Go de mémoire physique au moins (2 Go recommandés)</p> <br>
+                    <p>Au moins 1 Go d'espace sur le disque dur</p> <br>
+                    <p>L'autorité d'administrateur est requise</p> <br>
+                    <p>Configuration de l’écran (recommandé) 1366 x 768</p> <br>
+                    <p>Windows 7/8/10 (32 bits et x64 bits)</p>
+                </div>
+
+            </div>
+        </section><!-- End Frequently Asked Questions Section -->
+
+        <!-- ======= Pricing Section ======= -->
+        <section id="pricing" class="pricing">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Payez votre licence</h2>
+                    <p>Le logiciel  KYA-SolDesign,une fois installé a besoin d'une licence d'activation pour fonctionner.Découvrez les tarif</p>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6" data-aos="zoom-im" data-aos-delay="100">
+                        <div class="box ">
+                            <h3>Version Etudiant</h3>
+                            <h4><sup>FCFA</sup>15000<span> / mois</span></h4>
+                            <h4><sup>€</sup>22.85<span> / mois</span></h4>
+                            <ul style="list-style: square">
+                                <li>1000  FCFA(1.52 €) /jour</li>
+                                <li>5000 FCFA (7.62 €) /1 semaine</li>
+                                <li>15000 FCFA (22.85 €) /1 mois</li>
+                            </ul>
+                            <div class="btn-wrap">
+                                {#<a @click="openPay3Modal()" class="btn-buy">Acheter</a>#}
+                                <a @click="openPay3Modal()" class="btn-buy">Acheter</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="box featured">
+                            <h3>Version Commerciale</h3>
+                            <h4><sup>FCFA</sup>40000<span> / mois</span></h4>
+                            <h4><sup>€</sup>60.93<span> / mois</span></h4>
+                            <ul style="list-style: square">
+                                <li>100000  FCFA (152.33 €) /3 mois</li>
+                                <li>180000 FCFA (274.19 €) /6 mois</li>
+                                <li>300000 FCFA (456.99 €) /1 an</li>
+                            </ul>
+                            <div class="btn-wrap">
+                                <a @click="openPay1Modal()" class="btn-buy">Acheter</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="box ">
+                            <h3>Version Academique</h3>
+                            <h4><sup>FCFA</sup>25000<span> / mois</span></h4>
+                            <h4><sup>€</sup>38.08<span> / mois</span></h4>
+                            <ul style="list-style: square">
+                                <li>70000  FCFA (106.63 €) /3 mois</li>
+                                <li>130000 FCFA (198.03 €) /6 mois</li>
+                                <li>250000 FCFA (380.82 €) /1 an</li>
+
+                            </ul>
+                            <div class="btn-wrap">
+                                <a @click="openPay2Modal()" class="btn-buy">Acheter</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Pricing Section -->
+
+        {#<div class="modal fade" id="enterpriseModal" tabindex="-1" role="dialog" aria-labelledby="enterpriseModalLabel" aria-hidden="true">#}
+
+        {#<div class="modal-dialog modal-dialog-centered modal-lg " role="document">#}
+        {#<div class="modal-content ">#}
+        {#<div class="modal-header">#}
+        {#<h5 class="modal-title" id="">License Commerciale</h5>#}
+        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+        {#<span aria-hidden="true">&times;</span>#}
+        {#</button>#}
+        {#</div>#}
+        {#<div class="modal-body">#}
+
+        {#<section class="wizard-section">#}
+        {#<div class="row no-gutters">#}
+        {#<div class="col-lg-12 col-md-12 col-sm-12  row">#}
+        {#<div class="wizard-content-left d-flex justify-content-center align-items-center">#}
+        {#<h4>Acheter votre licence d'activation</h4>#}
+        {#</div>#}
+        {#</div>#}
+        {#<div class="col-lg-12 col-md-12 col-sm-12 row">#}
+        {#<div class="form-wizard">#}
+        {#<form action="" method="post" role="form">#}
+        {#<div class="form-wizard-header">#}
+        {#<p>Remplissez tous les champs avec une etoile</p>#}
+        {#<ul class="list-unstyled form-wizard-steps clearfix">#}
+        {#<li class="active"><span>1</span></li>#}
+        {#<li><span>2</span></li>#}
+        {#</ul>#}
+        {#</div>#}
+        {#<fieldset class="wizard-fieldset show">#}
+        {#<h5>Information personnelle</h5>#}
+
+        {#<div class="form-group">#}
+        {#<input type="text" class="form-control wizard-required" id="lname">#}
+        {#<label for="lname" class="wizard-form-text-label">nom*</label>#}
+        {#<div class="wizard-form-error"></div>#}
+        {#</div>#}
+        {#<div class="form-group">#}
+        {#<input type="text" class="form-control wizard-required" id="fname">#}
+        {#<label for="fname" class="wizard-form-text-label">prénom*</label>#}
+        {#<div class="wizard-form-error"></div>#}
+        {#</div>#}
+        {#<div class="form-group">#}
+        {#<input type="email" class="form-control wizard-required" id="email">#}
+        {#<label for="email" class="wizard-form-text-label">Email*</label>#}
+        {#<div class="wizard-form-error"></div>#}
+        {#</div>#}
+        {#<div class="form-group">#}
+        {#<input type="text" class="form-control wizard-required" id="job_title">#}
+        {#<label for="job_title" class="wizard-form-text-label">Profession*</label>#}
+        {#<div class="wizard-form-error"></div>#}
+        {#</div>#}
+        {#<div class="form-group">#}
+        {#<input type="text" class="form-control wizard-required" id="organisation">#}
+        {#<label for="organisation" class="wizard-form-text-label">Nom de l'entreprise*</label>#}
+        {#<div class="wizard-form-error"></div>#}
+        {#</div>#}
+        {#<div class="form-group">#}
+        {#<input type="text" class="form-control " id="phone_number">#}
+        {#<label for="phone_number" class="wizard-form-text-label">N* de telephone</label>#}
+        {#<div class="wizard-form-error"></div>#}
+        {#</div>#}
+
+        {#<div class="form-group">#}
+        {#<input type="text" class="form-control wizard-required" id="address">#}
+        {#<label for="address" class="wizard-form-text-label">Addresse*</label>#}
+        {#<div class="wizard-form-error"></div>#}
+        {#</div>#}
+        {#<div class="form-group">#}
+        {#<input type="text" class="form-control wizard-required" id="country">#}
+        {#<label for="country" class="wizard-form-text-label">Pays*</label>#}
+        {#<div class="wizard-form-error"></div>#}
+        {#</div>#}
+        {#<div class="form-group">#}
+        {#<input type="text" class="form-control wizard-required" id="city">#}
+        {#<label for="city" class="wizard-form-text-label">Ville*</label>#}
+        {#<div class="wizard-form-error"></div>#}
+        {#</div>#}
+
+        {#<div class="form-group clearfix">#}
+        {#<a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>#}
+        {#</div>#}
+        {#</fieldset>#}
+        {#<fieldset class="wizard-fieldset">#}
+        {#<h5>Choisissez la licence à acheter</h5>#}
+        {#<div class="form-group">#}
+        {#Licence#}
+        {#<div class="wizard-form-radio">#}
+        {#<input name="radio-name" id="radio3" type="radio">#}
+        {#<label for="radio3">40000 xof valable 1 mois</label>#}
+        {#</div>#}
+        {#<div class="wizard-form-radio">#}
+        {#<input name="radio-name" id="radio4" type="radio">#}
+        {#<label for="radio4">100000 xof valable 3 mois</label>#}
+        {#</div>#}
+        {#<div class="wizard-form-radio">#}
+        {#<input name="radio-name" id="radio5" type="radio">#}
+        {#<label for="radio5">180000 xof valable 6 mois</label>#}
+        {#</div>#}
+        {#<div class="wizard-form-radio">#}
+        {#<input name="radio-name" id="radio6" type="radio">#}
+        {#<label for="radio6">180000 xof valable 1 an</label>#}
+        {#</div>#}
+        {#</div>#}
+        {#<div class="form-group clearfix">#}
+        {#<a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a>#}
+        {#<a href="javascript:;" class="form-wizard-submit float-right">Acheter</a>#}
+
+        {#<a href="javascript:;" class="form-wizard-next-btn float-right">Next</a>#}
+        {#</div>#}
+        {#</fieldset>#}
+        {#</form>#}
+        {#</div>#}
+        {#</div>#}
+        {#</div>#}
+        {#</section>#}
+
+
+        {#</div>#}
+        {#<div class="modal-footer">#}
+        {#<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+        {#</div>#}
+        {#</div>#}
+        {#</div>#}
+
+        {#</div>#}
+
+
+
+        <div class="modal fade" id="enterpriseModal" tabindex="-1" role="dialog" aria-labelledby="enterpriseModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">License Commerciale</h5>
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+                        {#<span aria-hidden="true">&times;</span>#}
+                        {#</button>#}
+                    </div>
+                    <div class="modal-body">
+
+                        <form data-toggle="validator" role="form" style="padding:20px 80px 0px 80px;" v-on:submit.prevent="submitEnterpriseForm">
+                            <div class="form-group">
+                                <label for="last_name1" class="control-label">*Nom</label>
+                                <input type="text" class="form-control" id="last_name1" placeholder="Nom" v-model="new_enterprise.last_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="first_name1" class="control-label">*Prénom</label>
+                                <input type="text" class="form-control" id="first_name1" placeholder="Prénom" v-model="new_enterprise.first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number1" class="control-label">Numéro de télephone</label>
+                                <input type="text" class="form-control" id="phone_number1" placeholder="Numero de telephone" v-model="new_enterprise.phone_number" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email1" class="control-label">Email</label>
+                                <input type="email" class="form-control" id="email1" placeholder="Email" v-model="new_enterprise.email" data-error=" address mail invalide" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="job_title1" class="control-label">*Profession</label>
+                                <input type="text" class="form-control" id="job_title1" placeholder="Profession" v-model="new_enterprise.job_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address1" class="control-label">*Adresse</label>
+                                <input type="text" class="form-control" id="address1" placeholder="Adresse" v-model="new_enterprise.address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country1" class="control-label">*Pays</label>
+                                <input type="text" class="form-control" id="country1" placeholder="Pays de résidence" v-model="new_enterprise.country" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city1" class="control-label">*Ville</label>
+                                <input type="text" class="form-control" id="city1" placeholder="Ville de résidence" v-model="new_enterprise.city" required>
+                            </div>
+
+                            <h5>Choisissez le type de licence</h5>
+
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_enterprise" id="enterprise3"  required>
+                                        40000 FCFA valable 1 mois
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_enterprise" id="enterprise4"  required>
+                                        100000 FCFA valable 3 mois
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_enterprise" id="enterprise5"  required>
+                                        180000 FCFA valable 6 mois
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_enterprise" id="enterprise6"   required>
+                                        300000 FCFA valable 1 an
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Valider</button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade" id="academicModal" tabindex="-1" role="dialog" aria-labelledby="academicModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">License Academique</h5>
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+                        {#<span aria-hidden="true">&times;</span>#}
+                        {#</button>#}
+                    </div>
+                    <div class="modal-body">
+
+                        <form data-toggle="validator" role="form" style="padding:20px 80px 0px 80px;" v-on:submit.prevent="submitAcademicForm">
+                            <div class="form-group">
+                                <label for="last_name" class="control-label">*Nom</label>
+                                <input type="text" class="form-control" id="last_name" placeholder="Nom" v-model="new_academic.last_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="first_name" class="control-label">*Prénom</label>
+                                <input type="text" class="form-control" id="first_name" placeholder="Prénom" v-model="new_academic.first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number" class="control-label">*Numéro de télephone</label>
+                                <input type="text" class="form-control" id="phone_number" placeholder="Numero de telephone" v-model="new_academic.phone_number" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="control-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email" v-model="new_academic.email" data-error=" address mail invalide" >
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="job_title" class="control-label">*Profession</label>
+                                <input type="text" class="form-control" id="job_title" placeholder="Profession" v-model="new_academic.job_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="control-label">*Adresse</label>
+                                <input type="text" class="form-control" id="address" placeholder="Adresse" v-model="new_academic.address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country" class="control-label">*Pays</label>
+                                <input type="text" class="form-control" id="country" placeholder="Pays de résidence" v-model="new_academic.country" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city" class="control-label">*Ville</label>
+                                <input type="text" class="form-control" id="city" placeholder="Ville de résidence" v-model="new_academic.city" required>
+                            </div>
+
+                            <h5>Choisissez le type de licence</h5>
+
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_academic" id="academic3"  required>
+                                        25000 FCFA valable 1 mois
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_academic" id="academic4"  required>
+                                        70000 FCFA valable 3 mois
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_academic" id="academic5"  required>
+                                        130000 FCFA valable 6 mois
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_academic" id="academic6"   required>
+                                        250000 FCFA valable 1 an
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group give_space">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="check_mobile_money" checked>
+                                        Payer par Flooz/T-money ?
+                                    </label>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="checkbox" >
+                                    <label>
+                                        <input type="checkbox" id="check_card" >
+                                        Payer par Carte Visa/mastercard ?
+                                    </label>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                            <h4>Donnez le numéro sur lequel se fera la transaction</h4>
+                            <div class="form-group">
+                                <label for="transaction_phone_number" class="control-label">*Numéro Flooz ou T-money</label>
+                                <input type="text" class="form-control" id="transaction_phone_number" placeholder="Numéro Flooz/ Tmoney" v-model="new_academic.transaction_phone_number" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Valider</button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">License Etudiant</h5>
+                        {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+                        {#<span aria-hidden="true">&times;</span>#}
+                        {#</button>#}
+                    </div>
+                    <div class="modal-body">
+
+                        <form data-toggle="validator" role="form" style="padding:20px 80px 0px 80px;" v-on:submit.prevent="submitStudentForm">
+                            <div class="form-group">
+                                <label for="last_name3" class="control-label">*Nom</label>
+                                <input type="text" class="form-control" id="last_name3" placeholder="Nom" v-model="new_student.last_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="first_name3" class="control-label">*Prénom</label>
+                                <input type="text" class="form-control" id="first_name3" placeholder="Prénom" v-model="new_student.first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number3" class="control-label">*Numéro de télephone</label>
+                                <input type="text" class="form-control" id="phone_number3" placeholder="Numero de telephone" v-model="new_student.phone_number" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email3" class="control-label">Email</label>
+                                <input type="email" class="form-control" id="email3" placeholder="Email" v-model="new_student.email" data-error=" address mail invalide" >
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="job_title3" class="control-label">*Profession</label>
+                                <input type="text" class="form-control" id="job_title3" placeholder="Profession" v-model="new_student.job_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address3" class="control-label">*Adresse</label>
+                                <input type="text" class="form-control" id="address3" placeholder="Adresse" v-model="new_student.address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country3" class="control-label">*Pays</label>
+                                <input type="text" class="form-control" id="country3" placeholder="Pays de résidence" v-model="new_student.country" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city3" class="control-label">*Ville</label>
+                                <input type="text" class="form-control" id="city3" placeholder="Ville de résidence" v-model="new_student.city" required>
+                            </div>
+
+                            <h5>Choisissez le type de licence</h5>
+
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_student" id="student1"  >
+                                        1000 FCFA valable 1 journée
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_student" id="student2" >
+                                        5000 FCFA valable 1 semaine
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="licence_student" id="student3" >
+                                        15000 FCFA valable 1 mois
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group give_space">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="check_mobile_money" checked>
+                                        Payer par Flooz/T-money ?
+                                    </label>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="checkbox" >
+                                    <label>
+                                        <input type="checkbox" id="check_card" >
+                                        Payer par Carte Visa/mastercard ?
+                                    </label>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4>Donnez le numéro sur lequel se fera la transaction</h4>
+                                <div class="form-group">
+                                    <label for="transaction_phone_number3" class="control-label">*Numéro Flooz ou T-money</label>
+                                    <input type="text" class="form-control" id="transaction_phone_number3" placeholder="Numéro Flooz/ Tmoney" v-model="new_student.transaction_phone_number" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Valider</button>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block additionnaljs %}
+    {#<script src="{{ asset('assets/js/pay-form.js') }}"></script>#}
+
+    <script src="{{ asset('assets/js/pay-transaction.js') }}"></script>
+
+
+{% endblock %}
+

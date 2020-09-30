@@ -1,0 +1,13 @@
+transaction_api:
+    resource: "@TransactionApiBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+sys_security:
+    resource: "@SysSecurityBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

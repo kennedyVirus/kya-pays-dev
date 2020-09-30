@@ -382,7 +382,7 @@ class TransactionController extends BaseController
         if($invoice->confirm($token)){
 
 
-            return new RedirectResponse("http://www.kya-pay.kya-energy.com");
+            return new RedirectResponse("http://www.kya-pay-dev.kya-energy.com");
 
 
 //           if($invoice->getStatus()=="completed"){
@@ -439,7 +439,7 @@ class TransactionController extends BaseController
             //   }
 
         }else{
-            return new RedirectResponse("http://www.kya-pay.kya-energy.com/pay");
+            return new RedirectResponse("http://www.kya-pay-dev.kya-energy.com/pay");
 
         }
 

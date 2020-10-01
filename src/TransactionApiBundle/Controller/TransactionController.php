@@ -292,7 +292,7 @@ class TransactionController extends BaseController
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);
 
-        $res=$this->sendZedekaMessage("22893643212",'callback url place');
+        $res=$this->sendZedekaMessage("22893643212",'callback url place data'.$data['data']);
 
 
 //        $licence_key=$this->generateRandomString(12).$this->generateRandomNumber(4);
@@ -366,7 +366,7 @@ class TransactionController extends BaseController
                 }
             }
         } else {
-            $res=$this->sendZedekaMessage("22893643212",'calback url place error');
+            //$res=$this->sendZedekaMessage("22893643212",'calback url place error');
 
             die("Cette requête n'a pas été émise par PayDunya");
         }
@@ -383,7 +383,7 @@ class TransactionController extends BaseController
 
         $token=$request->query->get('token');
 
-        $res1=$this->sendZedekaMessage("22893643212",'return url place with token '.$token);
+       // $res1=$this->sendZedekaMessage("22893643212",'return url place with token '.$token);
 
 
         $invoice=new CheckoutInvoice();
@@ -392,7 +392,7 @@ class TransactionController extends BaseController
 
         if($invoice->confirm($token)){
 
-            $res2=$this->sendZedekaMessage("22893643212",'return url place ok');
+           // $res2=$this->sendZedekaMessage("22893643212",'return url place ok');
 
 
 

@@ -291,7 +291,9 @@ class TransactionController extends BaseController
 
         //$gg=$_POST['data'];
 
-        $pp=$request->request;
+        $pp=$request->request->all();
+
+        die ($pp);
        // $pr=$request->request["data"];
 
 //        $json_data = $request->getContent();
@@ -474,7 +476,7 @@ class TransactionController extends BaseController
             //   }
 
         }else{
-            return new RedirectResponse("https://www.kya-energy.com");
+            return new RedirectResponse("http://www.kya-pay-dev.kya-energy.com");
 
         }
 

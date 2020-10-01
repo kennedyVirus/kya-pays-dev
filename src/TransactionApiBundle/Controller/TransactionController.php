@@ -299,15 +299,20 @@ class TransactionController extends BaseController
 //        die ($pp);
        // $pr=$request->request["data"];
 
-//        $json_data = $request->getContent();
+        $json_data = $request->getContent();
 //        $data = json_decode($json_data,true);
 //
 //        $a = json_decode($request->getContent(), true);
 //
 //        $xx= $this->json($a);
 
-        //$xx=urldecode($json_data);
-        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$col);
+        $decode=urldecode($json_data);
+
+        $putting_in_array=explode('&',$decode);
+
+        $hash=substr($putting_in_array[2],11);
+
+        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$hash);
        // $result2=$this->sendLicenceCodeByEmail("devethiel97@gmail.com",$pr);
 
 

@@ -281,6 +281,8 @@ window.onload = function () {
 
                             console.log(response.data)
                             if(response.data.error===0){
+
+                                if(response.data.data.type===1){
                                     Swal.fire({
                                         title: 'Confirmation!',
                                         text: "Vous serez redirigé vers un site marchand pour continuer l'opération",
@@ -291,6 +293,14 @@ window.onload = function () {
                                             window.location.href = response.data.data.url
                                         }
                                     })
+                                }else {
+                                    Swal.fire({
+                                        title: 'Erreur Transaction!',
+                                        text: 'Une erreur est survenue lors de votre transaction.Veuillez réssayer svp',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    })
+                                }
                             }else{
                                 Swal.fire({
                                     title: 'Error!',

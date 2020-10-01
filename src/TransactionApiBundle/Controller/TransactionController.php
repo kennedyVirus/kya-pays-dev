@@ -242,7 +242,7 @@ class TransactionController extends BaseController
         Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
         Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
         Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
-        Setup::setMode("test");
+        Setup::setMode("live");
 
         //Configuration des informations de votre service/entreprise
        Store::setName("KYA-ENERGY GROUP"); // Seul le nom est requis
@@ -251,7 +251,7 @@ class TransactionController extends BaseController
        Store::setPhoneNumber("+228 70 45 34 81 / 99 90 33 46 / 90 17 25 24");
        Store::setPostalAddress("08 BP 81101, Lomé - Togo");
        Store::setWebsiteUrl("https://www.kya-energy.com");
-      // Store::setLogoUrl("http://www.kya-energy.com/logo.png");
+       Store::setLogoUrl("http://www.kya-energy.com/logo.png");
        Store::setCallbackUrl("http://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
 
 
@@ -265,12 +265,15 @@ class TransactionController extends BaseController
         $invoice->setCallbackUrl("http://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
         $invoice->addCustomData("identifier", $identifier);
 
+        $type=-1;
         if($invoice->create()){
             $url=$invoice->getInvoiceUrl();
+            $type=1;
         }
 
         return new Response($this->serialize($this->okResponseBlob([
-            "url" => $url
+            "url" => $url,
+            "type"=>$type
         ])));
     }
 

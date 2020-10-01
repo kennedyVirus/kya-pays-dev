@@ -291,8 +291,8 @@ class TransactionController extends BaseController
 
         //$gg=$_POST['data'];
 
-        $pp=$request["data"];
-        $pr=$request->request["data"];
+        $pp=$request["data"]["hash"];
+       // $pr=$request->request["data"];
 
 //        $json_data = $request->getContent();
 //        $data = json_decode($json_data,true);
@@ -303,7 +303,7 @@ class TransactionController extends BaseController
 
         //$xx=urldecode($json_data);
         $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$pp);
-        $result2=$this->sendLicenceCodeByEmail("devethiel97@gmail.com",$pr);
+       // $result2=$this->sendLicenceCodeByEmail("devethiel97@gmail.com",$pr);
 
 
        // echo $xx;

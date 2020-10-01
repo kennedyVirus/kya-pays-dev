@@ -230,13 +230,19 @@ class TransactionController extends BaseController
 
         $description=$transaction->getDetails();
         $identifier=$transaction->getId();
+//
+//        Setup::setMasterKey($this->getParameter('paydunya_key_main'));
+//        Setup::setPublicKey($this->getParameter('paydunya_key_public'));
+//        Setup::setPrivateKey($this->getParameter('paydunya_key_private'));
+//        Setup::setToken($this->getParameter('paydunya_token'));
+//        Setup::setMode("live");
 
         Setup::setMasterKey($this->getParameter('paydunya_key_main'));
-        Setup::setPublicKey($this->getParameter('paydunya_key_public'));
-        Setup::setPrivateKey($this->getParameter('paydunya_key_private'));
-        Setup::setToken($this->getParameter('paydunya_token'));
-        Setup::setMode("live");
-
+        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
+        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
+        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
+        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
+        Setup::setMode("test");
 
         //Configuration des informations de votre service/entreprise
        Store::setName("KYA-ENERGY GROUP"); // Seul le nom est requis

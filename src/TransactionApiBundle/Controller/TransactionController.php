@@ -292,12 +292,15 @@ class TransactionController extends BaseController
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);
 
+        $a = json_decode($request->getContent(), true);
 
-        $xx=urldecode($json_data);
-        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$xx);
+        $xx= $this->json($a);
+
+        //$xx=urldecode($json_data);
+        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$xx['hash']);
 
 
-        echo $xx;
+       // echo $xx;
         //return new JsonResponse($data);
 
         $gg=$_POST['data']['token'];

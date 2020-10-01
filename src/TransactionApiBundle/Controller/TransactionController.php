@@ -290,7 +290,7 @@ class TransactionController extends BaseController
         $identifier=sizeof($trans);
         $token_in_array='xxxxxxxxxx';
 
-            $putting_in_array=explode('&',$decode);
+   //         $putting_in_array=explode('&',$decode);
 //
            // $hash=substr($putting_in_array[2],11);
 //            $status=substr($putting_in_array[16],13);
@@ -333,7 +333,8 @@ class TransactionController extends BaseController
 
                         //save verification
 
-                        $ref=$token_in_array[1];
+                        //$ref=$token_in_array[1];
+                        $ref='rrrrrrr';
 
                         $verification=new Verification();
                         $verification->setEmail($transaction->getUsername());
@@ -374,7 +375,7 @@ class TransactionController extends BaseController
                 die("Cette requête n'a pas été émise par PayDunya");
             }
         }catch (\Exception $e){
-            die($e);
+            die();
         }
 
     }

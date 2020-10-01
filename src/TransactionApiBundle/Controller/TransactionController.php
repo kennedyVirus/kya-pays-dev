@@ -279,9 +279,12 @@ class TransactionController extends BaseController
      */
 
     public function paydunyaTransactionCallBackAction(Request $request){
-        $json_data = $request->getContent();
+//        $json_data = $request->getContent();
+//
+//        $decode=urldecode($json_data);
 
-        $decode=urldecode($json_data);
+        $re=$this->sendZedekaMessage("22893643212",'hhello test');
+
 
         $hash= 'xxxxxxxxxx';
         $status='completed';

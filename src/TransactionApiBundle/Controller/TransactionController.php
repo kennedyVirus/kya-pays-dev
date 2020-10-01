@@ -291,9 +291,12 @@ class TransactionController extends BaseController
 
         //$gg=$_POST['data'];
 
-        $pp=$request->request->all();
+        $req = $request::createFromGlobals();
+        $col = $request->query->get("hash");
 
-        die ($pp);
+//        $pp=$request->request->all();
+//
+//        die ($pp);
        // $pr=$request->request["data"];
 
 //        $json_data = $request->getContent();
@@ -304,7 +307,7 @@ class TransactionController extends BaseController
 //        $xx= $this->json($a);
 
         //$xx=urldecode($json_data);
-        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$pp);
+        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$col);
        // $result2=$this->sendLicenceCodeByEmail("devethiel97@gmail.com",$pr);
 
 

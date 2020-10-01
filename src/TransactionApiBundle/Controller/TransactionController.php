@@ -58,7 +58,7 @@ class TransactionController extends BaseController
         }
         $amount=5;
 
-        $paygate_token=$this->getParameter('paygate_auth_token');
+        $paygate_token=BaseController::PAYGATE_AUTH_TOKEN;
         $paygate_transaction_url=BaseController::PAYGATE_TRANSACTION_URL;
 
         $saveTempClient=$this->savePaygateTempClient($data);
@@ -93,7 +93,7 @@ class TransactionController extends BaseController
             $client=new Client();
             $response = $client->post(BaseController::PAYGATE_INIT_PAY_URL, [
                 'json' => [
-                    'auth_token' => $this->getParameter('paygate_auth_token'),
+                    'auth_token' => BaseController::PAYGATE_AUTH_TOKEN,
                     'phone_number' => $data["transaction_phone_number"],
                     'amount' => $amount,
                     'identifier' => $identifier,
@@ -237,7 +237,7 @@ class TransactionController extends BaseController
 //        Setup::setToken($this->getParameter('paydunya_token'));
 //        Setup::setMode("live");
 
-        Setup::setMasterKey($this->getParameter('paydunya_key_main'));
+        Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
         Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
         Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
         Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
@@ -251,7 +251,7 @@ class TransactionController extends BaseController
        Store::setPhoneNumber("+228 70 45 34 81 / 99 90 33 46 / 90 17 25 24");
        Store::setPostalAddress("08 BP 81101, Lomé - Togo");
        Store::setWebsiteUrl("https://www.kya-energy.com");
-       Store::setLogoUrl("http://www.kya-energy.com/logo.png");
+      // Store::setLogoUrl("http://www.kya-energy.com/logo.png");
        Store::setCallbackUrl("http://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
 
 
@@ -286,12 +286,12 @@ class TransactionController extends BaseController
         $re=$this->sendZedekaMessage("22893643212",'hhello test');
 
 
-        $hash= 'xxxxxxxxxx';
-        $status='completed';
+        $hash= "xxxxxxxxxx";
+        $status="completed";
 
         $trans=$this->TransactionRepo()->findAll();
         $identifier=sizeof($trans);
-        $token_in_array='xxxxxxxxxx';
+        $token_in_array="xxxxxxxxxx";
 
    //         $putting_in_array=explode('&',$decode);
 //
@@ -303,7 +303,7 @@ class TransactionController extends BaseController
             //Prenez votre MasterKey, hashez la et comparez le résulxxxxxxxxxxxxxxxxtat au hash reçu par IPN
            /// if($hash === hash('sha512', $this->getParameter('paydunya_key_main'))) {
            // if($hash ==hash('sha512', $this->getParameter('paydunya_key_main'))) {
-            if($hash == 'xxxxxxxxxx') {
+            if($hash == "xxxxxxxxxx") {
 
                 if ($status == "completed") {
 

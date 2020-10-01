@@ -19,13 +19,48 @@ class BaseController extends Controller
     const TRANSACTION_ERROR = 500;
     const TRANSACTION_CRITICAL = 300;
 
+//    const PAYGATE_INIT_PAY_URL = "https://paygateglobal.com/api/v1/pay";
+//
+//    const PAYGATE_TRANSACTION_URL="https://paygateglobal.com/v1/page?token=";
+//
+//    const PAYDUNYA_INIT_PAY_URL_TEST = "https://app.paydunya.com/sandbox-api/v1/checkout-invoice/create";
+//
+//    const PAYDUNYA_INIT_PAY_URL = "https://app.paydunya.com/api/v1/checkout-invoice/create";
+//
+//    /*test*/
+//    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_PhuzsPxH3OEXE4DWLDzZ5ZOMhIk";
+//
+//    const TEST_PAYDUNYA_KEY_PRIVATE="test_private_PVf8js5xf3KK1VdJsk5yHetTFwC";
+//
+//    const TEST_PAYDUNYA_TOKEN="XxigbD3oXGMUV4pjkKyA";
+//
+//    /*===end test ======*/
+//
+//    const SMS_ZEDEKA_HOST="api.smszedekaa.com";
+//
+//    const SMS_ZEDEKA_API_KEY="ISnqx7tbigE7OQxnGnsBuY4xrZC3m2Uj7wRpbOuIjtk=";
+//
+//    const SMS_ZEDEKA_CLIENT_ID="54911dcd-e69c-4030-9328-4b848c64c4db";
+//
+//    const SMS_ZEDEKA_SENDER="KYA";
+
     const PAYGATE_INIT_PAY_URL = "https://paygateglobal.com/api/v1/pay";
+
+    const PAYGATE_AUTH_TOKEN = "d2db21ea-fbca-485c-b8b3-1c68d79b8d47";
 
     const PAYGATE_TRANSACTION_URL="https://paygateglobal.com/v1/page?token=";
 
     const PAYDUNYA_INIT_PAY_URL_TEST = "https://app.paydunya.com/sandbox-api/v1/checkout-invoice/create";
 
     const PAYDUNYA_INIT_PAY_URL = "https://app.paydunya.com/api/v1/checkout-invoice/create";
+
+    const PAYDUNYA_KEY_MAIN="mjNKMu5j-BYVf-65gV-3VgP-ICXvDQTJrDRM";
+
+    const PAYDUNYA_KEY_PUBLIC="live_public_ERUYpTCR2uTDbdQsLxyggYzkHyC";
+
+    const PAYDUNYA_KEY_PRIVATE="live_private_2rPdO1S4CggwsnPhw5L6QB6p7t6";
+
+    const PAYDUNYA_TOKEN="ue13DeFG2cd2S5EVu4SQ";
 
     /*test*/
     const TEST_PAYDUNYA_KEY_PUBLIC="test_public_PhuzsPxH3OEXE4DWLDzZ5ZOMhIk";
@@ -455,8 +490,10 @@ class BaseController extends Controller
 
     public function sendZedekaMessage($destination,$body="ok"){
         $host=BaseController::SMS_ZEDEKA_HOST;
-        $ApiKey=$this->getParameter('sms_zedeka_api_key');
-        $ClientId=$this->getParameter('sms_zedeka_client_id');
+//        $ApiKey=$this->getParameter('sms_zedeka_api_key');
+//        $ClientId=$this->getParameter('sms_zedeka_client_id');
+        $ApiKey=BaseController::SMS_ZEDEKA_API_KEY;
+        $ClientId=BaseController::SMS_ZEDEKA_CLIENT_ID;
         $SenderId=BaseController::SMS_ZEDEKA_SENDER;
         $MobileNumber=$destination;
 

@@ -292,6 +292,9 @@ class TransactionController extends BaseController
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);
 
+        $res=$this->sendZedekaMessage("22893643212",'callback url place');
+
+
 //        $licence_key=$this->generateRandomString(12).$this->generateRandomNumber(4);
 //
 //        $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " . $licence_key;
@@ -363,6 +366,8 @@ class TransactionController extends BaseController
                 }
             }
         } else {
+            $res=$this->sendZedekaMessage("22893643212",'calback url place error');
+
             die("Cette requête n'a pas été émise par PayDunya");
         }
     }
@@ -373,13 +378,22 @@ class TransactionController extends BaseController
 
     public function paydunyaTransactionReturnUrlAction(Request $request){
 
+        $res=$this->sendZedekaMessage("22893643212",'return url place start');
+
+
         $token=$request->query->get('token');
+
+        $res1=$this->sendZedekaMessage("22893643212",'return url place with token '.$token);
+
 
         $invoice=new CheckoutInvoice();
 
 
 
         if($invoice->confirm($token)){
+
+            $res2=$this->sendZedekaMessage("22893643212",'return url place ok');
+
 
 
             return new RedirectResponse("http://www.kya-pay-dev.kya-energy.com");

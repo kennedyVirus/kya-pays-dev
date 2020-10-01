@@ -21,21 +21,11 @@ class BaseController extends Controller
 
     const PAYGATE_INIT_PAY_URL = "https://paygateglobal.com/api/v1/pay";
 
-    const PAYGATE_AUTH_TOKEN = "d2db21ea-fbca-485c-b8b3-1c68d79b8d47";
-
     const PAYGATE_TRANSACTION_URL="https://paygateglobal.com/v1/page?token=";
 
     const PAYDUNYA_INIT_PAY_URL_TEST = "https://app.paydunya.com/sandbox-api/v1/checkout-invoice/create";
 
     const PAYDUNYA_INIT_PAY_URL = "https://app.paydunya.com/api/v1/checkout-invoice/create";
-
-    const PAYDUNYA_KEY_MAIN="mjNKMu5j-BYVf-65gV-3VgP-ICXvDQTJrDRM";
-
-    const PAYDUNYA_KEY_PUBLIC="live_public_ERUYpTCR2uTDbdQsLxyggYzkHyC";
-
-    const PAYDUNYA_KEY_PRIVATE="live_private_2rPdO1S4CggwsnPhw5L6QB6p7t6";
-
-    const PAYDUNYA_TOKEN="ue13DeFG2cd2S5EVu4SQ";
 
     /*test*/
     const TEST_PAYDUNYA_KEY_PUBLIC="test_public_PhuzsPxH3OEXE4DWLDzZ5ZOMhIk";
@@ -207,15 +197,15 @@ class BaseController extends Controller
         $transaction = new Transaction();
 
 
-        $details = "Achat Clé d'activation de KYA SOL DESIGN";
+        $details = "Achat Clé d'activation de KYA-SolDesign";
         $source=0;
 
         if (preg_match("#^[9,7]{1}[0-3]{1}[0-9]{6}$#", $phone_number))
         {
-            $details = "Achat Clé d'activation de KYA SOL DESIGN à travers T-Money.";
+            $details = "Achat Clé d'activation de KYA-SolDesign à travers T-Money.";
             $source=1;
         } else {
-            $details = "Achat Clé d'activation de KYA SOL DESIGN à travers Flooz.";
+            $details = "Achat Clé d'activation de KYA-SolDesign à travers Flooz.";
             $source=2;
         }
 
@@ -440,7 +430,7 @@ class BaseController extends Controller
     public function initPayDunyaTransaction($client_id,$email,$amount,$type,$amount_category){
 
         $transaction = new Transaction();
-        $details = "Achat Clé d'activation de KYA SOL DESIGN à travers Carte Bancaire";
+        $details = "Achat Clé d'activation de KYA-SolDesign à travers Carte Bancaire";
         $source=3;
 
         $transaction->setDetails($details);
@@ -465,8 +455,8 @@ class BaseController extends Controller
 
     public function sendZedekaMessage($destination,$body="ok"){
         $host=BaseController::SMS_ZEDEKA_HOST;
-        $ApiKey=BaseController::SMS_ZEDEKA_API_KEY;
-        $ClientId=BaseController::SMS_ZEDEKA_CLIENT_ID;
+        $ApiKey=$this->getParameter('sms_zedeka_api_key');
+        $ClientId=$this->getParameter('sms_zedeka_client_id');
         $SenderId=BaseController::SMS_ZEDEKA_SENDER;
         $MobileNumber=$destination;
 
@@ -492,7 +482,7 @@ class BaseController extends Controller
         //$bannerImg = $message->embed(\Swift_Image::fromPath($path));
         $message
             //->setFrom(['noreplykabadelivery@kya-energy.com' => 'KYA-ENERGY-GROUP'])
-            ->setFrom(['jfkvirus@gmail.com' => 'KYA-ENERGY-GROUP'])
+            ->setFrom(['jfkvirus@gmail.com' => 'KYA-SolDesign'])
             ->setTo([
                 $destination
             ])

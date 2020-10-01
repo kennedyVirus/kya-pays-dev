@@ -291,7 +291,7 @@ class TransactionController extends BaseController
 
         //$gg=$_POST['data'];
 
-        $pp=$request->request->all();
+        $pp=$request->request;
        // $pr=$request->request["data"];
 
 //        $json_data = $request->getContent();

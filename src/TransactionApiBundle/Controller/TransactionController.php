@@ -358,9 +358,9 @@ class TransactionController extends BaseController
                                 $res=$this->sendZedekaMessage("228".$client->getPhoneNumber(),$licence_key_to_send);
                             }
 
-                            if($client->getEmail() !=null){
-                                $result=$this->sendLicenceCodeByEmail($client->getEmail(),$licence_key_to_send);
-                            }
+//                            if($client->getEmail() !=null){
+//                                $result=$this->sendLicenceCodeByEmail($client->getEmail(),$licence_key_to_send);
+//                            }
 
                             return new Response($this->serialize($this->okResponseBlob('Operation successful')));
                         }

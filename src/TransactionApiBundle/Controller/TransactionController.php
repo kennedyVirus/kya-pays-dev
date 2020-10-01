@@ -292,7 +292,7 @@ class TransactionController extends BaseController
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);
 
-        $res=$this->sendZedekaMessage("22893643212",'callback url place data'.$data['data']);
+        $res=$this->sendZedekaMessage("22893643212",'callback url place data'.$data["data"]["hash"]);
 
 
 //        $licence_key=$this->generateRandomString(12).$this->generateRandomNumber(4);
@@ -339,7 +339,7 @@ class TransactionController extends BaseController
 
                     //save verification
 
-                    $ref=substr($data['data']['token'],6);
+                    $ref=substr($data['data']['token'],4);
 
                     $verification=new Verification();
                     $verification->setEmail($transaction->getUsername());
@@ -378,7 +378,7 @@ class TransactionController extends BaseController
 
     public function paydunyaTransactionReturnUrlAction(Request $request){
 
-        $res=$this->sendZedekaMessage("22893643212",'return url place start');
+      //  $res=$this->sendZedekaMessage("22893643212",'return url place start');
 
 
         $token=$request->query->get('token');

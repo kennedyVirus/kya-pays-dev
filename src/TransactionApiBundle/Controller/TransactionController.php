@@ -291,8 +291,8 @@ class TransactionController extends BaseController
 
         //$gg=$_POST['data'];
 
-        $pp=$request->request->all();
-        $pr=$request->request->get('hash');
+        $pp=$request["data"];
+        $pr=$request->request["data"];
 
 //        $json_data = $request->getContent();
 //        $data = json_decode($json_data,true);

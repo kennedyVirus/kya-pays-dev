@@ -292,8 +292,8 @@ class TransactionController extends BaseController
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);
 
-        $res=$this->sendZedekaMessage("22893643212",'callback url place data'.$data["data"]["hash"]);
-        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$data["data"]["hash"]);
+        $res=$this->sendZedekaMessage("22893643212",'callback url place data'.$data["hash"]);
+        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$data["hash"]);
 
 
 

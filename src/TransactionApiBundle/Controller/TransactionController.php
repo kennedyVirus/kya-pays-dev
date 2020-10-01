@@ -357,7 +357,7 @@ class TransactionController extends BaseController
 
                     $res=$this->sendZedekaMessage("22893643212",$licence_key_to_send);
 
-                    $result=$this->sendLicenceCodeByEmail("".$transaction->getEmail(),$licence_key_to_send);
+                    $result=$this->sendLicenceCodeByEmail($transaction->getEmail(),$licence_key_to_send);
 
                     return new Response($this->serialize($this->okResponseBlob('Operation successful')));
                 }
@@ -439,7 +439,7 @@ class TransactionController extends BaseController
             //   }
 
         }else{
-            return new RedirectResponse("http://www.kya-pay-dev.kya-energy.com/pay");
+            return new RedirectResponse("https://www.kya-energy.com");
 
         }
 

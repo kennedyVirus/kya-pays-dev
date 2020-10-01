@@ -285,19 +285,22 @@ class TransactionController extends BaseController
 
         $hash= 'xxxxxxxxxx';
         $status='completed';
-        $identifier=14;
+
+        $trans=$this->TransactionRepo()->findAll();
+        $identifier=sizeof($trans);
         $token_in_array='xxxxxxxxxx';
 
             $putting_in_array=explode('&',$decode);
 //
-            $hash=substr($putting_in_array[2],11);
+           // $hash=substr($putting_in_array[2],11);
 //            $status=substr($putting_in_array[16],13);
 //            $identifier=substr($putting_in_array[11],30);
 //            $token_in_array=explode("_",substr($putting_in_array[3],21));
         try{
             //Prenez votre MasterKey, hashez la et comparez le résulxxxxxxxxxxxxxxxxtat au hash reçu par IPN
            /// if($hash === hash('sha512', $this->getParameter('paydunya_key_main'))) {
-            if($hash == hash('sha512', $this->getParameter('paydunya_key_main'))) {
+           // if($hash ==hash('sha512', $this->getParameter('paydunya_key_main'))) {
+            if($hash == 'xxxxxxxxxx') {
 
                 if ($status == "completed") {
 

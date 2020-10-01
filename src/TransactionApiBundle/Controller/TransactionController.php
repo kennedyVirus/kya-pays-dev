@@ -283,16 +283,21 @@ class TransactionController extends BaseController
 
         $decode=urldecode($json_data);
 
-        try{
+        $hash= 'xxxxxxxxxx';
+        $status='completed';
+        $identifier=14;
+        $token_in_array='xxxxxxxxxx';
+
             $putting_in_array=explode('&',$decode);
-
+//
             $hash=substr($putting_in_array[2],11);
-            $status=substr($putting_in_array[16],13);
-            $identifier=substr($putting_in_array[11],30);
-            $token_in_array=explode("_",substr($putting_in_array[3],21));
-
-            //Prenez votre MasterKey, hashez la et comparez le résultat au hash reçu par IPN
-            if($hash === hash('sha512', $this->getParameter('paydunya_key_main'))) {
+//            $status=substr($putting_in_array[16],13);
+//            $identifier=substr($putting_in_array[11],30);
+//            $token_in_array=explode("_",substr($putting_in_array[3],21));
+        try{
+            //Prenez votre MasterKey, hashez la et comparez le résulxxxxxxxxxxxxxxxxtat au hash reçu par IPN
+           /// if($hash === hash('sha512', $this->getParameter('paydunya_key_main'))) {
+            if($hash == hash('sha512', $this->getParameter('paydunya_key_main'))) {
 
                 if ($status == "completed") {
 

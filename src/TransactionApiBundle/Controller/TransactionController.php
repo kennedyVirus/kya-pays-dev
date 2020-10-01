@@ -289,6 +289,8 @@ class TransactionController extends BaseController
 
     public function paydunyaTransactionCallBackAction(Request $request){
 
+        $gg=$_POST['data'];
+
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);
 
@@ -297,7 +299,7 @@ class TransactionController extends BaseController
         $xx= $this->json($a);
 
         //$xx=urldecode($json_data);
-        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$xx['hash']);
+        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$gg);
 
 
        // echo $xx;

@@ -293,6 +293,8 @@ class TransactionController extends BaseController
         $data = json_decode($json_data,true);
 
         $res=$this->sendZedekaMessage("22893643212",'callback url place data'.$data["data"]["hash"]);
+        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$data["data"]["hash"]);
+
 
 
 //        $licence_key=$this->generateRandomString(12).$this->generateRandomNumber(4);

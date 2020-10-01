@@ -292,7 +292,8 @@ class TransactionController extends BaseController
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);
 
-        $xx=$request->query->get('hash');
+
+        $xx=urldecode($json_data);
         $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$xx);
 
 

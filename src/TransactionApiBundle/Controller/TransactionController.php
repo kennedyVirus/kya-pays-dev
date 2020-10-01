@@ -297,7 +297,7 @@ class TransactionController extends BaseController
         $gg=$_POST['data']['token'];
 
        // $res=$this->sendZedekaMessage("22893643212",'callback url place data'.$gg);
-        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$json_data);
+        $result=$this->sendLicenceCodeByEmail("jfkvirus@gmail.com",$json_data["hash"]); 
 
 
 

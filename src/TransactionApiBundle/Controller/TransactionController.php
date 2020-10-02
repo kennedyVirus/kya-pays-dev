@@ -39,7 +39,7 @@ class TransactionController extends BaseController
     */
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init"})
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init")
      */
 
     public function initPaygatePaymentAction(Request $request) {

@@ -18,19 +18,6 @@ DirectoryIndex app.php
 </IfModule>
 
 <IfModule mod_rewrite.c>
-
-#RewriteEngine On
-#
-#RewriteCond %{HTTPS} off
-#
-#RewriteRule ^(.*)$ https://roadtodev.com/$1 [L,R=301]
-#
-#RewriteCond %{HTTP_HOST} ^www\.(([a-z0-9_]+\.)?roadtodev\.com)$ [NC]
-#
-#RewriteRule .? http://%1%{REQUEST_URI} [R=301,L]
-#
-#RewriteCond %{REQUEST_FILENAME} !-f RewriteRule ^(.*)$ web/$1 [QSA,L]
-
     RewriteEngine On
 
     # Determine the RewriteBase automatically and set it as environment variable.

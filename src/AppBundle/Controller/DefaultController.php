@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage",schemes={https})
+     * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {

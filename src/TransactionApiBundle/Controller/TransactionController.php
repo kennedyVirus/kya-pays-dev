@@ -39,7 +39,7 @@ class TransactionController extends BaseController
     */
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init")
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init",schemes={https})
      */
 
     public function initPaygatePaymentAction(Request $request) {
@@ -118,7 +118,7 @@ class TransactionController extends BaseController
     }
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paygate/payment/confirm")
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paygate/payment/confirm",schemes={https})
      */
 
     public function paygateTransactionCallBackAction(Request $request){

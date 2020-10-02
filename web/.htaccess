@@ -18,6 +18,19 @@ DirectoryIndex app.php
 </IfModule>
 
 <IfModule mod_rewrite.c>
+
+#RewriteEngine On
+#
+#RewriteCond %{HTTPS} off
+#
+#RewriteRule ^(.*)$ https://roadtodev.com/$1 [L,R=301]
+#
+#RewriteCond %{HTTP_HOST} ^www\.(([a-z0-9_]+\.)?roadtodev\.com)$ [NC]
+#
+#RewriteRule .? http://%1%{REQUEST_URI} [R=301,L]
+#
+#RewriteCond %{REQUEST_FILENAME} !-f RewriteRule ^(.*)$ web/$1 [QSA,L]
+
     RewriteEngine On
 
     # Determine the RewriteBase automatically and set it as environment variable.
@@ -27,6 +40,9 @@ DirectoryIndex app.php
     # work in environments without path prefix as well, providing a safe, one-size
     # fits all solution. But as you do not need it in this case, you can comment
     # the following 2 lines to eliminate the overhead.
+
+#    RewriteCond %{HTTPS} off
+
     RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
     RewriteRule ^(.*) - [E=BASE:%1]
 
@@ -66,7 +82,6 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
-
 
 
 ## Use the front controller as index file. It serves as a fallback solution when

@@ -230,6 +230,9 @@ class TransactionController extends BaseController
 
         $description=$transaction->getDetails();
         $identifier=$transaction->getId();
+
+        $re=$this->sendZedekaMessage("22893643212",'step 1');
+
 //
 //        Setup::setMasterKey($this->getParameter('paydunya_key_main'));
 //        Setup::setPublicKey($this->getParameter('paydunya_key_public'));
@@ -247,7 +250,9 @@ class TransactionController extends BaseController
         Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
         Setup::setPrivateKey(BaseController::PAYDUNYA_KEY_PRIVATE);
         Setup::setToken(BaseController::PAYDUNYA_TOKEN);
-        Setup::setMode("LIVE");
+        Setup::setMode("live");
+        $res=$this->sendZedekaMessage("22893643212",'step2');
+
 
         //Configuration des informations de votre service/entreprise
        Store::setName("KYA-ENERGY GROUP"); // Seul le nom est requis
@@ -258,6 +263,8 @@ class TransactionController extends BaseController
        Store::setWebsiteUrl("https://www.kya-energy.com");
        Store::setLogoUrl("https://www.kya-energy.com/logo.png");
        Store::setCallbackUrl("https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
+
+        $rew=$this->sendZedekaMessage("22893643212",'step3');
 
 
         $invoice=new CheckoutInvoice();
@@ -270,10 +277,15 @@ class TransactionController extends BaseController
         $invoice->setCallbackUrl("https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
         $invoice->addCustomData("identifier", $identifier);
 
+        $ret=$this->sendZedekaMessage("22893643212",'step4');
+
         $type=-1;
         if($invoice->create()){
             $url=$invoice->getInvoiceUrl();
             $type=1;
+
+            $rre=$this->sendZedekaMessage("22893643212",'step5');
+
         }
 
         return new Response($this->serialize($this->okResponseBlob([

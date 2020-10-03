@@ -237,12 +237,17 @@ class TransactionController extends BaseController
 //        Setup::setToken($this->getParameter('paydunya_token'));
 //        Setup::setMode("live");
 
+//        Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
+//        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
+//        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
+//        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
+//        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
+//        Setup::setMode("test");
         Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
-        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
-        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
-        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
-        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
-        Setup::setMode("test");
+        Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
+        Setup::setPrivateKey(BaseController::PAYDUNYA_KEY_PRIVATE);
+        Setup::setToken(BaseController::PAYDUNYA_TOKEN);
+        Setup::setMode("live");
 
         //Configuration des informations de votre service/entreprise
        Store::setName("KYA-ENERGY GROUP"); // Seul le nom est requis
@@ -292,9 +297,9 @@ class TransactionController extends BaseController
         //$hash= "xxxxxxxxxx";
         //$status="completed";
 
-        $trans=$this->TransactionRepo()->findAll();
-        $identifier=sizeof($trans);
-        $token_in_array="xxxxxxxxxx";
+        //$trans=$this->TransactionRepo()->findAll();
+       // $identifier=sizeof($trans);
+       // $token_in_array="xxxxxxxxxx";
 
             $putting_in_array=explode('&',$decode);
 //

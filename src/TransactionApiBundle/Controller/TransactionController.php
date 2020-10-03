@@ -249,9 +249,9 @@ class TransactionController extends BaseController
         Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
         Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
         Setup::setPrivateKey(BaseController::PAYDUNYA_KEY_PRIVATE);
+        Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
         Setup::setToken(BaseController::PAYDUNYA_TOKEN);
         Setup::setMode("live");
-        $res=$this->sendZedekaMessage("22893643212",'step2');
 
 
         //Configuration des informations de votre service/entreprise
@@ -263,8 +263,6 @@ class TransactionController extends BaseController
        Store::setWebsiteUrl("https://www.kya-energy.com");
        Store::setLogoUrl("https://www.kya-energy.com/logo.png");
        Store::setCallbackUrl("https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
-
-        $rew=$this->sendZedekaMessage("22893643212",'step3');
 
 
         $invoice=new CheckoutInvoice();
@@ -302,8 +300,6 @@ class TransactionController extends BaseController
         $json_data = $request->getContent();
 //
         $decode=urldecode($json_data);
-
-        $re=$this->sendZedekaMessage("22893643212",'hhello test');
 
 
         //$hash= "xxxxxxxxxx";

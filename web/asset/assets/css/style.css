@@ -192,6 +192,12 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu .active > a{
   color: #009a86;
 }
+.make_bold{
+    font-weight: bold;
+}
+.give_margin{
+  margin-left: 2em;
+}
 
 .nav-menu .drop-down ul {
   display: block;

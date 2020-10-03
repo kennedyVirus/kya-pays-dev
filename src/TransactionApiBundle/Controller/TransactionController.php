@@ -242,7 +242,7 @@ class TransactionController extends BaseController
         Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
         Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
         Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
-        Setup::setMode("live");
+        Setup::setMode("test");
 
         //Configuration des informations de votre service/entreprise
        Store::setName("KYA-ENERGY GROUP"); // Seul le nom est requis
@@ -251,8 +251,8 @@ class TransactionController extends BaseController
        Store::setPhoneNumber("+228 70 45 34 81 / 99 90 33 46 / 90 17 25 24");
        Store::setPostalAddress("08 BP 81101, Lomé - Togo");
        Store::setWebsiteUrl("https://www.kya-energy.com");
-       Store::setLogoUrl("http://www.kya-energy.com/logo.png");
-       Store::setCallbackUrl("http://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
+       Store::setLogoUrl("https://www.kya-energy.com/logo.png");
+       Store::setCallbackUrl("https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
 
 
         $invoice=new CheckoutInvoice();
@@ -260,9 +260,9 @@ class TransactionController extends BaseController
         $invoice->setDescription($description);
         $invoice->setTotalAmount($amount);
         $invoice->addItem("KYA SOL DESIGN licence key for enterprise", 1, $amount, $amount, "KYA SOL DESIGN licence key for enterprise");
-        $invoice->setCancelUrl("http://www.kya-pay-dev.kya-energy.com");
-        $invoice->setReturnUrl("http://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/return");
-        $invoice->setCallbackUrl("http://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
+        $invoice->setCancelUrl("https://www.kya-pay-dev.kya-energy.com");
+        $invoice->setReturnUrl("https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/return");
+        $invoice->setCallbackUrl("https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
         $invoice->addCustomData("identifier", $identifier);
 
         $type=-1;
@@ -368,9 +368,9 @@ class TransactionController extends BaseController
                                 $res=$this->sendZedekaMessage("228".$client->getPhoneNumber(),$licence_key_to_send);
                             }
 
-//                            if($client->getEmail() !=null){
-//                                $result=$this->sendLicenceCodeByEmail($client->getEmail(),$licence_key_to_send);
-//                            }
+                            if($client->getEmail() !=null){
+                                $result=$this->sendLicenceCodeByEmail($client->getEmail(),$licence_key);
+                            }
 
                             return new Response($this->serialize($this->okResponseBlob('Operation successful')));
                         }
@@ -398,10 +398,10 @@ class TransactionController extends BaseController
 
         if($invoice->confirm($token)){
 
-            return new RedirectResponse("http://www.kya-pay-dev.kya-energy.com");
+            return new RedirectResponse("https://www.kya-pay-dev.kya-energy.com");
 
         }else{
-            return new RedirectResponse("http://www.kya-pay-dev.kya-energy.com");
+            return new RedirectResponse("https://www.kya-pay-dev.kya-energy.com");
 
         }
 

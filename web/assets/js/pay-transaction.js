@@ -46,10 +46,77 @@ window.onload = function () {
             },
             recover_email:'',
             recover_transaction_ref:'',
-            check_mobile_money:false
+            is_card_check:false,
+            showTransactionPhoneInputEnterprise:false,
+            showTransactionPhoneInputAcademic:false,
+            showTransactionPhoneInputStudent:false
         },
 
-        mounted: function () {
+        mounted: function (){
+
+            $( "#check_mobile_money_enterprise" ).change(function() {
+                if(this.checked){
+                    $( "#check_card_enterprise" ).prop('checked',false)
+                    app.showTransactionPhoneInputEnterprise=true
+                }else{
+                    $( "#check_card_enterprise" ).prop('checked',true)
+                    app.showTransactionPhoneInputEnterprise=false
+
+                }
+            });
+
+            $( "#check_card_enterprise" ).change(function() {
+                if(this.checked){
+                    $( "#check_mobile_money_enterprise" ).prop('checked',false)
+                    app.showTransactionPhoneInputEnterprise=false
+                }else{
+                    $( "#check_mobile_money_enterprise" ).prop('checked',true)
+                    app.showTransactionPhoneInputEnterprise=true
+                }
+            });
+
+            $( "#check_mobile_money_academic" ).change(function() {
+                if(this.checked){
+                    $( "#check_card_academic" ).prop('checked',false)
+                    app.showTransactionPhoneInputAcademic=true
+                }else{
+                    $( "#check_card_academic" ).prop('checked',true)
+                    app.showTransactionPhoneInputAcademic=false
+
+                }
+            });
+
+            $( "#check_card_academic" ).change(function() {
+                if(this.checked){
+                    $( "#check_mobile_money_academic" ).prop('checked',false)
+                    app.showTransactionPhoneInputAcademic=false
+                }else{
+                    $( "#check_mobile_money_academic" ).prop('checked',true)
+                    app.showTransactionPhoneInputAcademic=true
+                }
+            });
+
+            $( "#check_mobile_money_student" ).change(function() {
+                if(this.checked){
+                    $( "#check_card_student" ).prop('checked',false)
+                    app.showTransactionPhoneInputStudent=true
+                }else{
+                    $( "#check_card_student" ).prop('checked',true)
+                    app.showTransactionPhoneInputStudent=false
+
+                }
+            });
+
+            $( "#check_card_student" ).change(function() {
+                if(this.checked){
+                    $( "#check_mobile_money_student" ).prop('checked',false)
+                    app.showTransactionPhoneInputStudent=false
+                }else{
+                    $( "#check_mobile_money_student" ).prop('checked',true)
+                    app.showTransactionPhoneInputStudent=true
+                }
+            });
+
 
         },
 

@@ -247,7 +247,7 @@ class TransactionController extends BaseController
         Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
         Setup::setPrivateKey(BaseController::PAYDUNYA_KEY_PRIVATE);
         Setup::setToken(BaseController::PAYDUNYA_TOKEN);
-        Setup::setMode("live");
+        Setup::setMode("LIVE");
 
         //Configuration des informations de votre service/entreprise
        Store::setName("KYA-ENERGY GROUP"); // Seul le nom est requis

@@ -282,31 +282,31 @@ class TransactionController extends BaseController
      */
 
     public function paydunyaTransactionCallBackAction(Request $request){
-//        $json_data = $request->getContent();
+        $json_data = $request->getContent();
 //
-//        $decode=urldecode($json_data);
+        $decode=urldecode($json_data);
 
         $re=$this->sendZedekaMessage("22893643212",'hhello test');
 
 
-        $hash= "xxxxxxxxxx";
-        $status="completed";
+        //$hash= "xxxxxxxxxx";
+        //$status="completed";
 
         $trans=$this->TransactionRepo()->findAll();
         $identifier=sizeof($trans);
         $token_in_array="xxxxxxxxxx";
 
-   //         $putting_in_array=explode('&',$decode);
+            $putting_in_array=explode('&',$decode);
 //
-           // $hash=substr($putting_in_array[2],11);
-//            $status=substr($putting_in_array[16],13);
-//            $identifier=substr($putting_in_array[11],30);
-//            $token_in_array=explode("_",substr($putting_in_array[3],21));
+            $hash=substr($putting_in_array[2],11);
+            $status=substr($putting_in_array[16],13);
+            $identifier=substr($putting_in_array[11],30);
+            $token_in_array=explode("_",substr($putting_in_array[3],21));
       //  try{
             //Prenez votre MasterKey, hashez la et comparez le résulxxxxxxxxxxxxxxxxtat au hash reçu par IPN
-           /// if($hash === hash('sha512', $this->getParameter('paydunya_key_main'))) {
+            if($hash === hash('sha512', BaseController::PAYDUNYA_KEY_MAIN)) {
            // if($hash ==hash('sha512', $this->getParameter('paydunya_key_main'))) {
-            if($hash == "xxxxxxxxxx") {
+           // if($hash == "xxxxxxxxxx") {
 
                 if ($status == "completed") {
 
@@ -339,8 +339,8 @@ class TransactionController extends BaseController
 
                         //save verification
 
-                        //$ref=$token_in_array[1];
-                        $ref='rrrrrrr';
+                        $ref=$token_in_array[1];
+                        //$ref='rrrrrrr';
 
                         $verification=new Verification();
                         $verification->setEmail($transaction->getUsername());

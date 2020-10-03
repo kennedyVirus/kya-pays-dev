@@ -27,13 +27,13 @@ class BaseController extends Controller
 //
 //    const PAYDUNYA_INIT_PAY_URL = "https://app.paydunya.com/api/v1/checkout-invoice/create";
 //
-//    /*test*/
-//    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_PhuzsPxH3OEXE4DWLDzZ5ZOMhIk";
-//
-//    const TEST_PAYDUNYA_KEY_PRIVATE="test_private_PVf8js5xf3KK1VdJsk5yHetTFwC";
-//
-//    const TEST_PAYDUNYA_TOKEN="XxigbD3oXGMUV4pjkKyA";
-//
+    /*test*/
+    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_PhuzsPxH3OEXE4DWLDzZ5ZOMhIk";
+
+    const TEST_PAYDUNYA_KEY_PRIVATE="test_private_PVf8js5xf3KK1VdJsk5yHetTFwC";
+
+    const TEST_PAYDUNYA_TOKEN="XxigbD3oXGMUV4pjkKyA";
+
 //    /*===end test ======*/
 //
 //    const SMS_ZEDEKA_HOST="api.smszedekaa.com";
@@ -63,11 +63,11 @@ class BaseController extends Controller
     const PAYDUNYA_TOKEN="ue13DeFG2cd2S5EVu4SQ";
 
     /*test*/
-    const TEST_PAYDUNYA_KEY_PUBLIC="live_public_ERUYpTCR2uTDbdQsLxyggYzkHyC";
-
-    const TEST_PAYDUNYA_KEY_PRIVATE="live_private_2rPdO1S4CggwsnPhw5L6QB6p7t6";
-
-    const TEST_PAYDUNYA_TOKEN="ue13DeFG2cd2S5EVu4SQ";
+//    const TEST_PAYDUNYA_KEY_PUBLIC="live_public_ERUYpTCR2uTDbdQsLxyggYzkHyC";
+//
+//    const TEST_PAYDUNYA_KEY_PRIVATE="live_private_2rPdO1S4CggwsnPhw5L6QB6p7t6";
+//
+//    const TEST_PAYDUNYA_TOKEN="ue13DeFG2cd2S5EVu4SQ";
 
 //    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_PhuzsPxH3OEXE4DWLDzZ5ZOMhIk";
 //

@@ -29,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="99">
-              <caret line="419" column="118" selection-start-line="419" selection-start-column="118" selection-end-line="419" selection-end-column="118" />
+              <caret line="323" column="59" selection-start-line="323" selection-start-column="59" selection-end-line="323" selection-end-column="59" />
               <folding>
                 <element signature="n#div#0;n#div#2;n#!!top" />
                 <element signature="n#div#13;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" />
@@ -135,6 +135,7 @@
       <find>téle</find>
       <find>fcfa</find>
       <find>tele</find>
+      <find>choisiss</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -305,12 +306,12 @@
       <workItem from="1601497059656" duration="5522000" />
       <workItem from="1601506341547" duration="757000" />
       <workItem from="1601507164963" duration="30142000" />
-      <workItem from="1601644628313" duration="21477000" />
+      <workItem from="1601644628313" duration="21647000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57898000" />
+    <option name="totallyTimeSpent" value="58068000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -688,7 +689,7 @@
     <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
-          <caret line="419" column="118" selection-start-line="419" selection-start-column="118" selection-end-line="419" selection-end-column="118" />
+          <caret line="323" column="59" selection-start-line="323" selection-start-column="59" selection-end-line="323" selection-end-column="59" />
           <folding>
             <element signature="n#div#0;n#div#2;n#!!top" />
             <element signature="n#div#13;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" />

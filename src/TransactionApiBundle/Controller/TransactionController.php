@@ -231,8 +231,6 @@ class TransactionController extends BaseController
         $description=$transaction->getDetails();
         $identifier=$transaction->getId();
 
-        $re=$this->sendZedekaMessage("22893643212",'step 1');
-
 //
 //        Setup::setMasterKey($this->getParameter('paydunya_key_main'));
 //        Setup::setPublicKey($this->getParameter('paydunya_key_public'));
@@ -249,14 +247,12 @@ class TransactionController extends BaseController
         Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
         Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
         Setup::setPrivateKey(BaseController::PAYDUNYA_KEY_PRIVATE);
-        Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
         Setup::setToken(BaseController::PAYDUNYA_TOKEN);
         Setup::setMode("live");
 
 
         //Configuration des informations de votre service/entreprise
        Store::setName("KYA-ENERGY GROUP"); // Seul le nom est requis
-
        Store::setTagline("Possédez votre energie");
        Store::setPhoneNumber("+228 70 45 34 81 / 99 90 33 46 / 90 17 25 24");
        Store::setPostalAddress("08 BP 81101, Lomé - Togo");

@@ -28,11 +28,11 @@ class BaseController extends Controller
 //    const PAYDUNYA_INIT_PAY_URL = "https://app.paydunya.com/api/v1/checkout-invoice/create";
 //
     /*test*/
-    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_PhuzsPxH3OEXE4DWLDzZ5ZOMhIk";
+    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_d4QHFMS7OyYFzFrsWYMzgkD2ta4";
 
-    const TEST_PAYDUNYA_KEY_PRIVATE="test_private_PVf8js5xf3KK1VdJsk5yHetTFwC";
+    const TEST_PAYDUNYA_KEY_PRIVATE="test_private_pKeVnBBC26kMQLnxCwWgjia9oU7";
 
-    const TEST_PAYDUNYA_TOKEN="XxigbD3oXGMUV4pjkKyA";
+    const TEST_PAYDUNYA_TOKEN="uzHfqzXhNq6chJFpUWdX";
 
 //    /*===end test ======*/
 //
@@ -54,13 +54,13 @@ class BaseController extends Controller
 
     const PAYDUNYA_INIT_PAY_URL = "https://app.paydunya.com/api/v1/checkout-invoice/create";
 
-    const PAYDUNYA_KEY_MAIN="mjNKMu5j-BYVf-65gV-3VgP-ICXvDQTJrDRM";
+    const PAYDUNYA_KEY_MAIN="RbXP0VEg-17rE-AtO8-DmIW-9p72ddc8ue9D";
 
-    const PAYDUNYA_KEY_PUBLIC="live_public_ERUYpTCR2uTDbdQsLxyggYzkHyC";
+    const PAYDUNYA_KEY_PUBLIC="live_public_rbVdt9ewGG2eB7j9kQJrOuV697R";
 
-    const PAYDUNYA_KEY_PRIVATE="live_private_2rPdO1S4CggwsnPhw5L6QB6p7t6";
+    const PAYDUNYA_KEY_PRIVATE="live_private_wAT4HHvg0Pam1kJpp62nRKKYSoE";
 
-    const PAYDUNYA_TOKEN="ue13DeFG2cd2S5EVu4SQ";
+    const PAYDUNYA_TOKEN="Ext7fzGiAiYPeKtrCq6Y";
 
     /*test*/
 //    const TEST_PAYDUNYA_KEY_PUBLIC="live_public_ERUYpTCR2uTDbdQsLxyggYzkHyC";

@@ -238,18 +238,17 @@ class TransactionController extends BaseController
 //        Setup::setToken($this->getParameter('paydunya_token'));
 //        Setup::setMode("live");
 
-//        Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
-//        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
-//        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
-//        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
-//        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
-//        Setup::setMode("test");
         Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
-        Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
-        Setup::setPrivateKey(BaseController::PAYDUNYA_KEY_PRIVATE);
-        Setup::setToken(BaseController::PAYDUNYA_TOKEN);
-        Setup::setMode("live");
-
+        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
+        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
+        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
+        Setup::setMode("test");
+//        Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
+//        Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
+//        Setup::setPrivateKey(BaseController::PAYDUNYA_KEY_PRIVATE);
+//        Setup::setToken(BaseController::PAYDUNYA_TOKEN);
+//        Setup::setMode("live");
+//
 
         //Configuration des informations de votre service/entreprise
        Store::setName("KYA-ENERGY GROUP"); // Seul le nom est requis
@@ -271,14 +270,12 @@ class TransactionController extends BaseController
         $invoice->setCallbackUrl("https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm");
         $invoice->addCustomData("identifier", $identifier);
 
-        $ret=$this->sendZedekaMessage("22893643212",'step4');
 
         $type=-1;
         if($invoice->create()){
             $url=$invoice->getInvoiceUrl();
             $type=1;
 
-            $rre=$this->sendZedekaMessage("22893643212",'step5');
 
         }
 

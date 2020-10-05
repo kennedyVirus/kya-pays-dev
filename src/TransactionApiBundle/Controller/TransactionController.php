@@ -217,7 +217,7 @@ class TransactionController extends BaseController
         ){
             $amount=$this->getAmountToPay($data["type"],$data["amount_category"]);
         }
-        //$amount=5;
+        $amount=5;
 
         $saveTempClient=$this->savePaydunyaTempClient($data);
 
@@ -238,17 +238,17 @@ class TransactionController extends BaseController
 //        Setup::setToken($this->getParameter('paydunya_token'));
 //        Setup::setMode("live");
 
-        Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
-        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
-        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
-        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
-        Setup::setMode("test");
 //        Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
-//        Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
-//        Setup::setPrivateKey(BaseController::PAYDUNYA_KEY_PRIVATE);
-//        Setup::setToken(BaseController::PAYDUNYA_TOKEN);
-//        Setup::setMode("live");
-//
+//        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
+//        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
+//        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
+//        Setup::setMode("test");
+        Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
+        Setup::setPublicKey(BaseController::PAYDUNYA_KEY_PUBLIC);
+        Setup::setPrivateKey(BaseController::PAYDUNYA_KEY_PRIVATE);
+        Setup::setToken(BaseController::PAYDUNYA_TOKEN);
+        Setup::setMode("live");
+
 
         //Configuration des informations de votre service/entreprise
        Store::setName("KYA-ENERGY GROUP"); // Seul le nom est requis

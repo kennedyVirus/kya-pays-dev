@@ -191,15 +191,14 @@ class TransactionController extends BaseController
 
             $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " .$licence_key;
 
+            $res=$this->sendZedekaMessage("228".$transaction->getUsername(),$licence_key_to_send);
+
+
             $client=$this->ClientRepo()->findOneBy([
                 'id'=>$transaction->getClientId()
             ]);
 
             if($client !=null){
-                if($client->getPhoneNumber() !=null){
-                    $res=$this->sendZedekaMessage("228".$client->getPhoneNumber(),$licence_key_to_send);
-                }
-
                 if($client->getEmail() !=null){
                     $result=$this->sendLicenceCodeByEmail($client->getEmail(),$licence_key);
                 }

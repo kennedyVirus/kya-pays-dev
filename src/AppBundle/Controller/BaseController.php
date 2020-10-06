@@ -536,7 +536,7 @@ class BaseController extends Controller
         //$bannerImg = $message->embed(\Swift_Image::fromPath($path));
         $message
             //->setFrom(['noreplykabadelivery@kya-energy.com' => 'KYA-ENERGY-GROUP'])
-            ->setFrom(['kya.energy2020@gmail.com' => 'KYA-SolDesign'])
+            ->setFrom(['kya.energy2020@gmail.com' => 'KYA-ENERGY-GROUP'])
             ->setTo([
                 $destination
             ])

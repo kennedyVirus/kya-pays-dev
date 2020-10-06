@@ -116,13 +116,9 @@ window.onload = function () {
                     app.showTransactionPhoneInputStudent=true
                 }
             });
-
-
         },
 
-
         methods : {
-
             openPay1Modal(){
                 $('#enterpriseModal').modal('show')
             },
@@ -216,48 +212,81 @@ window.onload = function () {
                     }
                 }
                 if (checked === true) {
-                    this.new_academic.amount_category=selected
 
-                   // $('#modal-loader').modal('show');
-                    console.log(this.new_academic)
-                    axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init',this.new_academic)
-                        .then((response)=>{
-                            $('#modal-loader').modal('hide');
+                    if(this.showTransactionPhoneInputAcademic==true){
+                        let is_error=false
+                        let error_message=''
+                        if(this.new_academic.transaction_phone_number=='' ||  this.new_academic.transaction_phone_number===''){
+                            is_error=true;
+                            error_message='Vous avez choisi de payer via mobile money.veuillez entrer un numéro de téléphone togolais pour continuer l\'opération.Merci';
+                        }
 
-                            $('#academicModal').modal('hide')
+                        if(this.new_academic.transaction_phone_number.length<8){
+                            is_error=true;
+                            error_message='Veuillez entrer un numéro de téléphone togolais de 8 chiffres pour continuer l\'opération.Merci';
+                        }
 
-                            console.log(response.data)
-                            if(response.data.error===0){
-                                if(response.data.data.type===1){
-                                    Swal.fire({
-                                        title: 'Confirmation!',
-                                        text: "Vous serez redirigé vers un site marchand pour continuer l'opération",
-                                        icon: 'warning',
-                                        confirmButtonText: 'Continuer'
-                                    }).then((result) => {
-                                        if (result.value) {
-                                            window.location.href = response.data.data.url
+                        if(is_error==true){
+                            Swal.fire({
+                                title: 'Erreur Numéro de télephone!',
+                                text: error_message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            })
+                        }else {
+                            this.new_academic.amount_category=selected
+
+                            console.log(this.new_academic)
+                            axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init',this.new_academic)
+                                .then((response)=>{
+                                    $('#modal-loader').modal('hide');
+
+                                    $('#academicModal').modal('hide')
+
+                                    console.log(response.data)
+                                    if(response.data.error===0){
+                                        if(response.data.data.type===1){
+                                            Swal.fire({
+                                                title: 'Confirmation!',
+                                                text: "Vous serez redirigé vers un site marchand pour continuer l'opération",
+                                                icon: 'warning',
+                                                confirmButtonText: 'Continuer'
+                                            }).then((result) => {
+                                                if (result.value) {
+                                                    window.location.href = response.data.data.url
+                                                }
+                                            })}
+                                        else {
+                                            Swal.fire({
+                                                title: 'Confirmation!',
+                                                text: "Veuillez consulter votre messagerie pour continuer l'opération",
+                                                icon: 'warning',
+                                                confirmButtonText: 'OK'
+                                            })
                                         }
-                                    })}
-                                else {
-                                    Swal.fire({
-                                        title: 'Confirmation!',
-                                        text: "Veuillez consulter votre messagerie pour continuer l'opération",
-                                        icon: 'warning',
-                                        confirmButtonText: 'OK'
-                                    })
-                                }
-                            }else{
-                                Swal.fire({
-                                    title: 'Error!',
-                                    text: 'Oups.Une erreur est survenue , réssayez svp',
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                })
-                            }
-                        }).catch((error)=>{
-                        console.log(error)
-                    })
+                                    }else{
+                                        if(response.data.error===-2){
+                                            Swal.fire({
+                                                title: 'Erreur Numéro de téléphone!',
+                                                text: 'Veuillez entrer un numéro de téléphone togolais',
+                                                icon: 'error',
+                                                confirmButtonText: 'J\'ai compris'
+                                            })
+                                        }else {
+                                            Swal.fire({
+                                                title: 'Error!',
+                                                text: 'Oups.Une erreur est survenue , réssayez svp',
+                                                icon: 'error',
+                                                confirmButtonText: 'OK'
+                                            })
+                                        }
+                                    }
+                                }).catch((error)=>{
+                                console.log(error)
+                            })
+                        }
+
+                    }
                 }
             },
             submitStudentForm(){
@@ -276,48 +305,82 @@ window.onload = function () {
                     }
                 }
                 if (checked === true) {
-                    this.new_student.amount_category=selected
 
-                    $('#modal-loader').modal('show');
-                    console.log(this.new_student)
-                    axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init',this.new_student)
-                        .then((response)=>{
-                            $('#modal-loader').modal('hide');
+                    if(this.showTransactionPhoneInputStudent==true){
+                        let is_error=false
+                        let error_message=''
+                        if(this.new_student.transaction_phone_number=='' ||  this.new_student.transaction_phone_number===''){
+                            is_error=true;
+                            error_message='Vous avez choisi de payer via mobile money.veuillez entrer un numéro de téléphone togolais pour continuer l\'opération.Merci';
+                        }
 
-                            $('#studentModal').modal('hide')
+                        if(this.new_student.transaction_phone_number.length<8){
+                            is_error=true;
+                            error_message='Veuillez entrer un numéro de téléphone togolais de 8 chiffres pour continuer l\'opération.Merci';
+                        }
 
-                            console.log(response.data)
-                            if(response.data.error===0){
-                                if(response.data.data.type===1){
-                                    Swal.fire({
-                                        title: 'Confirmation!',
-                                        text: "Vous serez redirigé vers un site marchand pour continuer l'opération",
-                                        icon: 'warning',
-                                        confirmButtonText: 'Continuer'
-                                    }).then((result) => {
-                                        if (result.value) {
-                                            window.location.href = response.data.data.url
+                        if(is_error==true){
+                            Swal.fire({
+                                title: 'Erreur Numéro de télephone!',
+                                text: error_message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            })
+                        }else {
+                            this.new_student.amount_category=selected
+
+                            $('#modal-loader').modal('show');
+                            console.log(this.new_student)
+                            axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init',this.new_student)
+                                .then((response)=>{
+                                    $('#modal-loader').modal('hide');
+
+                                    $('#studentModal').modal('hide')
+
+                                    console.log(response.data)
+                                    if(response.data.error===0){
+                                        if(response.data.data.type===1){
+                                            Swal.fire({
+                                                title: 'Confirmation!',
+                                                text: "Vous serez redirigé vers un site marchand pour continuer l'opération",
+                                                icon: 'warning',
+                                                confirmButtonText: 'Continuer'
+                                            }).then((result) => {
+                                                if (result.value) {
+                                                    window.location.href = response.data.data.url
+                                                }
+                                            })}
+                                        else {
+                                            Swal.fire({
+                                                title: 'Confirmation!',
+                                                text: "Veuillez consulter votre messagerie pour continuer l'opération",
+                                                icon: 'warning',
+                                                confirmButtonText: 'OK'
+                                            })
                                         }
-                                    })}
-                                else {
-                                    Swal.fire({
-                                        title: 'Confirmation!',
-                                        text: "Veuillez consulter votre messagerie pour continuer l'opération",
-                                        icon: 'warning',
-                                        confirmButtonText: 'OK'
-                                    })
-                                }
-                            }else{
-                                Swal.fire({
-                                    title: 'Error!',
-                                    text: 'Oups.Une erreur est survenue , réssayez svp',
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                })
-                            }
-                        }).catch((error)=>{
-                        console.log(error)
-                    })
+                                    }else{
+                                        if(response.data.error===-2){
+                                            Swal.fire({
+                                                title: 'Erreur Numéro de téléphone!',
+                                                text: 'Veuillez entrer un numéro de téléphone togolais',
+                                                icon: 'error',
+                                                confirmButtonText: 'J\'ai compris'
+                                            })
+                                        }else {
+                                            Swal.fire({
+                                                title: 'Error!',
+                                                text: 'Oups.Une erreur est survenue , réssayez svp',
+                                                icon: 'error',
+                                                confirmButtonText: 'OK'
+                                            })
+                                        }
+                                    }
+                                }).catch((error)=>{
+                                console.log(error)
+                            })
+                        }
+
+                    }
                 }
             },
             submitEnterpriseForm(){
@@ -336,49 +399,83 @@ window.onload = function () {
                     }
                 }
                 if (checked === true) {
-                    this.new_enterprise.amount_category=selected
 
-                    $('#modal-loader').modal('show');
-                    console.log(this.new_enterprise)
-                    axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_enterprise)
-                        .then((response)=>{
-                            $('#modal-loader').modal('hide');
+                    if(this.showTransactionPhoneInputEnterprise==true){
+                        let is_error=false
+                        let error_message=''
+                        if(this.new_enterprise.transaction_phone_number=='' ||  this.new_enterprise.transaction_phone_number===''){
+                            is_error=true;
+                            error_message='Vous avez choisi de payer via mobile money.veuillez entrer un numéro de téléphone togolais pour continuer l\'opération.Merci';
+                        }
 
-                            $('#enterpriseModal').modal('hide')
+                        if(this.new_enterprise.transaction_phone_number.length<8){
+                            is_error=true;
+                            error_message='Veuillez entrer un numéro de téléphone togolais de 8 chiffres pour continuer l\'opération.Merci';
+                        }
 
-                            console.log(response.data)
-                            if(response.data.error===0){
+                        if(is_error==true){
+                            Swal.fire({
+                                title: 'Erreur Numéro de télephone!',
+                                text: error_message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            })
+                        }else {
+                            this.new_enterprise.amount_category=selected
 
-                                if(response.data.data.type===1){
-                                    Swal.fire({
-                                        title: 'Confirmation!',
-                                        text: "Vous serez redirigé vers un site marchand pour continuer l'opération",
-                                        icon: 'warning',
-                                        confirmButtonText: 'Continuer'
-                                    }).then((result) => {
-                                        if (result.value) {
-                                            window.location.href = response.data.data.url
+                            $('#modal-loader').modal('show');
+                            console.log(this.new_enterprise)
+                            axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_enterprise)
+                                .then((response)=>{
+                                    $('#modal-loader').modal('hide');
+
+                                    $('#enterpriseModal').modal('hide')
+
+                                    console.log(response.data)
+                                    if(response.data.error===0){
+
+                                        if(response.data.data.type===1){
+                                            Swal.fire({
+                                                title: 'Confirmation!',
+                                                text: "Vous serez redirigé vers un site marchand pour continuer l'opération",
+                                                icon: 'warning',
+                                                confirmButtonText: 'Continuer'
+                                            }).then((result) => {
+                                                if (result.value) {
+                                                    window.location.href = response.data.data.url
+                                                }
+                                            })
+                                        }else {
+                                            Swal.fire({
+                                                title: 'Erreur Transaction!',
+                                                text: 'Une erreur est survenue lors de votre transaction.Veuillez réssayer svp',
+                                                icon: 'error',
+                                                confirmButtonText: 'OK'
+                                            })
                                         }
-                                    })
-                                }else {
-                                    Swal.fire({
-                                        title: 'Erreur Transaction!',
-                                        text: 'Une erreur est survenue lors de votre transaction.Veuillez réssayer svp',
-                                        icon: 'error',
-                                        confirmButtonText: 'OK'
-                                    })
-                                }
-                            }else{
-                                Swal.fire({
-                                    title: 'Error!',
-                                    text: 'Oups.Une erreur est survenue , réssayez svp',
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                })
-                            }
-                        }).catch((error)=>{
-                        console.log(error)
-                    })
+                                    }else{
+                                        if(response.data.error===-2){
+                                            Swal.fire({
+                                                title: 'Erreur Numéro de téléphone!',
+                                                text: 'Veuillez entrer un numéro de téléphone togolais',
+                                                icon: 'error',
+                                                confirmButtonText: 'J\'ai compris'
+                                            })
+                                        }else {
+                                            Swal.fire({
+                                                title: 'Error!',
+                                                text: 'Oups.Une erreur est survenue , réssayez svp',
+                                                icon: 'error',
+                                                confirmButtonText: 'OK'
+                                            })
+                                        }
+                                    }
+                                }).catch((error)=>{
+                                console.log(error)
+                            })
+                        }
+
+                    }
                 }
             },
 

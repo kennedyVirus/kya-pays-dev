@@ -375,10 +375,10 @@
                                 </div>
                             </div>
 
-                            <h5 v-show="showTransactionPhoneInputAcademic" class="give_space make_bold">Veuillez entrer le numéro sur lequel se fera la transaction</h5>
+                            <h5 v-show="showTransactionPhoneInputAcademic" class="give_space make_bold">Veuillez entrer un numéro togolais sur lequel se fera la transaction</h5>
                             <div class="form-group" v-show="showTransactionPhoneInputAcademic">
-                                <label for="academic_transaction_phone_number" class="control-label">*Numéro Flooz ou T-money</label>
-                                <input type="text" class="form-control" id="academic_transaction_phone_number" placeholder="Numéro Flooz/ Tmoney" v-model="new_academic.transaction_phone_number" >
+                                <label for="academic_transaction_phone_number" class="control-label">*Numéro Togolais Flooz ou T-money </label>
+                                <input type="text" class="form-control" id="academic_transaction_phone_number" placeholder="Numéro Togolais Flooz/ Tmoney" v-model="new_academic.transaction_phone_number" max="8" >
                             </div>
 
                             <div class="form-group">

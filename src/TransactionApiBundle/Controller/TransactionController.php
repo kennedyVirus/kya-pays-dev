@@ -70,49 +70,55 @@ class TransactionController extends BaseController
         }
 
 
-        $transaction=$this->initPaygateTransaction($saveTempClient['clientId'],$data['transaction_phone_number'],$amount,$data['type'],$data['amount_category']);
+        $check_transaction=$this->initPaygateTransaction($saveTempClient['clientId'],$data['transaction_phone_number'],$amount,$data['type'],$data['amount_category']);
 
-        $description=$transaction->getDetails();
-        $identifier=$transaction->getId();
+        if($check_transaction['response']==true){
+            $transaction=$check_transaction['transaction'];
 
-        if($transaction->getPaymentMode()==1){
-            //t-money
-            $url= "".$paygate_transaction_url.$paygate_token."&amount=".$amount."&description=".urlencode($description)."&identifier=".$identifier;
+            $description=$transaction->getDetails();
+            $identifier=$transaction->getId();
+
+            if($transaction->getPaymentMode()==1){
+                //t-money
+                $url= "".$paygate_transaction_url.$paygate_token."&amount=".$amount."&description=".urlencode($description)."&identifier=".$identifier;
 
 
-            return new Response($this->serialize($this->okResponseBlob([
-                "url" => $url,
-                "type" => 1
-            ])));
+                return new Response($this->serialize($this->okResponseBlob([
+                    "url" => $url,
+                    "type" => 1
+                ])));
 
-        }
-
-        if($transaction->getPaymentMode()==2){
-            //flooz
-
-            $client=new Client();
-            $response = $client->post(BaseController::PAYGATE_INIT_PAY_URL, [
-                'json' => [
-                    'auth_token' => BaseController::PAYGATE_AUTH_TOKEN,
-                    'phone_number' => $data["transaction_phone_number"],
-                    'amount' => $amount,
-                    'identifier' => $identifier,
-                ],
-            ]);
-            $res = $response->getBody()->getContents();
-
-            $dat = json_decode($res,true);
-            if ($dat["status"] != 0) { // if error from paygate set transaction -1 ==>failure
-                $trans = $this->TransactionRepo()->find($transaction->getId());
-                $trans->setState(-1);
-                $em = $this->getDoctrine()->getManager();
-                $em->flush();
-                return new Response($this->serialize($this->errorResponseBlob()));
             }
-            return new Response($this->serialize($this->okResponseBlob([
-                "url" => $url,
-                "type" => 2
-            ])));
+
+            if($transaction->getPaymentMode()==2){
+                //flooz
+
+                $client=new Client();
+                $response = $client->post(BaseController::PAYGATE_INIT_PAY_URL, [
+                    'json' => [
+                        'auth_token' => BaseController::PAYGATE_AUTH_TOKEN,
+                        'phone_number' => $data["transaction_phone_number"],
+                        'amount' => $amount,
+                        'identifier' => $identifier,
+                    ],
+                ]);
+                $res = $response->getBody()->getContents();
+
+                $dat = json_decode($res,true);
+                if ($dat["status"] != 0) { // if error from paygate set transaction -1 ==>failure
+                    $trans = $this->TransactionRepo()->find($transaction->getId());
+                    $trans->setState(-1);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->flush();
+                    return new Response($this->serialize($this->errorResponseBlob()));
+                }
+                return new Response($this->serialize($this->okResponseBlob([
+                    "url" => $url,
+                    "type" => 2
+                ])));
+            }
+        }else{
+            return new Response($this->serialize($this->errorResponseBlob('Phone number not togolese',-2)));
         }
 
     }
@@ -185,18 +191,24 @@ class TransactionController extends BaseController
 
             $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " .$licence_key;
 
-            $result=$this->sendZedekaMessage("228".$transaction->getUsername(),$licence_key_to_send);
+            $client=$this->ClientRepo()->findOneBy([
+                'id'=>$transaction->getClientId()
+            ]);
 
+            if($client !=null){
+                if($client->getPhoneNumber() !=null){
+                    $res=$this->sendZedekaMessage("228".$client->getPhoneNumber(),$licence_key_to_send);
+                }
 
-           // $request->getSession()->getFlashBag()->add('transaction_success', 'Transaction éffectuée avec succès');
+                if($client->getEmail() !=null){
+                    $result=$this->sendLicenceCodeByEmail($client->getEmail(),$licence_key);
+                }
+            }
 
-           // return $this->redirectToRoute('homepage');
-            return new RedirectResponse("http://www.kya-pay-dev.kya-energy.com");
+            return new RedirectResponse("https://www.kya-pay-dev.kya-energy.com");
 
-
-            // return new Response($this->serialize($this->okResponseBlob('Operation successful')));
         }else  {
-            return new RedirectResponse("http://www.kya-pay-dev.kya-energy.com");
+            return new RedirectResponse("https://www.kya-pay-dev.kya-energy.com");
         }
     }
 

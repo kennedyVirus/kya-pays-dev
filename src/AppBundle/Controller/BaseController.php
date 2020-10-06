@@ -241,6 +241,7 @@ class BaseController extends Controller
 
         $details = "Achat Clé d'activation de KYA-SolDesign";
         $source=0;
+        $data=[];
 
         if (preg_match("#^[9,7]{1}[0-3]{1}[0-9]{6}$#", $phone_number))
         {
@@ -249,6 +250,12 @@ class BaseController extends Controller
         } else {
             $details = "Achat Clé d'activation de KYA-SolDesign à travers Flooz.";
             $source=2;
+        }
+
+        if($source==0) {
+            $data['response'] = false;
+            $data['transaction'] = null;
+            return $data;
         }
 
         $transaction->setDetails($details);
@@ -267,7 +274,10 @@ class BaseController extends Controller
         $em->persist($transaction);
         $em->flush();
 
-        return $transaction;
+        $data['response'] = true;
+        $data['transaction'] = $transaction;
+        return $data;
+
     }
 
 

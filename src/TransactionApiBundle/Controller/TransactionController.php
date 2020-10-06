@@ -39,7 +39,7 @@ class TransactionController extends BaseController
     */
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init",schemes={https})
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paygate/payment/init",schemes={"https"})
      */
 
     public function initPaygatePaymentAction(Request $request) {
@@ -124,7 +124,7 @@ class TransactionController extends BaseController
     }
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paygate/payment/confirm",schemes={https})
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paygate/payment/confirm",schemes={"https"})
      */
 
     public function paygateTransactionCallBackAction(Request $request){
@@ -213,7 +213,7 @@ class TransactionController extends BaseController
 
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init",schemes={https})
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init",schemes={"https"})
      */
     public function initPayDunayTransactionAction(Request $request){
         $json_data = $request->getContent();
@@ -297,7 +297,7 @@ class TransactionController extends BaseController
     }
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm",schemes={https})
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm",schemes={"https"})
      */
 
     public function paydunyaTransactionCallBackAction(Request $request){
@@ -404,7 +404,7 @@ class TransactionController extends BaseController
     }
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/return",schemes={https})
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/return",schemes={"https"})
      */
 
     public function paydunyaTransactionReturnUrlAction(Request $request){

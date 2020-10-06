@@ -530,13 +530,13 @@ class BaseController extends Controller
         //$path = __DIR__.'/../../web/assets/asset/img/mail-cover.jpg';
 
         $mailer = new \Swift_Mailer($transport);
-        $now = (new \DateTime('now'))->format('d/m H:i:s');
+        $now = (new \DateTime('now'))->format('d/m H:i');
         // Create a message
         $message = (new \Swift_Message('Votre Licence pour payement du '.$now));
         //$bannerImg = $message->embed(\Swift_Image::fromPath($path));
         $message
             //->setFrom(['noreplykabadelivery@kya-energy.com' => 'KYA-ENERGY-GROUP'])
-            ->setFrom(['jfkvirus@gmail.com' => 'KYA-SolDesign'])
+            ->setFrom(['kya.energy2020@gmail.com' => 'KYA-SolDesign'])
             ->setTo([
                 $destination
             ])

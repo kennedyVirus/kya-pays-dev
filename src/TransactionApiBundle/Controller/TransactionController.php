@@ -32,6 +32,15 @@ class TransactionController extends BaseController
         $res=$this->sendZedekaMessage('22893643212','just a test from kya');
         return new JsonResponse(0);
     }
+    /**
+     * @Route("/test/mail")
+     */
+
+    public function testMail(Request  $request){
+        $res=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','just a test');
+        return new JsonResponse(0);
+    }
+
 //
     /*
     * @Kya sol design payment  init

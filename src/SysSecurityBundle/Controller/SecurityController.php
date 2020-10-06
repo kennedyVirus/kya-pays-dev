@@ -11,6 +11,7 @@ use SysSecurityBundle\Entity\ClientLogin;
 
 class SecurityController extends BaseController
 {
+
     /**
      * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/login",schemes={"https"})
      */
@@ -192,41 +193,4 @@ class SecurityController extends BaseController
     }
 
 
-    /**
-     * @Route("/test/api/kya/login")
-     */
-
-    public function testLogin(Request $request){
-        $json_data = $request->getContent();
-        $data = json_decode($json_data,true);
-
-        $no_mac=false;
-        $no_code=false;
-        $no_type=false;
-        $no_mail=false;
-        $no_phone=false;
-
-//        if(  $data["code"]!=null ){
-//            $no_code=true;
-//        }
-//        if( $data["mac_address"]!=null ){
-//            $no_mac=true;
-//        }
-//        if(  $data["type"]!=null ){
-//            $no_type=true;
-//        }
-//
-//        if(  $data["email"]!=null ){
-//            $no_mail=true;
-//        }
-//        if(  $data["phone_number"]!=null ){
-//            $no_phone=true;
-//        }
-
-        $dat=[];
-        $dat["brut"]=$json_data;
-        $dat["modifie"]=$data;
-
-        return new Response($this->serialize($this->okResponseBlob($dat)));
-    }
 }

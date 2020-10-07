@@ -19,14 +19,12 @@ class BaseController extends Controller
     const TRANSACTION_ERROR = 500;
     const TRANSACTION_CRITICAL = 300;
 
-//    const PAYGATE_INIT_PAY_URL = "https://paygateglobal.com/api/v1/pay";
-//
-//    const PAYGATE_TRANSACTION_URL="https://paygateglobal.com/v1/page?token=";
-//
-//    const PAYDUNYA_INIT_PAY_URL_TEST = "https://app.paydunya.com/sandbox-api/v1/checkout-invoice/create";
-//
-//    const PAYDUNYA_INIT_PAY_URL = "https://app.paydunya.com/api/v1/checkout-invoice/create";
-//
+    const KYA_WEBSITE="https://www.kya-energy.com";
+    const BASE_URL="https://www.kya-pay-dev.kya-energy.com";
+    const PAYDUNYA_RETURN_URL="https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/return";
+    const PAYDUNYA_CALLBACK_URL="https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm";
+
+
     /*test*/
     const TEST_PAYDUNYA_KEY_PUBLIC="test_public_d4QHFMS7OyYFzFrsWYMzgkD2ta4";
 
@@ -35,52 +33,15 @@ class BaseController extends Controller
     const TEST_PAYDUNYA_TOKEN="uzHfqzXhNq6chJFpUWdX";
 
 //    /*===end test ======*/
-//
-//    const SMS_ZEDEKA_HOST="api.smszedekaa.com";
-//
-//    const SMS_ZEDEKA_API_KEY="ISnqx7tbigE7OQxnGnsBuY4xrZC3m2Uj7wRpbOuIjtk=";
-//
-//    const SMS_ZEDEKA_CLIENT_ID="54911dcd-e69c-4030-9328-4b848c64c4db";
-//
-//    const SMS_ZEDEKA_SENDER="KYA";
+
 
     const PAYGATE_INIT_PAY_URL = "https://paygateglobal.com/api/v1/pay";
-
-    const PAYGATE_AUTH_TOKEN = "d2db21ea-fbca-485c-b8b3-1c68d79b8d47";
 
     const PAYGATE_TRANSACTION_URL="https://paygateglobal.com/v1/page?token=";
 
     const PAYDUNYA_INIT_PAY_URL_TEST = "https://app.paydunya.com/sandbox-api/v1/checkout-invoice/create";
 
     const PAYDUNYA_INIT_PAY_URL = "https://app.paydunya.com/api/v1/checkout-invoice/create";
-
-    const PAYDUNYA_KEY_MAIN="RbXP0VEg-17rE-AtO8-DmIW-9p72ddc8ue9D";
-
-    const PAYDUNYA_KEY_PUBLIC="live_public_rbVdt9ewGG2eB7j9kQJrOuV697R";
-
-    const PAYDUNYA_KEY_PRIVATE="live_private_wAT4HHvg0Pam1kJpp62nRKKYSoE";
-
-    const PAYDUNYA_TOKEN="Ext7fzGiAiYPeKtrCq6Y";
-
-    /*test*/
-//    const TEST_PAYDUNYA_KEY_PUBLIC="live_public_ERUYpTCR2uTDbdQsLxyggYzkHyC";
-//
-//    const TEST_PAYDUNYA_KEY_PRIVATE="live_private_2rPdO1S4CggwsnPhw5L6QB6p7t6";
-//
-//    const TEST_PAYDUNYA_TOKEN="ue13DeFG2cd2S5EVu4SQ";
-
-//    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_PhuzsPxH3OEXE4DWLDzZ5ZOMhIk";
-//
-//    const TEST_PAYDUNYA_KEY_PRIVATE="test_private_PVf8js5xf3KK1VdJsk5yHetTFwC";
-//
-//    const TEST_PAYDUNYA_TOKEN="XxigbD3oXGMUV4pjkKyA";
-
-
-    /*===end test ======*/
-
-    const SMS_ZEDEKA_HOST="api.smszedekaa.com";
-
-    const SMS_ZEDEKA_API_KEY="ISnqx7tbigE7OQxnGnsBuY4xrZC3m2Uj7wRpbOuIjtk=";
 
     const SMS_ZEDEKA_CLIENT_ID="54911dcd-e69c-4030-9328-4b848c64c4db";
 
@@ -89,10 +50,6 @@ class BaseController extends Controller
     const KYA_STUDENT_AMOUNT_DAY=1000;
     const KYA_STUDENT_AMOUNT_WEEK=5000;
     const KYA_STUDENT_AMOUNT_MONTH=15000;
-//    const KYA_STUDENT_AMOUNT_TRIMESTER=10000;
-//    const KYA_STUDENT_AMOUNT_SEMESTER=18500;
-//    const KYA_STUDENT_AMOUNT_ANNUAL=35000;
-
 
     const KYA_ACADEMIC_AMOUNT_MONTH=25000;
     const KYA_ACADEMIC_AMOUNT_TRIMESTER=70000;

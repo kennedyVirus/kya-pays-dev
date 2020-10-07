@@ -205,8 +205,10 @@ class BaseController extends Controller
             $details = "Achat Clé d'activation de KYA-SolDesign à travers T-Money.";
             $source=1;
         } else {
-            $details = "Achat Clé d'activation de KYA-SolDesign à travers Flooz.";
-            $source=2;
+            if(preg_match("#^[9]{1}[6-9]{1}[0-9]{6}$#", $phone_number)){
+                $details = "Achat Clé d'activation de KYA-SolDesign à travers Flooz.";
+                $source=2;
+            }
         }
 
         if($source==0) {

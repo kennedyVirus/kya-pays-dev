@@ -191,7 +191,7 @@ class SecurityController extends BaseController
 //    }
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/login",schemes={"https"})
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/login")
      */
     public function login(Request $request){
         $json_data = $request->getContent();

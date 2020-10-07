@@ -244,7 +244,7 @@ window.onload = function () {
 
                                     $('#academicModal').modal('hide')
 
-                                    console.log(response.data)
+                                    //console.log(response.data)
                                     if(response.data.error===0){
                                         if(response.data.data.type===1){
                                             Swal.fire({
@@ -295,7 +295,7 @@ window.onload = function () {
 
                                 $('#enterpriseModal').modal('hide')
 
-                                console.log(response.data)
+                              //  console.log(response.data)
                                 if(response.data.error===0){
 
                                     if(response.data.data.type===1){
@@ -380,7 +380,7 @@ window.onload = function () {
 
                                     $('#studentModal').modal('hide')
 
-                                    console.log(response.data)
+                                  //  console.log(response.data)
                                     if(response.data.error===0){
                                         if(response.data.data.type===1){
                                             Swal.fire({
@@ -431,7 +431,7 @@ window.onload = function () {
 
                                 $('#enterpriseModal').modal('hide')
 
-                                console.log(response.data)
+                                //console.log(response.data)
                                 if(response.data.error===0){
 
                                     if(response.data.data.type===1){
@@ -515,7 +515,7 @@ window.onload = function () {
 
                                     $('#studentModal').modal('hide')
 
-                                    console.log(response.data)
+                                   // console.log(response.data)
                                     if(response.data.error===0){
                                         if(response.data.data.type===1){
                                             Swal.fire({
@@ -566,7 +566,7 @@ window.onload = function () {
 
                                 $('#enterpriseModal').modal('hide')
 
-                                console.log(response.data)
+                               // console.log(response.data)
                                 if(response.data.error===0){
 
                                     if(response.data.data.type===1){

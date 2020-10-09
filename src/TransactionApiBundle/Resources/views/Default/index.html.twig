@@ -103,11 +103,13 @@
                             <h3>Version Etudiant</h3>
                             <h4><sup>FCFA</sup>15 000<span> / mois</span></h4>
                             <h4><sup>€</sup>22.85<span> / mois</span></h4>
-                            <ul style="list-style: square">
-                                <li>1 000  FCFA (1.52 €) / jour</li>
-                                <li>5 000 FCFA (7.62 €) / semaine</li>
-                                <li>15 000 FCFA (22.85 €) / mois</li>
-                            </ul>
+                            <div>
+                                <ul class="pricesList">
+                                    <li>1 000  FCFA (1.52 €) / jour</li>
+                                    <li>5 000 FCFA (7.62 €) / semaine</li>
+                                    <li>15 000 FCFA (22.85 €) / mois</li>
+                                </ul>
+                            </div>
                             <div class="btn-wrap">
                                 {#<a @click="openPay3Modal()" class="btn-buy">Acheter</a>#}
                                 <a @click="openPay3Modal()" class="btn-buy">Acheter</a>
@@ -120,11 +122,13 @@
                             <h3>Version Commerciale</h3>
                             <h4><sup>FCFA</sup>40 000<span> / mois</span></h4>
                             <h4><sup>€</sup>60.93<span> / mois</span></h4>
-                            <ul style="list-style: square">
-                                <li>100 000  FCFA (152.33 €) / 3 mois</li>
-                                <li>180 000 FCFA (274.19 €) / 6 mois</li>
-                                <li>300 000 FCFA (456.99 €) / an</li>
-                            </ul>
+                            <div>
+                                <ul class="pricesList">
+                                    <li>100 000  FCFA (152.33 €) / 3 mois</li>
+                                    <li>180 000 FCFA (274.19 €) / 6 mois</li>
+                                    <li>300 000 FCFA (456.99 €) / an</li>
+                                </ul>
+                            </div>
                             <div class="btn-wrap">
                                 <a @click="openPay1Modal()" class="btn-buy">Acheter</a>
                             </div>
@@ -136,12 +140,15 @@
                             <h3>Version Academique</h3>
                             <h4><sup>FCFA</sup>25 000<span> / mois</span></h4>
                             <h4><sup>€</sup>38.08<span> / mois</span></h4>
-                            <ul style="list-style: square">
-                                <li>70 000  FCFA (106.63 €) / 3 mois</li>
-                                <li>130 000 FCFA (198.03 €) / 6 mois</li>
-                                <li>250 000 FCFA (380.82 €) / an</li>
+                            <div>
+                                <ul class="pricesList">
+                                    <li>70  000 FCFA (106.63 €) / 3 mois</li>
+                                    <li>130 000 FCFA (198.03 €) / 6 mois</li>
+                                    <li>250 000 FCFA (380.82 €) / an</li>
 
-                            </ul>
+                                </ul>
+                            </div>
+
                             <div class="btn-wrap">
                                 <a @click="openPay2Modal()" class="btn-buy">Acheter</a>
                             </div>

@@ -198,6 +198,13 @@ h1, h2, h3, h4, h5, h6 {
 .give_margin{
   margin-left: 2em;
 }
+.pricesList{
+  display: table !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: justify !important;
+  list-style: disc !important;
+}
 
 .nav-menu .drop-down ul {
   display: block;

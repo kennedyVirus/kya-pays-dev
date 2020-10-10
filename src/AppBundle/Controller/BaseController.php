@@ -43,6 +43,8 @@ class BaseController extends Controller
 
     const PAYDUNYA_INIT_PAY_URL = "https://app.paydunya.com/api/v1/checkout-invoice/create";
 
+    const SMS_ZEDEKA_HOST="api.smszedekaa.com";
+
     const SMS_ZEDEKA_CLIENT_ID="54911dcd-e69c-4030-9328-4b848c64c4db";
 
     const SMS_ZEDEKA_SENDER="KYA";
@@ -324,7 +326,6 @@ class BaseController extends Controller
         return $delay;
     }
 
-
     public function savePaygateTempClient($data){
         if(
             isset($data["first_name"]) && $data["first_name"]!=null &&
@@ -463,13 +464,12 @@ class BaseController extends Controller
         return $transaction;
     }
 
-
     public function sendZedekaMessage($destination,$body="ok"){
         $host=BaseController::SMS_ZEDEKA_HOST;
-//        $ApiKey=$this->getParameter('sms_zedeka_api_key');
-//        $ClientId=$this->getParameter('sms_zedeka_client_id');
-        $ApiKey=BaseController::SMS_ZEDEKA_API_KEY;
-        $ClientId=BaseController::SMS_ZEDEKA_CLIENT_ID;
+        $ApiKey=$this->getParameter('sms_zedeka_api_key');
+        $ClientId=$this->getParameter('sms_zedeka_client_id');
+//        $ApiKey=BaseController::SMS_ZEDEKA_API_KEY;
+//        $ClientId=BaseController::SMS_ZEDEKA_CLIENT_ID;
         $SenderId=BaseController::SMS_ZEDEKA_SENDER;
         $MobileNumber=$destination;
 

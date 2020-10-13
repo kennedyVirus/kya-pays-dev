@@ -53,12 +53,15 @@ class BaseController extends Controller
     const KYA_STUDENT_AMOUNT_WEEK=5000;
     const KYA_STUDENT_AMOUNT_MONTH=15000;
 
+    const KYA_ACADEMIC_AMOUNT_DAY=1500;
+    const KYA_ACADEMIC_AMOUNT_WEEK=7000;
     const KYA_ACADEMIC_AMOUNT_MONTH=25000;
     const KYA_ACADEMIC_AMOUNT_TRIMESTER=70000;
     const KYA_ACADEMIC_AMOUNT_SEMESTER=130000;
     const KYA_ACADEMIC_AMOUNT_ANNUAL=250000;
 
-
+    const KYA_ENTERPRISE_AMOUNT_DAY=2000;
+    const KYA_ENTERPRISE_AMOUNT_WEEK=12000;
     const KYA_ENTERPRISE_AMOUNT_MONTH=40000;
     const KYA_ENTERPRISE_AMOUNT_TRIMESTER=100000;
     const KYA_ENTERPRISE_AMOUNT_SEMESTER=180000;
@@ -188,15 +191,12 @@ class BaseController extends Controller
         }
     }
 
-
     /*
      * INIT paygate transaction
      */
 
     public function initPaygateTransaction($client_id, $phone_number=null, $amount,$type,$amount_category){
-
         $transaction = new Transaction();
-
 
         $details = "Achat Clé d'activation de KYA-SolDesign";
         $source=0;
@@ -238,15 +238,19 @@ class BaseController extends Controller
         $data['response'] = true;
         $data['transaction'] = $transaction;
         return $data;
-
     }
-
 
     public function getAmountToPay($licence_type,$amount_category){
         $amount=0;
         if(intval($licence_type)==1){
             //enterprise
             switch (intval($amount_category)){
+                case 1:
+                    $amount=BaseController::KYA_ENTERPRISE_AMOUNT_DAY;
+                    break;
+                case 2:
+                    $amount=BaseController::KYA_ENTERPRISE_AMOUNT_WEEK;
+                    break;
                 case 3:
                     $amount=BaseController::KYA_ENTERPRISE_AMOUNT_MONTH;
                     break;
@@ -265,6 +269,12 @@ class BaseController extends Controller
         if(intval($licence_type)==2){
             //academic
             switch (intval($amount_category)){
+                case 1:
+                    $amount=BaseController::KYA_ACADEMIC_AMOUNT_DAY;
+                    break;
+                case 2:
+                    $amount=BaseController::KYA_ACADEMIC_AMOUNT_WEEK;
+                    break;
                 case 3:
                     $amount=BaseController::KYA_ACADEMIC_AMOUNT_MONTH;
                     break;
@@ -468,8 +478,6 @@ class BaseController extends Controller
         $host=BaseController::SMS_ZEDEKA_HOST;
         $ApiKey=$this->getParameter('sms_zedeka_api_key');
         $ClientId=$this->getParameter('sms_zedeka_client_id');
-//        $ApiKey=BaseController::SMS_ZEDEKA_API_KEY;
-//        $ClientId=BaseController::SMS_ZEDEKA_CLIENT_ID;
         $SenderId=BaseController::SMS_ZEDEKA_SENDER;
         $MobileNumber=$destination;
 

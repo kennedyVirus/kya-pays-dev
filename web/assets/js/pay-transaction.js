@@ -204,7 +204,7 @@ window.onload = function () {
 
                 let selected = '';
 
-                for (let i = 3;  i < 7 ; i++) {
+                for (let i = 1;  i < 7 ; i++) {
 
                     if($('#academic'+i).is(':checked')) {
                         checked = true;
@@ -474,7 +474,7 @@ window.onload = function () {
 
                 let selected = '';
 
-                for (let i = 3;  i < 7 ; i++) {
+                for (let i = 1;  i < 7 ; i++) {
 
                     if($('#enterprise'+i).is(':checked')) {
                         checked = true;

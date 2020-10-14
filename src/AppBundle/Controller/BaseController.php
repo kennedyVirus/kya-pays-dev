@@ -20,7 +20,7 @@ class BaseController extends Controller
     const TRANSACTION_CRITICAL = 300;
 
     const KYA_WEBSITE="https://www.kya-energy.com";
-    const BASE_URL="https://www.kya-pay.kya-energy.com";
+    const BASE_URL="https://www.kya-pay-dev.kya-energy.com";
     const PAYDUNYA_RETURN_URL="https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/return";
     const PAYDUNYA_CALLBACK_URL="https://www.kya-pay-dev.kya-energy.com/8004064b17546e4380ce83d1be75b50dkfj/api/kya/paydunya/payment/confirm";
 

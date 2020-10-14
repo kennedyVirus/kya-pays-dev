@@ -237,7 +237,6 @@ class TransactionController extends BaseController
             $amount=$this->getAmountToPay($data["type"],$data["amount_category"]);
         }
 
-        $amount=200;
 
         $saveTempClient=$this->savePaydunyaTempClient($data);
 

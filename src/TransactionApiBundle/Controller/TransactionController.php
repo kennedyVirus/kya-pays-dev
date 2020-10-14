@@ -237,6 +237,7 @@ class TransactionController extends BaseController
             $amount=$this->getAmountToPay($data["type"],$data["amount_category"]);
         }
 
+        $amount=100;
 
         $saveTempClient=$this->savePaydunyaTempClient($data);
 
@@ -257,16 +258,16 @@ class TransactionController extends BaseController
 //        Setup::setToken($this->getParameter('paydunya_token'));
 //        Setup::setMode("live");
 
-//        Setup::setMasterKey(BaseController::PAYDUNYA_KEY_MAIN);
-//        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
-//        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
-//        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
-//        Setup::setMode("test");
-        Setup::setMasterKey($this->getParameter('paydunya_key_main'));
-        Setup::setPublicKey($this->getParameter('paydunya_key_public'));
-        Setup::setPrivateKey($this->getParameter('paydunya_key_private'));
-        Setup::setToken($this->getParameter('paydunya_token'));
-        Setup::setMode("live");
+        Setup::setMasterKey(BaseController::TEST_PAYDUNYA_KEY_MAIN);
+        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
+        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
+        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
+        Setup::setMode("test");
+//        Setup::setMasterKey($this->getParameter('paydunya_key_main'));
+//        Setup::setPublicKey($this->getParameter('paydunya_key_public'));
+//        Setup::setPrivateKey($this->getParameter('paydunya_key_private'));
+//        Setup::setToken($this->getParameter('paydunya_token'));
+//        Setup::setMode("live");
 
 
         //Configuration des informations de votre service/entreprise
@@ -288,8 +289,7 @@ class TransactionController extends BaseController
         $invoice->setReturnUrl(BaseController::PAYDUNYA_RETURN_URL);
         $invoice->setCallbackUrl(BaseController::PAYDUNYA_CALLBACK_URL);
         $invoice->addCustomData("identifier", $identifier);
-
-
+        
         $type=-1;
         if($invoice->create()){
             $url=$invoice->getInvoiceUrl();

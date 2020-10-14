@@ -26,11 +26,19 @@ class BaseController extends Controller
 
 
     /*test*/
-    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_d4QHFMS7OyYFzFrsWYMzgkD2ta4";
+    const TEST_PAYDUNYA_KEY_MAIN="RbXP0VEg-17rE-AtO8-DmIW-9p72ddc8ue9D";
 
-    const TEST_PAYDUNYA_KEY_PRIVATE="test_private_pKeVnBBC26kMQLnxCwWgjia9oU7";
+    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_eSvYJ5FDh8KQIlgqWZN9Gb2htOE";
 
-    const TEST_PAYDUNYA_TOKEN="uzHfqzXhNq6chJFpUWdX";
+    const TEST_PAYDUNYA_KEY_PRIVATE="test_private_JG63T2Ek1RHzuAPX959XOIx2PjP";
+
+    const TEST_PAYDUNYA_TOKEN="StWrrJixVo7wuOtwuLBX";
+
+//    const TEST_PAYDUNYA_KEY_PUBLIC="test_public_d4QHFMS7OyYFzFrsWYMzgkD2ta4";
+//
+//    const TEST_PAYDUNYA_KEY_PRIVATE="test_private_pKeVnBBC26kMQLnxCwWgjia9oU7";
+//
+//    const TEST_PAYDUNYA_TOKEN="uzHfqzXhNq6chJFpUWdX";
 
 //    /*===end test ======*/
 

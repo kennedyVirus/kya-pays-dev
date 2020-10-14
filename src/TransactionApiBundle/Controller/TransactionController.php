@@ -258,16 +258,16 @@ class TransactionController extends BaseController
 //        Setup::setToken($this->getParameter('paydunya_token'));
 //        Setup::setMode("live");
 
-        Setup::setMasterKey(BaseController::TEST_PAYDUNYA_KEY_MAIN);
-        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
-        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
-        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
-        Setup::setMode("test");
-//        Setup::setMasterKey($this->getParameter('paydunya_key_main'));
-//        Setup::setPublicKey($this->getParameter('paydunya_key_public'));
-//        Setup::setPrivateKey($this->getParameter('paydunya_key_private'));
-//        Setup::setToken($this->getParameter('paydunya_token'));
-//        Setup::setMode("live");
+//        Setup::setMasterKey(BaseController::TEST_PAYDUNYA_KEY_MAIN);
+//        Setup::setPublicKey(BaseController::TEST_PAYDUNYA_KEY_PUBLIC);
+//        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
+//        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
+//        Setup::setMode("test");
+        Setup::setMasterKey($this->getParameter('paydunya_key_main'));
+        Setup::setPublicKey($this->getParameter('paydunya_key_public'));
+        Setup::setPrivateKey($this->getParameter('paydunya_key_private'));
+        Setup::setToken($this->getParameter('paydunya_token'));
+        Setup::setMode("live");
 
 
         //Configuration des informations de votre service/entreprise
@@ -289,7 +289,7 @@ class TransactionController extends BaseController
         $invoice->setReturnUrl(BaseController::PAYDUNYA_RETURN_URL);
         $invoice->setCallbackUrl(BaseController::PAYDUNYA_CALLBACK_URL);
         $invoice->addCustomData("identifier", $identifier);
-        
+
         $type=-1;
         if($invoice->create()){
             $url=$invoice->getInvoiceUrl();
@@ -311,6 +311,8 @@ class TransactionController extends BaseController
 //
         $decode=urldecode($json_data);
 
+        $pp=$this->sendZedekaMessage('22893643212','callback 1');
+        $ps=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 1');
 
         //$hash= "xxxxxxxxxx";
         //$status="completed";
@@ -328,10 +330,19 @@ class TransactionController extends BaseController
       //  try{
             //Prenez votre MasterKey, hashez la et comparez le résulxxxxxxxxxxxxxxxxtat au hash reçu par IPN
             if($hash === hash('sha512', $this->getParameter('paydunya_key_main'))) {
+          //  if($hash === hash('sha512', BaseController::TEST_PAYDUNYA_KEY_MAIN)) {
            // if($hash ==hash('sha512', $this->getParameter('paydunya_key_main'))) {
            // if($hash == "xxxxxxxxxx") {
 
+                $pp1=$this->sendZedekaMessage('22893643212','callback 2');
+                $ps1=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 2');
+
+
                 if ($status == "completed") {
+
+                    $pp2=$this->sendZedekaMessage('22893643212','callback 3');
+                    $ps2=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 3');
+
 
                     $transaction = $this->TransactionRepo()->find(intval($identifier));
 

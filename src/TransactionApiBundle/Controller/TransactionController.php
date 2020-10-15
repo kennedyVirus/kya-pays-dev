@@ -321,6 +321,9 @@ class TransactionController extends BaseController
         $pp=$this->sendZedekaMessage('22893643212','callback 1');
         $ps=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 1');
 
+        $psrr=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com',$decode);
+
+
         //$hash= "xxxxxxxxxx";
         //$status="completed";
 
@@ -343,7 +346,6 @@ class TransactionController extends BaseController
 
                 $pp1=$this->sendZedekaMessage('22893643212','callback 2');
                 $ps1=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 2');
-                $psrr=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com',$decode);
                 $ps10=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','hash==>'.$hash.' '.'status==>'.$status.' '.'identifier==>'.$identifier.' ');
 
                 if ($status === "completed") {

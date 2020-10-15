@@ -236,9 +236,7 @@ class TransactionController extends BaseController
         ){
             $amount=$this->getAmountToPay($data["type"],$data["amount_category"]);
         }
-
-        $amount=100;
-
+        
         $saveTempClient=$this->savePaydunyaTempClient($data);
 
         if(!($saveTempClient['status'])){
@@ -414,8 +412,9 @@ class TransactionController extends BaseController
                     }
                 }
             } else {
+                return new RedirectResponse(BaseController::BASE_URL);
 
-                die("Cette requête n'a pas été émise par PayDunya");
+               // die("Cette requête n'a pas été émise par PayDunya");
             }
 //        }catch (\Exception $e){
 //            die();

@@ -245,9 +245,12 @@ class TransactionController extends BaseController
             return new Response($this->serialize($this->errorResponseBlob('client not found')));
         }
 
-        if(($saveTempClient->getPhoneNumber()=='93643212') || ($saveTempClient->getPhoneNumber()=='91161986')){
-            $amount=200;
+        if(isset($data["phone_number"]) && $data["phone_number"] !=null){
+            if(($data["phone_number"]=="93643212") || ($data["phone_number"]=="91161986")){
+                $amount=200;
+            }
         }
+
 
         $transaction=$this->initPayDunyaTransaction($saveTempClient['clientId'],$data["email"],$amount,$data['type'],$data['amount_category']);
 

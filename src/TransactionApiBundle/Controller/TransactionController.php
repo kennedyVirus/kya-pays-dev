@@ -236,7 +236,7 @@ class TransactionController extends BaseController
         ){
             $amount=$this->getAmountToPay($data["type"],$data["amount_category"]);
         }
-        
+
         $saveTempClient=$this->savePaydunyaTempClient($data);
 
         if(!($saveTempClient['status'])){
@@ -338,9 +338,9 @@ class TransactionController extends BaseController
 
                 $pp1=$this->sendZedekaMessage('22893643212','callback 2');
                 $ps1=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 2');
+                $ps10=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','hash==>'.$hash.' '.'status==>'.$status.' '.'identifier==>'.$identifier.' ');
 
-
-                if ($status == "completed") {
+                if ($status === "completed") {
 
                     $pp2=$this->sendZedekaMessage('22893643212','callback 3');
                     $ps2=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 3');

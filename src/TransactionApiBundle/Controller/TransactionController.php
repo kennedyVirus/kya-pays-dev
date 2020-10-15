@@ -450,11 +450,14 @@ class TransactionController extends BaseController
 
         $ps=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','token==>'.$token);
 
+        $ps4=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','before invoice status==>'.$invoice->getStatus());
+
+
 
         if($invoice->confirm($token)){
 
             $pp=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','return Place');
-            $ps=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','invoice status==>'.$invoice->getStatus());
+            $ps2=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','after invoice status==>'.$invoice->getStatus());
 
             return new RedirectResponse(BaseController::BASE_URL);
 

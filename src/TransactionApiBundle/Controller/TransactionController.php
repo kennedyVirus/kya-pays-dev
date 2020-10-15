@@ -341,10 +341,14 @@ class TransactionController extends BaseController
 
             $putting_in_array=explode('&',$decode);
 //
-            $hash=substr($putting_in_array[2],11);
-            $status=substr($putting_in_array[16],13);
-            $identifier=substr($putting_in_array[11],30);
-            $token_in_array=explode("_",substr($putting_in_array[3],21));
+            //$hash=substr($putting_in_array[2],11);
+            $hash=explode('=',$putting_in_array[2])[1];
+            $status=explode('=',$putting_in_array[19])[1];
+            //$status=substr($putting_in_array[16],13);
+            //$identifier=substr($putting_in_array[11],30);
+            $identifier=explode('=',$putting_in_array[14])[1];
+           // $token_in_array=explode("_",substr($putting_in_array[3],21));
+            $token=explode("=",$putting_in_array[3])[1];
       //  try{
             //Prenez votre MasterKey, hashez la et comparez le résulxxxxxxxxxxxxxxxxtat au hash reçu par IPN
             if($hash === hash('sha512', $this->getParameter('paydunya_key_main'))) {
@@ -391,7 +395,7 @@ class TransactionController extends BaseController
 
                         //save verification
 
-                        $ref=$token_in_array[1];
+                        $ref=$token;
 
                         $verification=new Verification();
                         $verification->setEmail($transaction->getUsername());
@@ -425,8 +429,13 @@ class TransactionController extends BaseController
 
                             return new Response($this->serialize($this->okResponseBlob('Operation successful')));
                         }
+                        return new Response($this->serialize($this->errorResponseBlob('No client')));
                     }
+                    return new Response($this->serialize($this->errorResponseBlob('No transaction')));
+
                 }
+                return new Response($this->serialize($this->errorResponseBlob('Not completed')));
+
             } else {
                 return new RedirectResponse(BaseController::BASE_URL);
 
@@ -451,7 +460,6 @@ class TransactionController extends BaseController
         $ps=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','token==>'.$token);
 
         $ps4=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','before invoice status==>'.$invoice->getStatus());
-
 
 
         if($invoice->confirm($token)){

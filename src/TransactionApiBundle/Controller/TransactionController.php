@@ -290,6 +290,10 @@ class TransactionController extends BaseController
         $invoice->setCallbackUrl(BaseController::PAYDUNYA_CALLBACK_URL);
         $invoice->addCustomData("identifier", $identifier);
 
+        //
+        $pp=$this->sendZedekaMessage('22893643212','callback 0');
+        $ps=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 0');
+
         $type=-1;
         if($invoice->create()){
             $url=$invoice->getInvoiceUrl();

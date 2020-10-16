@@ -214,7 +214,6 @@ window.onload = function () {
                 }
                 if (checked === true) {
                     this.new_academic.amount_category=selected
-                    //console.log(this.new_academic)
 
 
                     if(this.showTransactionPhoneInputAcademic==true){
@@ -283,7 +282,6 @@ window.onload = function () {
                                         }
                                     }
                                 }).catch((error)=>{
-                                console.log(error)
                             })
                         }
 
@@ -326,7 +324,6 @@ window.onload = function () {
                                         })
                                 }
                             }).catch((error)=>{
-                            console.log(error)
                         })
                     }
                 }
@@ -419,7 +416,6 @@ window.onload = function () {
                                         }
                                     }
                                 }).catch((error)=>{
-                                console.log(error)
                             })
                         }
 
@@ -462,7 +458,6 @@ window.onload = function () {
                                     })
                                 }
                             }).catch((error)=>{
-                            console.log(error)
                         })
                     }
                 }
@@ -554,7 +549,6 @@ window.onload = function () {
                                         }
                                     }
                                 }).catch((error)=>{
-                                console.log(error)
                             })
                         }
 
@@ -597,7 +591,6 @@ window.onload = function () {
                                     })
                                 }
                             }).catch((error)=>{
-                            console.log(error)
                         })
                     }
 

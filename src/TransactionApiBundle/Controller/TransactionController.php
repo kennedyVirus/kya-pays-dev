@@ -237,12 +237,6 @@ class TransactionController extends BaseController
             $amount=$this->getAmountToPay($data["type"],$data["amount_category"]);
         }
 
-        if(isset($data["phone_number"]) && $data["phone_number"] !=null){
-            if($data["phone_number"]=='93643212'){
-                $amount=200;
-            }
-        }
-
         $saveTempClient=$this->savePaydunyaTempClient($data);
 
 
@@ -250,12 +244,6 @@ class TransactionController extends BaseController
             //return error
             return new Response($this->serialize($this->errorResponseBlob('client not found')));
         }
-
-        if($data["phone_number"] !='93643212'){
-            return new Response($this->serialize($this->errorResponseBlob('client not found')));
-        }
-
-
 
         $transaction=$this->initPayDunyaTransaction($saveTempClient['clientId'],$data["email"],$amount,$data['type'],$data['amount_category']);
 
@@ -295,15 +283,11 @@ class TransactionController extends BaseController
         $invoice->addChannel('card');
         $invoice->setDescription($description);
         $invoice->setTotalAmount($amount);
-        $invoice->addItem("KYA SOL DESIGN licence key for enterprise", 1, $amount, $amount, "KYA SOL DESIGN licence key for enterprise");
+        $invoice->addItem("Clé d'activation de KYA-SolDesign", 1, $amount, $amount, "Clé d'activation de KYA-SolDesign");
         $invoice->setCancelUrl(BaseController::BASE_URL);
         $invoice->setReturnUrl(BaseController::PAYDUNYA_RETURN_URL);
         $invoice->setCallbackUrl(BaseController::PAYDUNYA_CALLBACK_URL);
         $invoice->addCustomData("identifier", $identifier);
-
-        //
-        $pp=$this->sendZedekaMessage('22893643212','callback 0');
-        $ps=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 0');
 
         $type=-1;
         if($invoice->create()){
@@ -322,49 +306,21 @@ class TransactionController extends BaseController
      */
 
     public function paydunyaTransactionCallBackAction(Request $request){
-        $json_data = $request->getContent();
-//
-        $decode=urldecode($json_data);
+            $json_data = $request->getContent();
 
-        $pp=$this->sendZedekaMessage('22893643212','callback 1');
-        $ps=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 1');
-
-        $psrr=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com',$decode);
-
-
-        //$hash= "xxxxxxxxxx";
-        //$status="completed";
-
-        //$trans=$this->TransactionRepo()->findAll();
-       // $identifier=sizeof($trans);
-       // $token_in_array="xxxxxxxxxx";
+            $decode=urldecode($json_data);
 
             $putting_in_array=explode('&',$decode);
-//
-            //$hash=substr($putting_in_array[2],11);
+
             $hash=explode('=',$putting_in_array[2])[1];
             $status=explode('=',$putting_in_array[19])[1];
-            //$status=substr($putting_in_array[16],13);
-            //$identifier=substr($putting_in_array[11],30);
             $identifier=explode('=',$putting_in_array[14])[1];
-           // $token_in_array=explode("_",substr($putting_in_array[3],21));
             $token=explode("=",$putting_in_array[3])[1];
       //  try{
             //Prenez votre MasterKey, hashez la et comparez le résulxxxxxxxxxxxxxxxxtat au hash reçu par IPN
             if($hash === hash('sha512', $this->getParameter('paydunya_key_main'))) {
-          //  if($hash === hash('sha512', BaseController::TEST_PAYDUNYA_KEY_MAIN)) {
-           // if($hash ==hash('sha512', $this->getParameter('paydunya_key_main'))) {
-           // if($hash == "xxxxxxxxxx") {
-
-                $pp1=$this->sendZedekaMessage('22893643212','callback 2');
-                $ps1=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 2');
-                $ps10=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','hash==>'.$hash.' '.'status==>'.$status.' '.'identifier==>'.$identifier.' ');
 
                 if ($status === "completed") {
-
-                    $pp2=$this->sendZedekaMessage('22893643212','callback 3');
-                    $ps2=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','callback 3');
-
 
                     $transaction = $this->TransactionRepo()->find(intval($identifier));
 
@@ -426,13 +382,11 @@ class TransactionController extends BaseController
                             if($client->getEmail() !=null){
                                 $result=$this->sendLicenceCodeByEmail($client->getEmail(),$licence_key);
                             }
-
                             return new Response($this->serialize($this->okResponseBlob('Operation successful')));
                         }
                         return new Response($this->serialize($this->errorResponseBlob('No client')));
                     }
                     return new Response($this->serialize($this->errorResponseBlob('No transaction')));
-
                 }
                 return new Response($this->serialize($this->errorResponseBlob('Not completed')));
 
@@ -457,15 +411,7 @@ class TransactionController extends BaseController
 
         $invoice=new CheckoutInvoice();
 
-        $ps=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','token==>'.$token);
-
-        $ps4=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','before invoice status==>'.$invoice->getStatus());
-
-
         if($invoice->confirm($token)){
-
-            $pp=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','return Place');
-            $ps2=$this->sendLicenceCodeByEmail('jfkvirus@gmail.com','after invoice status==>'.$invoice->getStatus());
 
             return new RedirectResponse(BaseController::BASE_URL);
 

@@ -39,7 +39,9 @@ $client = new Client();
                 'x-rapidapi-key' => 'f49f196328msh9e4e7174e7c19dbp115e1ajsn1bbc1d7ba6dd'
             ]
         ]);
-        $response = $request->getBody()->getContents();
+        $res = $request->getBody()->getContents();
+
+        $response=json_decode($res,true);
 
         return new JsonResponse($response);
     }

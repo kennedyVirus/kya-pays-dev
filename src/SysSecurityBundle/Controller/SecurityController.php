@@ -13,6 +13,7 @@ use SysSecurityBundle\Entity\ClientLogin;
 
 class SecurityController extends BaseController
 {
+
     /**
      * @Route("/test/rest/country")
      */
@@ -42,6 +43,10 @@ $client = new Client();
         $res = $request->getBody()->getContents();
 
         $response=json_decode($res,true);
+
+//        foreach ($response as $i=>$value){
+//            if($value["name"]=="Ivory Coast")
+//        }
 
         return new JsonResponse($response);
     }

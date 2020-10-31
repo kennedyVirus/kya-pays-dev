@@ -62,7 +62,6 @@ window.onload = function () {
                 }else{
                     $( "#check_card_enterprise" ).prop('checked',true)
                     app.showTransactionPhoneInputEnterprise=false
-
                 }
             });
 
@@ -284,7 +283,6 @@ window.onload = function () {
                                 }).catch((error)=>{
                             })
                         }
-
                     }
                     else {
                         axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_academic)

@@ -38,6 +38,13 @@ class Verification
     /**
      * @var string
      *
+     * @ORM\Column(name="unlock_code", type="string", length=255, nullable=true)
+     */
+    private $unlockCode;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="request_id", type="string", length=255,nullable=true)
      */
     private $requestId;
@@ -143,6 +150,31 @@ class Verification
     {
         return $this->email;
     }
+
+    /**
+     * Set unlockCode
+     *
+     * @param string $unlockCode
+     *
+     * @return Verification
+     */
+    public function setUnlockCode($unlockCode)
+    {
+        $this->unlockCode = $unlockCode;
+
+        return $this;
+    }
+
+    /**
+     * Get unlockCode
+     *
+     * @return string
+     */
+    public function getUnlockCode()
+    {
+        return $this->unlockCode;
+    }
+
 
     /**
      * Set requestId

@@ -174,6 +174,15 @@ class BaseController extends Controller
         $st=mt_rand(1000,9999);
         return $st;
     }
+    function generateRandomNumberBasedOnTimestamp($length){
+
+        $ss=strtotime(date('Y-m-d H:i:s'));
+        $st=mt_rand(1000,9999);
+        $all=intval($ss)+intval($st);
+
+        $response=substr("".$all,1,$length);
+        return $response;
+    }
 
     /* create log entries for transactions */
 

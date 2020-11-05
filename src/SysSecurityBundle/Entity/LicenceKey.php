@@ -14,6 +14,7 @@ class LicenceKey
 {
     /*
   * name=>licence key
+  * code=>code sent by sms to user for show licence key
   * type=>type of licence .enterprise(1),academic(2),student(3)
   * amount_category=>for 1 day(1),week(2),month(3),trimester(4),semester(5),year(6)
   * price=>licence value
@@ -39,6 +40,13 @@ class LicenceKey
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=255,nullable=true)
+     */
+    private $code;
 
     /**
      * @var int
@@ -122,6 +130,30 @@ class LicenceKey
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     *
+     * @return LicenceKey
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 
     /**

@@ -167,8 +167,12 @@ class TransactionController extends BaseController
 
             $licence_key=$this->generateRandomString(12).$this->generateRandomNumber(4);
 
+            $code_to_unlock_licence_key=$this->generateRandomNumberBasedOnTimestamp(6);
+
+
             $key=new LicenceKey();
             $key->setName($licence_key);
+            $key->setCode($code_to_unlock_licence_key);
             $key->setType($transaction->getType());
             $key->setAmountCategory($transaction->getAmountCategory());
             $key->setPrice($transaction->getAmount());
@@ -187,6 +191,7 @@ class TransactionController extends BaseController
             $verification->setPhoneNumber($transaction->getUsername());
             $verification->setState(0);
             $verification->setCode($licence_key);
+            $verification->setUnlockCode($code_to_unlock_licence_key);
             $verification->setLicenceKeyId($key->getId());
             $verification->setTransactionCode("".$data["tx_reference"].$this->generateRandomNumber(4));
             $verification->setCreatedAt(strtotime(date('Y-m-d H:i:s')));
@@ -195,11 +200,12 @@ class TransactionController extends BaseController
             $em->persist($verification);
             $em->flush();
 
-            //send licence key
+            //send licence key unlock code instead .user will enter on the page to show the licence key
 
-            $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " .$licence_key;
+           // $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " .$licence_key;
+            $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+d%C3%A9bloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
 
-            $res=$this->sendZedekaMessage("228".$transaction->getUsername(),$licence_key_to_send);
+            $res=$this->sendZedekaMessage("228".$transaction->getUsername(),$unlock_code_to_send);
 
 
             $client=$this->ClientRepo()->findOneBy([
@@ -280,7 +286,7 @@ class TransactionController extends BaseController
 
 
         $invoice=new CheckoutInvoice();
-        $invoice->addChannel('card');
+       // $invoice->addChannel('card');
         $invoice->setDescription($description);
         $invoice->setTotalAmount($amount);
         $invoice->addItem("Clé d'activation de KYA-SolDesign", 1, $amount, $amount, "Clé d'activation de KYA-SolDesign");

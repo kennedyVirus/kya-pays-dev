@@ -521,6 +521,42 @@ $client = new Client();
         }
     }
 
+    /**
+     *@Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/unlock/key",schemes={"https"})
+     */
+
+    public function unlockLicenceKeyAction(Request $request){
+        $json_data = $request->getContent();
+        $data = json_decode($json_data,true);
+
+        if(
+            isset($data["code"]) && $data["code"]!=null &&
+            isset($data["phone_number"]) && $data["phone_number"]!=null
+        ){
+            $verification=$this->VerificationRepo()->findOneBy([
+                'phoneNumber'=>$data["phone_number"],
+                'unlockCode'=>$data["code"]
+            ]);
+
+            if($verification == null){
+                return new Response($this->serialize($this->errorResponseBlob('licence key id not found',-2)));
+            }
+
+            $licence_key=$this->LicenceKeyRepo()->find($verification->getLicenceKeyId());
+
+            if($licence_key==null){
+                return new Response($this->serialize($this->errorResponseBlob('licence key not found',-3)));
+            }
+
+            $key=$licence_key->getName();
+
+            return new Response($this->serialize($this->okResponseBlob(['key'=>$key])));
+        }else{
+            return new Response($this->serialize($this->errorResponseBlob('parameter null')));
+
+        }
+
+    }
 
 
 }

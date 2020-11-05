@@ -47,6 +47,8 @@ window.onload = function () {
             },
             recover_email:'',
             recover_transaction_ref:'',
+            code_to_unlock_key:'',
+            phone_number_to_unlock_key:'',
             is_card_check:false,
             showTransactionPhoneInputEnterprise:false,
             showTransactionPhoneInputAcademic:false,
@@ -54,6 +56,11 @@ window.onload = function () {
         },
 
         mounted: function (){
+
+            //integer value validation
+            $('input.floatNumber').on('input', function() {
+                this.value = this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');
+            });
 
             $( "#check_mobile_money_enterprise" ).change(function() {
                 if(this.checked){
@@ -671,7 +678,63 @@ window.onload = function () {
                 }
             },
 
-            
+            getLicenceKey(){
+                let code=$('#code_to_unlock_key').val()
+                let phone_number=$('#phone_number_to_unlock_key').val()
+
+                let error=false
+                let message=''
+
+                if(code=='' ||  code==='') {
+                    error=true
+                 //   message='Veuillez entrer un code'
+                }
+                if(phone_number=='' ||  phone_number==='') {
+                    error=true
+                   // message='Veuillez entrer un Numéro de téléphone'
+                }
+
+                if(error==true) {
+                    Swal.fire({
+                        title: 'Erreur!',
+                        text: 'Veuillez entrer un code et un numéro de téléphone pour continuer',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    })
+                }else {
+                    this.code_to_unlock_key=code
+                    this.phone_number_to_unlock_key=phone_number
+                    let data={
+                        'code':this.code_to_unlock_key,
+                        'phone_number':this.phone_number_to_unlock_key
+                    }
+                    axios.post('/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/unlock/key',data)
+                        .then((response)=>{
+                            if(response.data.error===0){
+                                Swal.fire({
+                                    title: 'Bravo.Voici votre clé d\'activation KYA-SolDesign',
+                                    text: response.data.data.key,
+                                    icon: 'success',
+                                  //  confirmButtonText: 'OK'
+                                })
+                            }else {
+                                Swal.fire({
+                                    title: 'Oups!',
+                                    text: 'Aucune clé d\'activation trouvée .Rééssayéz svp!',
+                                    icon: 'error',
+                                    confirmButtonText: 'J\'ai compris'
+                                })
+                            }
+                        }).catch((error)=>{
+
+                    })
+
+                }
+
+
+                    // document.getElementById("loader").style.display = "block";
+            }
+
         },
         filters:{
         }

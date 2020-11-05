@@ -4,6 +4,51 @@
     {% block additionnalcss %}
         {#<link rel="stylesheet" href="{{ asset('assets/css/pay-form.css') }}">#}
         <style>
+            #loader {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                z-index: 1;
+                width: 150px;
+                height: 150px;
+                margin: -75px 0 0 -75px;
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid #3498db;
+                /*width: 120px;*/
+                /*height: 120px;*/
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;
+            }
+
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .animate-bottom {
+                position: relative;
+                -webkit-animation-name: animatebottom;
+                -webkit-animation-duration: 1s;
+                animation-name: animatebottom;
+                animation-duration: 1s
+            }
+
+            @-webkit-keyframes animatebottom {
+                from { bottom:-100px; opacity:0 }
+                to { bottom:0px; opacity:1 }
+            }
+
+            @keyframes animatebottom {
+                from{ bottom:-100px; opacity:0 }
+                to{ bottom:0; opacity:1 }
+            }
+
 
         </style>
 
@@ -30,6 +75,8 @@
     {% endfor %}
 
     <div id="app">
+        <div id="loader"></div>
+
         <!-- ======= About Video Section ======= -->
         <section id="about-video" class="about-video">
             <div class="container" data-aos="fade-up">
@@ -164,6 +211,45 @@
 
             </div>
         </section><!-- End Pricing Section -->
+
+        <section  class="faq section-bg" style="margin-bottom: 3em">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Obtenez votre licence d'activation ici</h2>
+                </div>
+
+                <p>Entrez le numéro de téléphone et code obtenu par sms et découvrez votre licence d'activation</p>
+
+                {#<div class="form-group">#}
+
+                        {#<input class="form-control floatNumber" class="form-control" v-model="code_to_unlock_key" type="text" required="" >#}
+
+                    {#<span class="col-lg-4 col-sm-4 col-md-4">#}
+                        {#<button class="btn btn-success">Obtenir la clé</button>#}
+                    {#</span>#}
+                {#</div>#}
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <input class="form-control floatNumber" placeholder="Numéro de téléphone"  id="phone_number_to_unlock_key" name="phone_number_to_unlock_key" type="text" required="" >
+                    {#<span class="input-group-btn" style="margin-left: 1em">#}
+                        {#<button class="btn btn-success" @click="openLoad()">Obtenir la clé</button>#}
+                    {#</span>#}
+                </div>
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <input class="form-control floatNumber" placeholder="code"  id="code_to_unlock_key" name="code_to_unlock_key" type="text" required="" >
+                    {#<span class="input-group-btn" style="margin-left: 1em">#}
+                        {#<button class="btn btn-success" @click="openLoad()">Obtenir la clé</button>#}
+                    {#</span>#}
+                </div>
+                <div class="form-group col-lg-4 col-md-4 col-sm-12">
+                    <button class="btn btn-success" @click="getLicenceKey()">Obtenir la clé</button>
+
+                </div>
+
+
+            </div>
+        </section><!-- End Frequently Asked Questions Section -->
+
 
         <div class="modal fade" id="enterpriseModal" tabindex="-1" role="dialog" aria-labelledby="enterpriseModalLabel" aria-hidden="true">
 

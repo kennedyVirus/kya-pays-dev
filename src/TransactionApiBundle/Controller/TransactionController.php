@@ -41,6 +41,53 @@ class TransactionController extends BaseController
         return new JsonResponse(0);
     }
 
+    /**
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/rest/country/get")
+     */
+
+    public function getRestCountry(){
+
+        $client = new Client();
+
+        $ar=[];
+
+        $request=$client->get('https://restcountries-v1.p.rapidapi.com/all',[
+            'headers'=>[
+                'x-rapidapi-host' => 'restcountries-v1.p.rapidapi.com',
+                'x-rapidapi-key' => 'f49f196328msh9e4e7174e7c19dbp115e1ajsn1bbc1d7ba6dd'
+            ]
+        ]);
+        $res = $request->getBody()->getContents();
+
+        $response=json_decode($res,true);
+
+        foreach ($response as $i=>$value){
+            if($value["name"]=="Ivory Coast"){
+                $dd=[];
+                $dd['index']=$i;
+                $dd['name']=$value["name"];
+
+                array_push($ar,$dd);
+            }
+            if($value["name"]=="Benin"){
+                $dd=[];
+                $dd['index']=$i;
+                $dd['name']=$value["name"];
+
+                array_push($ar,$dd);
+            }
+            if($value["name"]=="Senegal"){
+                $dd=[];
+                $dd['index']=$i;
+                $dd['name']=$value["name"];
+
+                array_push($ar,$dd);
+            }
+        }
+
+        return new Response($this->serialize($this->okResponseBlob($ar)));
+    }
+
 //
     /*
     * @Kya sol design payment  init

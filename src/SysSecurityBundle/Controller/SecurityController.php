@@ -14,42 +14,7 @@ use SysSecurityBundle\Entity\ClientLogin;
 class SecurityController extends BaseController
 {
 
-    /**
-     * @Route("/test/rest/country")
-     */
 
-    public function testRestCountry(){
-
-
-$client = new Client();
-//$request = new \GuzzleHttp\Psr7\Request();
-
-//$request->setRequestUrl('https://restcountries-v1.p.rapidapi.com/all');
-//$request->setRequestMethod('GET');
-//$request->setHeaders(array(
-//    'x-rapidapi-host' => 'restcountries-v1.p.rapidapi.com',
-//    'x-rapidapi-key' => 'f49f196328msh9e4e7174e7c19dbp115e1ajsn1bbc1d7ba6dd'
-//));
-
-//$client->enqueue($request)->send();
-//$response = $client->getResponse();
-
-        $request=$client->get('https://restcountries-v1.p.rapidapi.com/all',[
-            'headers'=>[
-                'x-rapidapi-host' => 'restcountries-v1.p.rapidapi.com',
-                'x-rapidapi-key' => 'f49f196328msh9e4e7174e7c19dbp115e1ajsn1bbc1d7ba6dd'
-            ]
-        ]);
-        $res = $request->getBody()->getContents();
-
-        $response=json_decode($res,true);
-
-//        foreach ($response as $i=>$value){
-//            if($value["name"]=="Ivory Coast")
-//        }
-
-        return new JsonResponse($response);
-    }
 
 
 //    public function oldlogin(Request $request){

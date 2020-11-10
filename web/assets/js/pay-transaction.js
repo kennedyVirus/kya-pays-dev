@@ -78,6 +78,9 @@ window.onload = function () {
                         }
                     }).catch((error)=>{})
 
+            console.log('hello')
+
+
             $('#country_student_select').change(function () {
                 let selection=$('#country_student_select').val();
 

@@ -567,11 +567,10 @@
                                 <input type="text" class="form-control" id="address3" placeholder="Adresse" v-model="new_student.address" required>
                             </div>
                             <div class="form-group">
-                                <label for="country3" class="control-label">*Pays</label>
+                                <label for="country_student_select" class="control-label">*Pays</label>
                                 {#<input type="text" class="form-control" id="country3" placeholder="Pays de résidence" v-model="new_student.country" required>#}
-                                <select class="form-control countries" id="countrys">
-                                    <option value="" disabled selected  id="country33">Selectionner un pays</option>
-
+                                <select class="form-control countries selectpicker" id="country_student_selects"  data-live-search="true">
+                                    <option value="" disabled selected  id="country_student">Selectionnez un pays</option>
                                 </select>
                             </div>
                             <div class="form-group">

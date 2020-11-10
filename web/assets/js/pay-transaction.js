@@ -49,6 +49,7 @@ window.onload = function () {
             recover_transaction_ref:'',
             code_to_unlock_key:'',
             phone_number_to_unlock_key:'',
+            countries:'',
             is_card_check:false,
             showTransactionPhoneInputEnterprise:false,
             showTransactionPhoneInputAcademic:false,
@@ -56,6 +57,25 @@ window.onload = function () {
         },
 
         mounted: function (){
+
+            axios.get('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/rest/country/get')
+                .then((response)=>{
+                    console.log(response.data)
+                    console.log(response.data.data)
+                    if(response.data.error===0){
+                        this.countries=response.data.data
+                        //
+                        if(this.countries.length >0){
+                            this.countries.forEach((country,i)=>{
+                                var countr = "<option value=\""+ i +"\" >"+ country.name +"</option>\n";
+                                $("#country33").after(countr);
+                            })
+                        }
+                        //
+
+                        }
+                    })
+
 
             //integer value validation
             $('input.floatNumber').on('input', function() {

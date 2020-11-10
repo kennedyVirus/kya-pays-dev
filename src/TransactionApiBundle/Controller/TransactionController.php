@@ -61,31 +61,31 @@ class TransactionController extends BaseController
 
         $response=json_decode($res,true);
 
-        foreach ($response as $i=>$value){
-            if($value["name"]=="Ivory Coast"){
-                $dd=[];
-                $dd['index']=$i;
-                $dd['name']=$value["name"];
+//        foreach ($response as $i=>$value){
+//            if($value["name"]=="Ivory Coast"){
+//                $dd=[];
+//                $dd['index']=$i;
+//                $dd['name']=$value["name"];
+//
+//                array_push($ar,$dd);
+//            }
+//            if($value["name"]=="Benin"){
+//                $dd=[];
+//                $dd['index']=$i;
+//                $dd['name']=$value["name"];
+//
+//                array_push($ar,$dd);
+//            }
+//            if($value["name"]=="Senegal"){
+//                $dd=[];
+//                $dd['index']=$i;
+//                $dd['name']=$value["name"];
+//
+//                array_push($ar,$dd);
+//            }
+//        }
 
-                array_push($ar,$dd);
-            }
-            if($value["name"]=="Benin"){
-                $dd=[];
-                $dd['index']=$i;
-                $dd['name']=$value["name"];
-
-                array_push($ar,$dd);
-            }
-            if($value["name"]=="Senegal"){
-                $dd=[];
-                $dd['index']=$i;
-                $dd['name']=$value["name"];
-
-                array_push($ar,$dd);
-            }
-        }
-
-        return new Response($this->serialize($this->okResponseBlob($ar)));
+        return new Response($this->serialize($this->okResponseBlob($response)));
     }
 
 //

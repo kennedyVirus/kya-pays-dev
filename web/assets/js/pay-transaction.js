@@ -78,8 +78,8 @@ window.onload = function () {
                         }
                     }).catch((error)=>{})
 
-            $('select#country_student').on('change', function () {
-                let selection=$('select#country_student').val();
+            $('select#country_student_select').on('change', function () {
+                let selection=$('select#country_student_select').val();
 
                 console.log('country selection==>',selection)
             })

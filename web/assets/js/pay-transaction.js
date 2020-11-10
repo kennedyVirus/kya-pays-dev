@@ -60,15 +60,13 @@ window.onload = function () {
 
             axios.get('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/rest/country/get')
                 .then((response)=>{
-                    console.log(response.data)
-                    console.log(response.data.data)
                     if(response.data.error===0){
                         this.countries=response.data.data
                         //
                         if(this.countries.length >0){
                             this.countries.forEach((country,i)=>{
                                 var countr = "<option value=\""+ i +"\" >"+ country.name +"</option>\n";
-                                $("#country33").after(countr);
+                                $("#country_student").after(countr);
                             })
                         }
                         //

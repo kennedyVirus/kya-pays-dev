@@ -78,12 +78,11 @@ window.onload = function () {
                         }
                     }).catch((error)=>{})
 
-            $('select#country_student_select').on('change', function () {
-                let selection=$('select#country_student_select').val();
+            $('#country_student_select').change(function () {
+                let selection=$('#country_student_select').val();
 
-                console.log('country selection==>',selection)
+                console.log('country selection==>'+selection)
             })
-
 
             //integer value validation
             $('input.floatNumber').on('input', function() {

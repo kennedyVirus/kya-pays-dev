@@ -57,25 +57,26 @@ window.onload = function () {
         },
 
         mounted: function (){
-            $('.selectpicker').selectpicker();
-
-            axios.get('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/rest/country/get')
-                .then((response)=>{
-                    if(response.data.error===0){
-                        this.countries=response.data.data
-                        //
-                        if(this.countries.length >0){
-                            this.countries.forEach((country,i)=>{
-                                // var countr = "<option value=\""+ i +"\" data-tokens=\\\"\"+ country.name +\"\\\">"+ country.name +"</option>\n";
-                                var countr = "<option value=\""+ i +"\" data-tokens=\""+ country.name +"\">"+ country.name +"</option>\n";
-
-                                $("#country_student").after(countr);
-                            })
-                        }
-                        //
-
-                        }
-                    })
+            // $('.selectpicker').selectpicker();
+            //
+            // axios.get('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/rest/country/get')
+            //     .then((response)=>{
+            //         if(response.data.error===0){
+            //             this.countries=response.data.data
+            //             //
+            //             if(this.countries.length >0){
+            //                 this.countries.forEach((country,i)=>{
+            //                     // var countr = "<option value=\""+ i +"\" data-tokens=\\\"\"+ country.name +\"\\\">"+ country.name +"</option>\n";
+            //                     // var countr = "<option value=\""+ i +"\" data-tokens=\""+ country.name +"\">"+ country.name +"</option>\n";
+            //                     var countr = "<option value=\""+ i +"\">"+ country.name +"</option>\n";
+            //
+            //                     $("#country_student").after(countr);
+            //                 })
+            //             }
+            //             //
+            //
+            //             }
+            //         })
 
 
             //integer value validation

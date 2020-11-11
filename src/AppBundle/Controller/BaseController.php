@@ -184,6 +184,8 @@ class BaseController extends Controller
         return $response;
     }
 
+
+
     /* create log entries for transactions */
 
     public function logTransactions($data,$status,$response,$client_id,$type,LoggerInterface $logger)
@@ -208,6 +210,55 @@ class BaseController extends Controller
                 'response' => $response
             ]);
         }
+    }
+
+    public function getChannel($pay_method){
+
+        $channel='';
+
+        switch (intval($pay_method)){
+            case 1:
+                $channel='card';
+                break;
+
+            case 2:
+                $channel='wari';
+                break;
+
+            case 4:
+                $channel='mtn-benin';
+                break;
+
+            case 5:
+                $channel='moov-benin';
+                break;
+
+            case 6:
+                $channel='mtn-ci';
+                break;
+
+            case 7:
+                $channel='orange-money-ci';
+                break;
+
+            case 8:
+                $channel='orange-money-senegal';
+                break;
+
+            case 9:
+                $channel='free-money-senegal';
+                break;
+
+            case 10:
+                $channel='api-cash-senegal';
+                break;
+
+            case 11:
+                $channel='wizall-senegal';
+                break;
+        }
+
+        return $channel;
     }
 
     /*
@@ -418,7 +469,7 @@ class BaseController extends Controller
             isset($data["first_name"]) && $data["first_name"]!=null &&
             isset($data["last_name"]) && $data["last_name"]!=null &&
             isset($data["address"]) && $data["address"]!=null &&
-            isset($data["country"]) && $data["country"]!=null &&
+            isset($data["country_selected"]) && $data["country_selected"]!=null &&
             isset($data["city"]) && $data["city"]!=null &&
             isset($data["email"]) && $data["email"]!=null
         ){
@@ -429,7 +480,7 @@ class BaseController extends Controller
             $temp_client->setFirstName($data["first_name"]);
             $temp_client->setLastName($data["last_name"]);
             $temp_client->setAddress($data["address"]);
-            $temp_client->setCountry($data["country"]);
+            $temp_client->setCountry($data["country_selected"]);
             $temp_client->setCity($data["city"]);
             $temp_client->setEmail($data["email"]);
             $temp_client->setUsername($data["email"]);

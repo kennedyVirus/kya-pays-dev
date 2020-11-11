@@ -15,6 +15,7 @@ window.onload = function () {
                 job_title:'',
                 organisation:'',
                 amount_category:'',
+                pay_method:1,
                 type:1
             },
             new_academic:{
@@ -29,6 +30,7 @@ window.onload = function () {
                 job_title:'',
                 organisation:'',
                 amount_category:'',
+                pay_method:1,
                 type:2
             },
             new_student:{
@@ -43,6 +45,7 @@ window.onload = function () {
                 job_title:'',
                 organisation:'',
                 amount_category:'',
+                pay_method:1,
                 type:3
             },
             recover_email:'',
@@ -50,46 +53,173 @@ window.onload = function () {
             code_to_unlock_key:'',
             phone_number_to_unlock_key:'',
             countries:'',
-            selected_country:'',
+            selected_country:0,
+            selected_payment_method:0,
             is_card_check:false,
             showTransactionPhoneInputEnterprise:false,
             showTransactionPhoneInputAcademic:false,
-            showTransactionPhoneInputStudent:false
+            showTransactionPhoneInputStudent:false,
+            togo_selected:false,
+            benin_selected:false,
+            cote_ivoire_selected:false,
+            senegal_selected:false
         },
 
         mounted: function (){
             // $('.selectpicker').selectpicker();
             //
-            // axios.get('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/rest/country/get')
-            //     .then((response)=>{
-            //         if(response.data.error===0){
-            //             this.countries=response.data.data
-            //
-            //             console.log(this.countries)
-            //             //
-            //             if(this.countries.length >0){
-            //                 this.countries.forEach((country,i)=>{
-            //                     // var countr = "<option value=\""+ i +"\" data-tokens=\\\"\"+ country.name +\"\\\">"+ country.name +"</option>\n";
-            //                     // var countr = "<option value=\""+ i +"\" data-tokens=\""+ country.name +"\">"+ country.name +"</option>\n";
-            //
-            //                    ///  $('#country_student_select').append(new Option(country.name, i));
-            //
-            //                    // $('#country_student_select').append($('<option>').val(i).text(country.name))
-            //
-            //                     // var countr = "<option value=\""+ i +"\">"+ country.name +"</option>\n";
-            //                     //
-            //                     // $("#country_student").after(countr);
-            //                 })
-            //             }
-            //             //
-            //
-            //             }
-            //         }).catch((error)=>{})
+            axios.get('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/rest/country/get')
+                .then((response)=>{
+                    if(response.data.error===0){
+                        this.countries=response.data.data
 
-            // $("select#country_student_select").change(function(){
-            //     let selectedCountry = $(this).children("option:selected").val();
-            //     this.selected_country=selectedCountry
-            // });
+                        console.log(this.countries)
+                        //
+                        if(this.countries.length >0){
+                            this.countries.forEach((country,i)=>{
+
+                                 $('#country_student_select').append(new Option(country.name, i));
+                                 $('#country_academic_select').append(new Option(country.name, i));
+                                 $('#country_enterprise_select').append(new Option(country.name, i));
+
+                            })
+                        }
+                        //
+                    }
+                }).catch((error)=>{})
+
+            $("select#country_student_select").change(function(){
+                let selectedCountry = $(this).children("option:selected").val();
+                app.selected_country=selectedCountry
+
+                switch (parseInt(app.selected_country)){
+                    case  0:
+                        app.togo_selected=true
+                        app.benin_selected=false
+                        app.cote_ivoire_selected=false
+                        app.senegal_selected=false
+
+                        if(this.selected_payment_method===3){
+                            app.showTransactionPhoneInputStudent=true
+                        }else {
+                            app.showTransactionPhoneInputStudent=false
+                        }
+                        break;
+                    case 1:
+                        app.togo_selected=false
+                        app.benin_selected=true
+                        app.cote_ivoire_selected=false
+                        app.senegal_selected=false
+                        app.showTransactionPhoneInputStudent=false
+
+                        break;
+                    case 2:
+                        app.togo_selected=false
+                        app.benin_selected=false
+                        app.cote_ivoire_selected=true
+                        app.senegal_selected=false
+                        app.showTransactionPhoneInputStudent=false
+
+                        break;
+                    case 3:
+                        app.togo_selected=false
+                        app.benin_selected=false
+                        app.cote_ivoire_selected=false
+                        app.senegal_selected=true
+                        app.showTransactionPhoneInputStudent=false
+
+                        break;
+                }
+                console.log(app.selected_country)
+            });
+            $("select#country_academic_select").change(function(){
+                let selectedCountry = $(this).children("option:selected").val();
+                app.selected_country=selectedCountry
+
+                switch (parseInt(app.selected_country)){
+                    case  0:
+                        app.togo_selected=true
+                        app.benin_selected=false
+                        app.cote_ivoire_selected=false
+                        app.senegal_selected=false
+
+                        if(this.selected_payment_method===3){
+                            app.showTransactionPhoneInputAcademic=true
+                        }else {
+                            app.showTransactionPhoneInputAcademic=false
+                        }
+                        break;
+                    case 1:
+                        app.togo_selected=false
+                        app.benin_selected=true
+                        app.cote_ivoire_selected=false
+                        app.senegal_selected=false
+                        app.showTransactionPhoneInputAcademic=false
+
+                        break;
+                    case 2:
+                        app.togo_selected=false
+                        app.benin_selected=false
+                        app.cote_ivoire_selected=true
+                        app.senegal_selected=false
+                        app.showTransactionPhoneInputAcademic=false
+
+                        break;
+                    case 3:
+                        app.togo_selected=false
+                        app.benin_selected=false
+                        app.cote_ivoire_selected=false
+                        app.senegal_selected=true
+                        app.showTransactionPhoneInputAcademic=false
+
+                        break;
+                }
+                console.log(app.selected_country)
+            });
+            $("select#country_enterprise_select").change(function(){
+                let selectedCountry = $(this).children("option:selected").val();
+                app.selected_country=selectedCountry
+
+                switch (parseInt(app.selected_country)){
+                    case  0:
+                        app.togo_selected=true
+                        app.benin_selected=false
+                        app.cote_ivoire_selected=false
+                        app.senegal_selected=false
+
+                        if(this.selected_payment_method===3){
+                            app.showTransactionPhoneInputEnterprise=true
+                        }else {
+                            app.showTransactionPhoneInputEnterprise=false
+                        }
+                        break;
+                    case 1:
+                        app.togo_selected=false
+                        app.benin_selected=true
+                        app.cote_ivoire_selected=false
+                        app.senegal_selected=false
+                        app.showTransactionPhoneInputEnterprise=false
+
+                        break;
+                    case 2:
+                        app.togo_selected=false
+                        app.benin_selected=false
+                        app.cote_ivoire_selected=true
+                        app.senegal_selected=false
+                        app.showTransactionPhoneInputEnterprise=false
+
+                        break;
+                    case 3:
+                        app.togo_selected=false
+                        app.benin_selected=false
+                        app.cote_ivoire_selected=false
+                        app.senegal_selected=true
+                        app.showTransactionPhoneInputEnterprise=false
+
+                        break;
+                }
+                console.log(app.selected_country)
+            });
 
 
             //integer value validation
@@ -97,67 +227,86 @@ window.onload = function () {
                 this.value = this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g, '$1');
             });
 
-            $( "#check_mobile_money_enterprise" ).change(function() {
-                if(this.checked){
-                    $( "#check_card_enterprise" ).prop('checked',false)
-                    app.showTransactionPhoneInputEnterprise=true
-                }else{
-                    $( "#check_card_enterprise" ).prop('checked',true)
-                    app.showTransactionPhoneInputEnterprise=false
-                }
-            });
+            //
+            $('input:radio[name="pay_method_student"]').change(
+                function(){
 
-            $( "#check_card_enterprise" ).change(function() {
-                if(this.checked){
-                    $( "#check_mobile_money_enterprise" ).prop('checked',false)
-                    app.showTransactionPhoneInputEnterprise=false
-                }else{
-                    $( "#check_mobile_money_enterprise" ).prop('checked',true)
-                    app.showTransactionPhoneInputEnterprise=true
-                }
-            });
+                    var checked = false
 
-            $( "#check_mobile_money_academic" ).change(function() {
-                if(this.checked){
-                    $( "#check_card_academic" ).prop('checked',false)
-                    app.showTransactionPhoneInputAcademic=true
-                }else{
-                    $( "#check_card_academic" ).prop('checked',true)
-                    app.showTransactionPhoneInputAcademic=false
+                    let selected = '';
 
-                }
-            });
+                    for (let i = 1;  i < 12 ; i++) {
 
-            $( "#check_card_academic" ).change(function() {
-                if(this.checked){
-                    $( "#check_mobile_money_academic" ).prop('checked',false)
-                    app.showTransactionPhoneInputAcademic=false
-                }else{
-                    $( "#check_mobile_money_academic" ).prop('checked',true)
-                    app.showTransactionPhoneInputAcademic=true
-                }
-            });
+                        if($('#pay_student'+i).is(':checked')) {
+                            checked = true;
+                            selected = i;
 
-            $( "#check_mobile_money_student" ).change(function() {
-                if(this.checked){
-                    $( "#check_card_student" ).prop('checked',false)
-                    app.showTransactionPhoneInputStudent=true
-                }else{
-                    $( "#check_card_student" ).prop('checked',true)
-                    app.showTransactionPhoneInputStudent=false
+                            if(selected ===3){
+                                app.showTransactionPhoneInputStudent=true
+                            }else {
+                                app.showTransactionPhoneInputStudent=false
+                            }
+                            app.new_student.pay_method=i
+                            break;
+                        }
+                    }
+                });
 
-                }
-            });
+            $('input:radio[name="pay_method_academic"]').change(
+                function(){
 
-            $( "#check_card_student" ).change(function() {
-                if(this.checked){
-                    $( "#check_mobile_money_student" ).prop('checked',false)
-                    app.showTransactionPhoneInputStudent=false
-                }else{
-                    $( "#check_mobile_money_student" ).prop('checked',true)
-                    app.showTransactionPhoneInputStudent=true
-                }
-            });
+                    var checked = false
+
+                    let selected = '';
+
+                    for (let i = 1;  i < 12 ; i++) {
+
+                        if($('#pay_academic'+i).is(':checked')) {
+                            checked = true;
+                            selected = i;
+
+                            if(selected ===3){
+                               // if(this.selected_country==0){
+                                    app.showTransactionPhoneInputAcademic=true
+                              //  }else {
+                                  //  app.showTransactionPhoneInputAcademic=false
+                              //  }
+                            }else {
+                                app.showTransactionPhoneInputAcademic=false
+                            }
+                            app.new_academic.pay_method=i;
+                            break;
+                        }
+                    }
+                });
+
+            $('input:radio[name="pay_method_enterprise"]').change(
+                function(){
+
+                    var checked = false
+
+                    let selected = '';
+
+                    for (let i = 1;  i < 12 ; i++) {
+
+                        if($('#pay_enterprise'+i).is(':checked')) {
+                            checked = true;
+                            selected = i;
+
+                            if(selected ===3){
+                              //  if(app.selected_country===0){
+                                    app.showTransactionPhoneInputEnterprise=true
+                                // }else {
+                                //     app.showTransactionPhoneInputEnterprise=false
+                                // }
+                            }else {
+                                app.showTransactionPhoneInputEnterprise=false
+                            }
+                            app.new_enterprise.pay_method=i;
+                            break;
+                        }
+                    }
+                });
         },
 
         methods : {
@@ -170,74 +319,6 @@ window.onload = function () {
             openPay3Modal(){
                 $('#studentModal').modal('show')
             },
-            // openRecoverModal(){
-            //     $('#modal_recover_key').modal('open')
-            // },
-            // recoverKey(){
-            //     if(this.recover_email!='' || this.recover_transaction_ref!=''){
-            //
-            //         let data={
-            //             'email':this.recover_email,
-            //             'transaction_ref':this.transaction_ref,
-            //         }
-            //         $('#modal-loader').modal('open');
-            //
-            //         Swal.fire({
-            //             title: 'Desolé!',
-            //             text: "Aucun résultat ne correspond à votre recherche",
-            //             icon: 'warning',
-            //             confirmButtonText: 'OK'
-            //         })
-            //         // Swal.fire({
-            //         //     title: 'Error!',
-            //         //     text: 'Problème de connexion , actualiser la page svp',
-            //         //     icon: 'error',
-            //         //     confirmButtonText: 'OK'
-            //         // })
-            //
-            //         // Swal.fire({
-            //         //     title: 'Opération réussie',
-            //         //     text: message,
-            //         //     icon: 'success',
-            //         //     confirmButtonText: 'OK'
-            //         // });
-            //
-            //         // axios.post('/fflll',data)
-            //         //     .then((response)=>{
-            //         //         $('#modal-loader').modal('close');
-            //         //
-            //         //        // if(response.data.error===0){
-            //         //             Swal.fire({
-            //         //                 title: 'Desolé!',
-            //         //                 text: "Aucun résultat ne correspond à votre recherche",
-            //         //                 icon: 'warning',
-            //         //                 confirmButtonText: 'OK'
-            //         //             })
-            //         //       //  }
-            //         //
-            //         //     })
-            //
-            //
-            //
-            //
-            //     }
-            //
-            // },
-            //
-            // studentStep1(){
-            //     $('#modal_pay_student1').modal('open')
-            // },
-            // studentStep2(){
-            //     $('#modal_pay_student1').modal('close')
-            //     $('#modal_pay_student2').modal('open')
-            // },
-            // enterpriseStep1(){
-            //     $('#modal_pay_enterprise1').modal('open')
-            // },
-            // enterpriseStep2(){
-            //     $('#modal_pay_enterprise1').modal('close')
-            //     $('#modal_pay_enterprise2').modal('open')
-            // },
 
             submitAcademicForm(){
                 console.log('academic...')
@@ -327,6 +408,8 @@ window.onload = function () {
                         }
                     }
                     else {
+                        this.new_academic.country_selected=this.selected_country
+
                         axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_academic)
                             .then((response)=>{
                                 $('#modal-loader').modal('hide');
@@ -461,6 +544,8 @@ window.onload = function () {
 
                     }
                     else {
+                        this.new_student.country_selected=this.selected_country
+
                         axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_student)
                             .then((response)=>{
                                 $('#modal-loader').modal('hide');
@@ -594,6 +679,8 @@ window.onload = function () {
 
                     }
                     else {
+                        this.new_enterprise.country_selected=this.selected_country
+
                         axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_enterprise)
                             .then((response)=>{
                                 $('#modal-loader').modal('hide');
@@ -634,82 +721,6 @@ window.onload = function () {
                         })
                     }
 
-                    // if(this.showTransactionPhoneInputEnterprise==true){
-                    //     let is_error=false
-                    //     let error_message=''
-                    //     if(this.new_enterprise.transaction_phone_number=='' ||  this.new_enterprise.transaction_phone_number===''){
-                    //         is_error=true;
-                    //         error_message='Vous avez choisi de payer via mobile money.veuillez entrer un numéro de téléphone togolais pour continuer l\'opération.Merci';
-                    //     }
-                    //
-                    //     if(this.new_enterprise.transaction_phone_number.length<8){
-                    //         is_error=true;
-                    //         error_message='Veuillez entrer un numéro de téléphone togolais de 8 chiffres pour continuer l\'opération.Merci';
-                    //     }
-                    //
-                    //     if(is_error==true){
-                    //         Swal.fire({
-                    //             title: 'Erreur Numéro de télephone!',
-                    //             text: error_message,
-                    //             icon: 'error',
-                    //             confirmButtonText: 'OK'
-                    //         })
-                    //     }else {
-                    //         this.new_enterprise.amount_category=selected
-                    //
-                    //         $('#modal-loader').modal('show');
-                    //         console.log(this.new_enterprise)
-                    //         axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_enterprise)
-                    //             .then((response)=>{
-                    //                 $('#modal-loader').modal('hide');
-                    //
-                    //                 $('#enterpriseModal').modal('hide')
-                    //
-                    //                 console.log(response.data)
-                    //                 if(response.data.error===0){
-                    //
-                    //                     if(response.data.data.type===1){
-                    //                         Swal.fire({
-                    //                             title: 'Confirmation!',
-                    //                             text: "Vous serez redirigé vers un site marchand pour continuer l'opération",
-                    //                             icon: 'warning',
-                    //                             confirmButtonText: 'Continuer'
-                    //                         }).then((result) => {
-                    //                             if (result.value) {
-                    //                                 window.location.href = response.data.data.url
-                    //                             }
-                    //                         })
-                    //                     }else {
-                    //                         Swal.fire({
-                    //                             title: 'Erreur Transaction!',
-                    //                             text: 'Une erreur est survenue lors de votre transaction.Veuillez réssayer svp',
-                    //                             icon: 'error',
-                    //                             confirmButtonText: 'OK'
-                    //                         })
-                    //                     }
-                    //                 }else{
-                    //                     if(response.data.error===-2){
-                    //                         Swal.fire({
-                    //                             title: 'Erreur Numéro de téléphone!',
-                    //                             text: 'Veuillez entrer un numéro de téléphone togolais',
-                    //                             icon: 'error',
-                    //                             confirmButtonText: 'J\'ai compris'
-                    //                         })
-                    //                     }else {
-                    //                         Swal.fire({
-                    //                             title: 'Error!',
-                    //                             text: 'Oups.Une erreur est survenue , réssayez svp',
-                    //                             icon: 'error',
-                    //                             confirmButtonText: 'OK'
-                    //                         })
-                    //                     }
-                    //                 }
-                    //             }).catch((error)=>{
-                    //             console.log(error)
-                    //         })
-                    //     }
-                    //
-                    // }
                 }
             },
 

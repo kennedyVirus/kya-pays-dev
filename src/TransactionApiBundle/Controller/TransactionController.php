@@ -156,9 +156,16 @@ class TransactionController extends BaseController
 
                 $ddes=[];
                 $ddes['index']=2;
-                $ddes['name']='senegal';
+                $ddes['name']='cote d\'ivoire';
 
                 array_push($response,$ddes);
+
+                $ddese=[];
+                $ddese['index']=3;
+                $ddese['name']='senegal';
+
+                array_push($response,$ddese);
+
 
         return new Response($this->serialize($this->okResponseBlob($response)));
     }
@@ -365,6 +372,8 @@ class TransactionController extends BaseController
             $amount=$this->getAmountToPay($data["type"],$data["amount_category"]);
         }
 
+        //if(isset($data["country_selected"]))
+
         $saveTempClient=$this->savePaydunyaTempClient($data);
 
 
@@ -408,7 +417,8 @@ class TransactionController extends BaseController
 
 
         $invoice=new CheckoutInvoice();
-        $invoice->addChannel('card');
+        $invoice->addChannel($this->getChannel($data["pay_method"]));
+        //$invoice->addChannel('card');
         $invoice->setDescription($description);
         $invoice->setTotalAmount($amount);
         $invoice->addItem("Clé d'activation de KYA-SolDesign", 1, $amount, $amount, "Clé d'activation de KYA-SolDesign");

@@ -103,68 +103,17 @@ class TransactionController extends BaseController
 
     public function getRestCountry(){
 
-//        $client = new Client();
-//
-//        $ar=[];
-//
-//        $request=$client->get('https://restcountries-v1.p.rapidapi.com/all',[
-//            'headers'=>[
-//                'x-rapidapi-host' => 'restcountries-v1.p.rapidapi.com',
-//                'x-rapidapi-key' => 'f49f196328msh9e4e7174e7c19dbp115e1ajsn1bbc1d7ba6dd'
-//            ]
-//        ]);
-//        $res = $request->getBody()->getContents();
-//
-//        $response=json_decode($res,true);
+        $client = new Client();
 
-//        foreach ($response as $i=>$value){
-//            if($value["name"]=="Ivory Coast"){
-//                $dd=[];
-//                $dd['index']=$i;
-//                $dd['name']=$value["name"];
-//
-//                array_push($ar,$dd);
-//            }
-//            if($value["name"]=="Benin"){
-//                $dd=[];
-//                $dd['index']=$i;
-//                $dd['name']=$value["name"];
-//
-//                array_push($ar,$dd);
-//            }
-//            if($value["name"]=="Senegal"){
-//                $dd=[];
-//                $dd['index']=$i;
-//                $dd['name']=$value["name"];
-//
-//                array_push($ar,$dd);
-//            }
-//        }
+        $request=$client->get('https://restcountries-v1.p.rapidapi.com/all',[
+            'headers'=>[
+                'x-rapidapi-host' => 'restcountries-v1.p.rapidapi.com',
+                'x-rapidapi-key' => 'f49f196328msh9e4e7174e7c19dbp115e1ajsn1bbc1d7ba6dd'
+            ]
+        ]);
+        $res = $request->getBody()->getContents();
 
-                $response=[];
-                $dd=[];
-                $dd['index']=0;
-                $dd['name']='togo';
-
-                array_push($response,$dd);
-
-                $dde=[];
-                $dde['index']=1;
-                $dde['name']='benin';
-
-                array_push($response,$dde);
-
-                $ddes=[];
-                $ddes['index']=2;
-                $ddes['name']='cote d\'ivoire';
-
-                array_push($response,$ddes);
-
-                $ddese=[];
-                $ddese['index']=3;
-                $ddese['name']='senegal';
-
-                array_push($response,$ddese);
+        $response=json_decode($res,true);
 
 
         return new Response($this->serialize($this->okResponseBlob($response)));

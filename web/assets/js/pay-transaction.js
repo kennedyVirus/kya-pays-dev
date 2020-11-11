@@ -73,8 +73,6 @@ window.onload = function () {
                     if(response.data.error===0){
                         this.countries=response.data.data
 
-                        console.log(this.countries)
-                        //
                         if(this.countries.length >0){
                             this.countries.forEach((country,i)=>{
 
@@ -84,7 +82,7 @@ window.onload = function () {
 
                             })
                         }
-                        //
+
                     }
                 }).catch((error)=>{})
 
@@ -93,7 +91,7 @@ window.onload = function () {
                 app.selected_country=selectedCountry
 
                 switch (parseInt(app.selected_country)){
-                    case  0:
+                    case  226:
                         app.togo_selected=true
                         app.benin_selected=false
                         app.cote_ivoire_selected=false
@@ -105,7 +103,8 @@ window.onload = function () {
                             app.showTransactionPhoneInputStudent=false
                         }
                         break;
-                    case 1:
+
+                    case 23:
                         app.togo_selected=false
                         app.benin_selected=true
                         app.cote_ivoire_selected=false
@@ -113,7 +112,8 @@ window.onload = function () {
                         app.showTransactionPhoneInputStudent=false
 
                         break;
-                    case 2:
+
+                    case 106:
                         app.togo_selected=false
                         app.benin_selected=false
                         app.cote_ivoire_selected=true
@@ -121,7 +121,8 @@ window.onload = function () {
                         app.showTransactionPhoneInputStudent=false
 
                         break;
-                    case 3:
+
+                    case 198:
                         app.togo_selected=false
                         app.benin_selected=false
                         app.cote_ivoire_selected=false
@@ -130,14 +131,13 @@ window.onload = function () {
 
                         break;
                 }
-                console.log(app.selected_country)
             });
             $("select#country_academic_select").change(function(){
                 let selectedCountry = $(this).children("option:selected").val();
                 app.selected_country=selectedCountry
 
                 switch (parseInt(app.selected_country)){
-                    case  0:
+                    case 226:
                         app.togo_selected=true
                         app.benin_selected=false
                         app.cote_ivoire_selected=false
@@ -149,7 +149,7 @@ window.onload = function () {
                             app.showTransactionPhoneInputAcademic=false
                         }
                         break;
-                    case 1:
+                    case 23:
                         app.togo_selected=false
                         app.benin_selected=true
                         app.cote_ivoire_selected=false
@@ -157,7 +157,7 @@ window.onload = function () {
                         app.showTransactionPhoneInputAcademic=false
 
                         break;
-                    case 2:
+                    case 106:
                         app.togo_selected=false
                         app.benin_selected=false
                         app.cote_ivoire_selected=true
@@ -165,7 +165,7 @@ window.onload = function () {
                         app.showTransactionPhoneInputAcademic=false
 
                         break;
-                    case 3:
+                    case 198:
                         app.togo_selected=false
                         app.benin_selected=false
                         app.cote_ivoire_selected=false
@@ -174,14 +174,13 @@ window.onload = function () {
 
                         break;
                 }
-                console.log(app.selected_country)
             });
             $("select#country_enterprise_select").change(function(){
                 let selectedCountry = $(this).children("option:selected").val();
                 app.selected_country=selectedCountry
 
                 switch (parseInt(app.selected_country)){
-                    case  0:
+                    case  226:
                         app.togo_selected=true
                         app.benin_selected=false
                         app.cote_ivoire_selected=false
@@ -193,7 +192,7 @@ window.onload = function () {
                             app.showTransactionPhoneInputEnterprise=false
                         }
                         break;
-                    case 1:
+                    case 23:
                         app.togo_selected=false
                         app.benin_selected=true
                         app.cote_ivoire_selected=false
@@ -201,7 +200,7 @@ window.onload = function () {
                         app.showTransactionPhoneInputEnterprise=false
 
                         break;
-                    case 2:
+                    case 106:
                         app.togo_selected=false
                         app.benin_selected=false
                         app.cote_ivoire_selected=true
@@ -209,7 +208,7 @@ window.onload = function () {
                         app.showTransactionPhoneInputEnterprise=false
 
                         break;
-                    case 3:
+                    case 198:
                         app.togo_selected=false
                         app.benin_selected=false
                         app.cote_ivoire_selected=false
@@ -218,7 +217,6 @@ window.onload = function () {
 
                         break;
                 }
-                console.log(app.selected_country)
             });
 
 
@@ -266,11 +264,8 @@ window.onload = function () {
                             selected = i;
 
                             if(selected ===3){
-                               // if(this.selected_country==0){
                                     app.showTransactionPhoneInputAcademic=true
-                              //  }else {
-                                  //  app.showTransactionPhoneInputAcademic=false
-                              //  }
+
                             }else {
                                 app.showTransactionPhoneInputAcademic=false
                             }
@@ -294,11 +289,8 @@ window.onload = function () {
                             selected = i;
 
                             if(selected ===3){
-                              //  if(app.selected_country===0){
                                     app.showTransactionPhoneInputEnterprise=true
-                                // }else {
-                                //     app.showTransactionPhoneInputEnterprise=false
-                                // }
+
                             }else {
                                 app.showTransactionPhoneInputEnterprise=false
                             }
@@ -336,6 +328,7 @@ window.onload = function () {
                 }
                 if (checked === true) {
                     this.new_academic.amount_category=selected
+                    this.new_academic.country_selected=this.selected_country
 
 
                     if(this.showTransactionPhoneInputAcademic==true){
@@ -408,7 +401,6 @@ window.onload = function () {
                         }
                     }
                     else {
-                        this.new_academic.country_selected=this.selected_country
 
                         axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_academic)
                             .then((response)=>{
@@ -469,8 +461,9 @@ window.onload = function () {
                 if (checked === true) {
 
                     this.new_student.amount_category=selected
+                    this.new_student.country_selected=this.selected_country
 
-                   // console.log(this.new_student)
+                    // console.log(this.new_student)
 
                     if(this.showTransactionPhoneInputStudent==true){
                         let is_error=false
@@ -544,7 +537,6 @@ window.onload = function () {
 
                     }
                     else {
-                        this.new_student.country_selected=this.selected_country
 
                         axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_student)
                             .then((response)=>{
@@ -604,6 +596,8 @@ window.onload = function () {
                 }
                 if (checked === true) {
                     this.new_enterprise.amount_category=selected
+                    this.new_enterprise.country_selected=this.selected_country
+
 
                     //console.log(this.new_enterprise)
 
@@ -679,7 +673,6 @@ window.onload = function () {
 
                     }
                     else {
-                        this.new_enterprise.country_selected=this.selected_country
 
                         axios.post('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/paydunya/payment/init',this.new_enterprise)
                             .then((response)=>{

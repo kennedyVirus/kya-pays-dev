@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -411,7 +412,7 @@ class BaseController extends Controller
             isset($data["first_name"]) && $data["first_name"]!=null &&
             isset($data["last_name"]) && $data["last_name"]!=null &&
             isset($data["address"]) && $data["address"]!=null &&
-            isset($data["country"]) && $data["country"]!=null &&
+            isset($data["country_selected"]) && $data["country_selected"]!=null &&
             isset($data["city"]) && $data["city"]!=null &&
             isset($data["phone_number"]) && $data["phone_number"]!=null
         ){
@@ -422,7 +423,7 @@ class BaseController extends Controller
             $temp_client->setFirstName($data["first_name"]);
             $temp_client->setLastName($data["last_name"]);
             $temp_client->setAddress($data["address"]);
-            $temp_client->setCountry($data["country"]);
+            $temp_client->setCountry($this->getCountry($data["country_selected"]));
             $temp_client->setCity($data["city"]);
             $temp_client->setPhoneNumber($data["phone_number"]);
 
@@ -464,6 +465,7 @@ class BaseController extends Controller
 
     }
 
+
     public function savePaydunyaTempClient($data){
         if(
             isset($data["first_name"]) && $data["first_name"]!=null &&
@@ -480,7 +482,7 @@ class BaseController extends Controller
             $temp_client->setFirstName($data["first_name"]);
             $temp_client->setLastName($data["last_name"]);
             $temp_client->setAddress($data["address"]);
-            $temp_client->setCountry($data["country_selected"]);
+            $temp_client->setCountry($this->getCountry($data["country_selected"]));
             $temp_client->setCity($data["city"]);
             $temp_client->setEmail($data["email"]);
             $temp_client->setUsername($data["email"]);
@@ -590,5 +592,31 @@ class BaseController extends Controller
         $result = $mailer->send($message);
 
         return 0;
+    }
+
+    public function getCountry($country_index){
+
+        $client = new \GuzzleHttp\Client();
+
+        $request=$client->get('https://restcountries-v1.p.rapidapi.com/all',[
+            'headers'=>[
+                'x-rapidapi-host' => 'restcountries-v1.p.rapidapi.com',
+                'x-rapidapi-key' => 'f49f196328msh9e4e7174e7c19dbp115e1ajsn1bbc1d7ba6dd'
+            ]
+        ]);
+        $res = $request->getBody()->getContents();
+
+        $response=json_decode($res,true);
+
+        $country='';
+
+        $countryObject=$response[$country_index];
+
+        if($countryObject){
+            $country=$countryObject["name"];
+        }
+
+
+        return $country;
     }
 }

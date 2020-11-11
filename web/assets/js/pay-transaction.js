@@ -50,6 +50,7 @@ window.onload = function () {
             code_to_unlock_key:'',
             phone_number_to_unlock_key:'',
             countries:'',
+            selected_country:'',
             is_card_check:false,
             showTransactionPhoneInputEnterprise:false,
             showTransactionPhoneInputAcademic:false,
@@ -63,14 +64,21 @@ window.onload = function () {
             //     .then((response)=>{
             //         if(response.data.error===0){
             //             this.countries=response.data.data
+            //
+            //             console.log(this.countries)
             //             //
             //             if(this.countries.length >0){
             //                 this.countries.forEach((country,i)=>{
             //                     // var countr = "<option value=\""+ i +"\" data-tokens=\\\"\"+ country.name +\"\\\">"+ country.name +"</option>\n";
             //                     // var countr = "<option value=\""+ i +"\" data-tokens=\""+ country.name +"\">"+ country.name +"</option>\n";
-            //                     var countr = "<option value=\""+ i +"\">"+ country.name +"</option>\n";
             //
-            //                     $("#country_student").after(countr);
+            //                    ///  $('#country_student_select').append(new Option(country.name, i));
+            //
+            //                    // $('#country_student_select').append($('<option>').val(i).text(country.name))
+            //
+            //                     // var countr = "<option value=\""+ i +"\">"+ country.name +"</option>\n";
+            //                     //
+            //                     // $("#country_student").after(countr);
             //                 })
             //             }
             //             //
@@ -78,12 +86,11 @@ window.onload = function () {
             //             }
             //         }).catch((error)=>{})
 
+            // $("select#country_student_select").change(function(){
+            //     let selectedCountry = $(this).children("option:selected").val();
+            //     this.selected_country=selectedCountry
+            // });
 
-            // $('#country_student_select').change(function () {
-            //     let selection=$('#country_student_select').val();
-            //
-            //     console.log('country selection==>'+selection)
-            // })
 
             //integer value validation
             $('input.floatNumber').on('input', function() {

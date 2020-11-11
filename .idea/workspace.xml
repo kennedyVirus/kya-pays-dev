@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29414d36-2dd5-4e26-96ba-a0579c4d8f65" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/assets/js/pay-transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/js/pay-transaction.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,20 +17,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="571" column="82" selection-start-line="571" selection-start-column="60" selection-end-line="571" selection-end-column="82" />
+            <state relative-caret-position="263">
+              <caret line="580" column="95" lean-forward="true" selection-start-line="580" selection-start-column="95" selection-end-line="580" selection-end-column="95" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pay-transaction.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pay-transaction.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/assets/js/pay-transaction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+            <state relative-caret-position="357">
+              <caret line="78" column="44" lean-forward="true" selection-start-line="78" selection-start-column="44" selection-end-line="78" selection-end-column="44" />
               <folding>
                 <element signature="e#150#533#0" />
                 <element signature="e#560#943#0" />
@@ -131,8 +132,8 @@
         <option value="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" />
         <option value="$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/base2.html.twig" />
-        <option value="$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/web/assets/js/pay-transaction.js" />
+        <option value="$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig" />
       </list>
     </option>
   </component>
@@ -257,12 +258,12 @@
       <workItem from="1604355041350" duration="3036000" />
       <workItem from="1604480993888" duration="3036000" />
       <workItem from="1604569999362" duration="17856000" />
-      <workItem from="1604938106676" duration="11643000" />
+      <workItem from="1604938106676" duration="12363000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="171889000" />
+    <option name="totallyTimeSpent" value="172609000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -321,7 +322,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/web/assets/js/pay-transaction.js</url>
-          <line>499</line>
+          <line>497</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php</url>
@@ -644,22 +645,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="571" column="82" selection-start-line="571" selection-start-column="60" selection-end-line="571" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/assets/js/pay-transaction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="80" column="31" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+        <state relative-caret-position="357">
+          <caret line="78" column="44" lean-forward="true" selection-start-line="78" selection-start-column="44" selection-end-line="78" selection-end-column="44" />
           <folding>
             <element signature="e#150#533#0" />
             <element signature="e#560#943#0" />
             <element signature="e#969#1352#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="580" column="95" lean-forward="true" selection-start-line="580" selection-start-column="95" selection-end-line="580" selection-end-column="95" />
         </state>
       </provider>
     </entry>

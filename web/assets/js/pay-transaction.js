@@ -59,33 +59,31 @@ window.onload = function () {
         mounted: function (){
             // $('.selectpicker').selectpicker();
             //
-            axios.get('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/rest/country/get')
-                .then((response)=>{
-                    if(response.data.error===0){
-                        this.countries=response.data.data
-                        //
-                        if(this.countries.length >0){
-                            this.countries.forEach((country,i)=>{
-                                // var countr = "<option value=\""+ i +"\" data-tokens=\\\"\"+ country.name +\"\\\">"+ country.name +"</option>\n";
-                                // var countr = "<option value=\""+ i +"\" data-tokens=\""+ country.name +"\">"+ country.name +"</option>\n";
-                                var countr = "<option value=\""+ i +"\">"+ country.name +"</option>\n";
-
-                                $("#country_student").after(countr);
-                            })
-                        }
-                        //
-
-                        }
-                    }).catch((error)=>{})
-
-            console.log('hello')
+            // axios.get('/8004064b17546e4380ce83d1be75b50dkfj2015/api/kya/rest/country/get')
+            //     .then((response)=>{
+            //         if(response.data.error===0){
+            //             this.countries=response.data.data
+            //             //
+            //             if(this.countries.length >0){
+            //                 this.countries.forEach((country,i)=>{
+            //                     // var countr = "<option value=\""+ i +"\" data-tokens=\\\"\"+ country.name +\"\\\">"+ country.name +"</option>\n";
+            //                     // var countr = "<option value=\""+ i +"\" data-tokens=\""+ country.name +"\">"+ country.name +"</option>\n";
+            //                     var countr = "<option value=\""+ i +"\">"+ country.name +"</option>\n";
+            //
+            //                     $("#country_student").after(countr);
+            //                 })
+            //             }
+            //             //
+            //
+            //             }
+            //         }).catch((error)=>{})
 
 
-            $('#country_student_select').change(function () {
-                let selection=$('#country_student_select').val();
-
-                console.log('country selection==>'+selection)
-            })
+            // $('#country_student_select').change(function () {
+            //     let selection=$('#country_student_select').val();
+            //
+            //     console.log('country selection==>'+selection)
+            // })
 
             //integer value validation
             $('input.floatNumber').on('input', function() {

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29414d36-2dd5-4e26-96ba-a0579c4d8f65" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +19,8 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="373" column="38" lean-forward="true" selection-start-line="373" selection-start-column="38" selection-end-line="373" selection-end-column="38" />
+            <state relative-caret-position="76">
+              <caret line="797" column="51" lean-forward="true" selection-start-line="797" selection-start-column="51" selection-end-line="797" selection-end-column="51" />
               <folding>
                 <element signature="e#11438#11484#0#HTML" expanded="true" />
                 <element signature="e#19967#20727#0#HTML" />
@@ -31,8 +30,6 @@
                 <element signature="e#28916#29687#0#HTML" />
                 <element signature="e#29761#30534#0#HTML" />
                 <element signature="e#30607#31374#0#HTML" />
-                <element signature="e#28840#45850#0#HTML" />
-                <element signature="e#34937#35687#0#HTML" />
                 <element signature="e#36741#37617#0#HTML" />
                 <element signature="e#37689#39344#0#HTML" />
                 <element signature="e#39424#41118#0#HTML" />
@@ -115,7 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tele</find>
       <find>choisiss</find>
       <find>down</find>
       <find>togol</find>
@@ -145,6 +141,7 @@
       <find>channe</find>
       <find>initp</find>
       <find>consol</find>
+      <find>wari</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -302,12 +299,12 @@
       <workItem from="1604480993888" duration="3036000" />
       <workItem from="1604569999362" duration="17856000" />
       <workItem from="1604938106676" duration="31025000" />
-      <workItem from="1605116606215" duration="8203000" />
+      <workItem from="1605116606215" duration="8303000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199474000" />
+    <option name="totallyTimeSpent" value="199574000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -707,8 +704,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="373" column="38" lean-forward="true" selection-start-line="373" selection-start-column="38" selection-end-line="373" selection-end-column="38" />
+        <state relative-caret-position="76">
+          <caret line="797" column="51" lean-forward="true" selection-start-line="797" selection-start-column="51" selection-end-line="797" selection-end-column="51" />
           <folding>
             <element signature="e#11438#11484#0#HTML" expanded="true" />
             <element signature="e#19967#20727#0#HTML" />
@@ -718,8 +715,6 @@
             <element signature="e#28916#29687#0#HTML" />
             <element signature="e#29761#30534#0#HTML" />
             <element signature="e#30607#31374#0#HTML" />
-            <element signature="e#28840#45850#0#HTML" />
-            <element signature="e#34937#35687#0#HTML" />
             <element signature="e#36741#37617#0#HTML" />
             <element signature="e#37689#39344#0#HTML" />
             <element signature="e#39424#41118#0#HTML" />

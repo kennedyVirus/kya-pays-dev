@@ -19,17 +19,22 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="797" column="51" lean-forward="true" selection-start-line="797" selection-start-column="51" selection-end-line="797" selection-end-column="51" />
+            <state relative-caret-position="93">
+              <caret line="369" column="42" selection-start-line="369" selection-start-column="42" selection-end-line="369" selection-end-column="42" />
               <folding>
                 <element signature="e#11438#11484#0#HTML" expanded="true" />
+                <element signature="e#19156#19178#0#HTML" expanded="true" />
                 <element signature="e#19967#20727#0#HTML" />
                 <element signature="e#20257#28831#0#HTML" />
                 <element signature="e#26754#27504#0#HTML" />
+                <element signature="e#31661#31683#0#HTML" expanded="true" />
                 <element signature="e#28080#28836#0#HTML" />
                 <element signature="e#28916#29687#0#HTML" />
                 <element signature="e#29761#30534#0#HTML" />
                 <element signature="e#30607#31374#0#HTML" />
+                <element signature="e#28840#45850#0#HTML" />
+                <element signature="e#34937#35687#0#HTML" />
+                <element signature="e#43550#43570#0#HTML" expanded="true" />
                 <element signature="e#36741#37617#0#HTML" />
                 <element signature="e#37689#39344#0#HTML" />
                 <element signature="e#39424#41118#0#HTML" />
@@ -44,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/web/asset/assets/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="76">
-              <caret line="192" column="16" lean-forward="true" selection-start-line="192" selection-start-column="16" selection-end-line="192" selection-end-column="16" />
+              <caret line="192" column="16" selection-start-line="192" selection-start-column="16" selection-end-line="192" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -53,7 +58,7 @@
         <entry file="file://$PROJECT_DIR$/web/assets/js/pay-transaction.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="314">
-              <caret line="321" lean-forward="true" selection-start-line="321" selection-end-line="321" />
+              <caret line="321" selection-start-line="321" selection-end-line="321" />
               <folding>
                 <element signature="e#2217#3366#0" />
                 <element signature="e#3452#5042#0" />
@@ -299,12 +304,12 @@
       <workItem from="1604480993888" duration="3036000" />
       <workItem from="1604569999362" duration="17856000" />
       <workItem from="1604938106676" duration="31025000" />
-      <workItem from="1605116606215" duration="8303000" />
+      <workItem from="1605116606215" duration="8483000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199574000" />
+    <option name="totallyTimeSpent" value="199754000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -657,7 +662,7 @@
     <entry file="file://$PROJECT_DIR$/web/asset/assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
-          <caret line="192" column="16" lean-forward="true" selection-start-line="192" selection-start-column="16" selection-end-line="192" selection-end-column="16" />
+          <caret line="192" column="16" selection-start-line="192" selection-start-column="16" selection-end-line="192" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -690,7 +695,7 @@
     <entry file="file://$PROJECT_DIR$/web/assets/js/pay-transaction.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
-          <caret line="321" lean-forward="true" selection-start-line="321" selection-end-line="321" />
+          <caret line="321" selection-start-line="321" selection-end-line="321" />
           <folding>
             <element signature="e#2217#3366#0" />
             <element signature="e#3452#5042#0" />
@@ -704,17 +709,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="797" column="51" lean-forward="true" selection-start-line="797" selection-start-column="51" selection-end-line="797" selection-end-column="51" />
+        <state relative-caret-position="93">
+          <caret line="369" column="42" selection-start-line="369" selection-start-column="42" selection-end-line="369" selection-end-column="42" />
           <folding>
             <element signature="e#11438#11484#0#HTML" expanded="true" />
+            <element signature="e#19156#19178#0#HTML" expanded="true" />
             <element signature="e#19967#20727#0#HTML" />
             <element signature="e#20257#28831#0#HTML" />
             <element signature="e#26754#27504#0#HTML" />
+            <element signature="e#31661#31683#0#HTML" expanded="true" />
             <element signature="e#28080#28836#0#HTML" />
             <element signature="e#28916#29687#0#HTML" />
             <element signature="e#29761#30534#0#HTML" />
             <element signature="e#30607#31374#0#HTML" />
+            <element signature="e#28840#45850#0#HTML" />
+            <element signature="e#34937#35687#0#HTML" />
+            <element signature="e#43550#43570#0#HTML" expanded="true" />
             <element signature="e#36741#37617#0#HTML" />
             <element signature="e#37689#39344#0#HTML" />
             <element signature="e#39424#41118#0#HTML" />

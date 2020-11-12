@@ -482,7 +482,7 @@ class BaseController extends Controller
             $temp_client->setFirstName($data["first_name"]);
             $temp_client->setLastName($data["last_name"]);
             $temp_client->setAddress($data["address"]);
-            $temp_client->setCountry($this->getCountry($data["country_selected"]));
+            $temp_client->setCountry($this->getCountryName($data["country_selected"]));
             $temp_client->setCity($data["city"]);
             $temp_client->setEmail($data["email"]);
             $temp_client->setUsername($data["email"]);
@@ -594,7 +594,7 @@ class BaseController extends Controller
         return 0;
     }
 
-    public function getCountry($country_index){
+    public function getCountryName($country_index){
 
         $client = new \GuzzleHttp\Client();
 

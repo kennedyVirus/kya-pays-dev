@@ -348,6 +348,7 @@ class TransactionController extends BaseController
 //        Setup::setPrivateKey(BaseController::TEST_PAYDUNYA_KEY_PRIVATE);
 //        Setup::setToken(BaseController::TEST_PAYDUNYA_TOKEN);
 //        Setup::setMode("test");
+
         Setup::setMasterKey($this->getParameter('paydunya_key_main'));
         Setup::setPublicKey($this->getParameter('paydunya_key_public'));
         Setup::setPrivateKey($this->getParameter('paydunya_key_private'));
@@ -366,8 +367,8 @@ class TransactionController extends BaseController
 
 
         $invoice=new CheckoutInvoice();
-        $invoice->addChannel($this->getChannel($data["pay_method"]));
-        //$invoice->addChannel('card');
+       // $invoice->addChannel($this->getChannel($data["pay_method"]));
+        $invoice->addChannel(['card','wari']);
         $invoice->setDescription($description);
         $invoice->setTotalAmount($amount);
         $invoice->addItem("Clé d'activation de KYA-SolDesign", 1, $amount, $amount, "Clé d'activation de KYA-SolDesign");

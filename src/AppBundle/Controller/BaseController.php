@@ -213,53 +213,75 @@ class BaseController extends Controller
         }
     }
 
-    public function getChannel($pay_method){
+    public function getChannel($pay_method=0){
 
         $channel='';
+        $channel_in_french='';
 
         switch (intval($pay_method)){
             case 1:
                 $channel='card';
+                $channel_in_french='Carte Bancaire';
+
                 break;
 
             case 2:
                 $channel='wari';
+                $channel_in_french='Wari';
                 break;
 
             case 4:
                 $channel='mtn-benin';
+                $channel_in_french= 'Mtn -Benin';
                 break;
 
             case 5:
                 $channel='moov-benin';
+                $channel_in_french= 'Moov -Benin';
+
                 break;
 
             case 6:
                 $channel='mtn-ci';
+                $channel_in_french= 'Mtn -Côte d\'Ivoire';
+
                 break;
 
             case 7:
                 $channel='orange-money-ci';
+                $channel_in_french= 'Orange Money -Côte d\'Ivoire';
+
                 break;
 
             case 8:
                 $channel='orange-money-senegal';
+                $channel_in_french= 'Orange Money -Senegal';
+
                 break;
 
             case 9:
                 $channel='free-money-senegal';
+                $channel_in_french= 'Free Money -Senegal';
+
                 break;
 
             case 10:
                 $channel='api-cash-senegal';
+                $channel_in_french= 'Api Cash -Senegal';
+
                 break;
 
             case 11:
                 $channel='wizall-senegal';
+                $channel_in_french= 'Wizall -Senegal';
+
                 break;
         }
 
-        return $channel;
+        $data=[];
+        $data['channel']=$channel;
+        $data['channel_in_french']=$channel_in_french;
+        return $data;
     }
 
     /*
@@ -521,11 +543,14 @@ class BaseController extends Controller
         return $dat;
     }
 
-    public function initPayDunyaTransaction($client_id,$email,$amount,$type,$amount_category){
+    public function initPayDunyaTransaction($client_id,$email,$amount,$type,$amount_category,$payment_channel='Carte Bancaire',$source=1){
 
         $transaction = new Transaction();
-        $details = "Achat Clé d'activation de KYA-SolDesign à travers Carte Bancaire";
-        $source=3;
+        $details = "Achat Clé d'activation de KYA-SolDesign à travers"." ".$payment_channel;
+        /*source is (wari,card,mtn,etc..)
+        *add +2 to source coz 1 and 2 are for flooz and tmoney
+        */
+        $source=$source+2;
 
         $transaction->setDetails($details);
         $transaction->setClientId($client_id);

@@ -326,12 +326,16 @@ class TransactionController extends BaseController
         $saveTempClient=$this->savePaydunyaTempClient($data);
 
 
+
         if(!($saveTempClient['status'])){
             //return error
             return new Response($this->serialize($this->errorResponseBlob('client not found')));
         }
 
-        $transaction=$this->initPayDunyaTransaction($saveTempClient['clientId'],$data["email"],$amount,$data['type'],$data['amount_category']);
+        $payment_channels=$this->getChannel($data["pay_method"]);
+
+
+        $transaction=$this->initPayDunyaTransaction($saveTempClient['clientId'],$data["email"],$amount,$data['type'],$data['amount_category'],$payment_channels['channel_in_french'],$data["pay_method"]);
 
         $description=$transaction->getDetails();
         $identifier=$transaction->getId();
@@ -367,7 +371,7 @@ class TransactionController extends BaseController
 
 
         $invoice=new CheckoutInvoice();
-        $invoice->addChannel($this->getChannel($data["pay_method"]));
+        $invoice->addChannel($payment_channels['channel']);
         //$invoice->addChannel('wari');
         $invoice->setDescription($description);
         $invoice->setTotalAmount($amount);

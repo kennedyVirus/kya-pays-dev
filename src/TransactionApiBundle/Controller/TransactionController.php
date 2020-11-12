@@ -368,7 +368,7 @@ class TransactionController extends BaseController
 
         $invoice=new CheckoutInvoice();
        // $invoice->addChannel($this->getChannel($data["pay_method"]));
-        $invoice->addChannel('wari');
+       // $invoice->addChannel('wari');
         $invoice->setDescription($description);
         $invoice->setTotalAmount($amount);
         $invoice->addItem("Clé d'activation de KYA-SolDesign", 1, $amount, $amount, "Clé d'activation de KYA-SolDesign");

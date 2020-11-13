@@ -75,8 +75,6 @@ class TransactionController extends BaseController
                 array_push($ar,$dd);
             }
         }
-
-
         return new Response($this->serialize($this->okResponseBlob($ar)));
     }
     //
@@ -252,6 +250,7 @@ class TransactionController extends BaseController
             $key->setName($licence_key);
             $key->setCode($code_to_unlock_licence_key);
             $key->setType($transaction->getType());
+            $key->setTransactionId($transaction->getId());
             $key->setAmountCategory($transaction->getAmountCategory());
             $key->setPrice($transaction->getAmount());
             $delay=$this->getDelay($transaction->getAmountCategory());
@@ -332,10 +331,14 @@ class TransactionController extends BaseController
             return new Response($this->serialize($this->errorResponseBlob('client not found')));
         }
 
-        $payment_channels=$this->getChannel($data["pay_method"]);
+        /*payment_channel is (wari,card,mtn,etc..)
+        *add +2 to payment_channel coz 1 and 2 are for flooz and tmoney
+        */
+
+        $payment_channels=$this->getChannel(intval($data["pay_method"])+2);
 
 
-        $transaction=$this->initPayDunyaTransaction($saveTempClient['clientId'],$data["email"],$amount,$data['type'],$data['amount_category'],$payment_channels['channel_in_french'],$data["pay_method"]);
+        $transaction=$this->initPayDunyaTransaction($saveTempClient['clientId'],$data["email"],$amount,$data['type'],$data['amount_category'],$payment_channels['channel_in_french'],intval($data["pay_method"])+2);
 
         $description=$transaction->getDetails();
         $identifier=$transaction->getId();
@@ -426,10 +429,14 @@ class TransactionController extends BaseController
                         //generate key
 
                         $licence_key=$this->generateRandomString(12).$this->generateRandomNumber(4);
+                        $code_to_unlock_licence_key=$this->generateRandomNumberBasedOnTimestamp(6);
+
 
                         $key=new LicenceKey();
                         $key->setName($licence_key);
                         $key->setType($transaction->getType());
+                        $key->setCode($code_to_unlock_licence_key);
+                        $key->setTransactionId($transaction->getId());
                         $key->setAmountCategory($transaction->getAmountCategory());
                         $key->setPrice($transaction->getAmount());
                         $delay=$this->getDelay($transaction->getAmountCategory());
@@ -449,6 +456,7 @@ class TransactionController extends BaseController
                         $verification->setEmail($transaction->getUsername());
                         // $verification->setPhoneNumber($transaction->getPhoneNumber());
                         $verification->setState(0);
+                        $verification->setUnlockCode($code_to_unlock_licence_key);
                         $verification->setLicenceKeyId($key->getId());
                         $verification->setCode($licence_key);
                         $verification->setTransactionCode($ref.$this->generateRandomNumber(4));
@@ -460,7 +468,8 @@ class TransactionController extends BaseController
 
                         //send licence key
 
-                        $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " . $licence_key;
+                        $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+d%C3%A9bloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
+
 
                         $client=$this->ClientRepo()->findOneBy([
                             'id'=>$transaction->getClientId()
@@ -468,7 +477,7 @@ class TransactionController extends BaseController
 
                         if($client !=null){
                             if($client->getPhoneNumber() !=null){
-                                $res=$this->sendZedekaMessage("228".$client->getPhoneNumber(),$licence_key_to_send);
+                                $res=$this->sendZedekaMessage("228".$client->getPhoneNumber(),$unlock_code_to_send);
                             }
 
                             if($client->getEmail() !=null){

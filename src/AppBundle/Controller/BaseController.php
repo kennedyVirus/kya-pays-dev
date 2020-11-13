@@ -186,6 +186,25 @@ class BaseController extends Controller
     }
 
 
+    public function clientToArray($client){
+        $cli=[];
+        $cli["id"]=$client->getId();
+        $cli["first_name"]=$client->getFirstName();
+        $cli["last_name"]=$client->getLastName();
+        $cli["username"]=$client->getUsername();
+        $cli["phone_number"]=$client->getPhoneNumber();
+        $cli["email"]=$client->getEmail();
+        $cli["address"]=$client->getAddress();
+        $cli["country"]=$client->getCountry();
+        $cli["city"]=$client->getCity();
+        $cli["job_title"]=$client->getJobTitle();
+        $cli["organisation"]=$client->getOrganisation();
+        $cli["status"]=$client->getStatus();
+        $cli["category"]=$client->getCategory();
+        $cli["created_at"]=date('d-m-Y H:i',$client->getCreatedAt());
+
+        return $cli;
+    }
 
     /* create log entries for transactions */
 
@@ -220,58 +239,68 @@ class BaseController extends Controller
 
         switch (intval($pay_method)){
             case 1:
+                $channel='tmoney';
+                $channel_in_french='T-Money';
+
+                break;
+            case 2:
+                $channel='flooz';
+                $channel_in_french='Flooz';
+
+                break;
+            case 3:
                 $channel='card';
                 $channel_in_french='Carte Bancaire';
 
                 break;
 
-            case 2:
+            case 4:
                 $channel='wari';
                 $channel_in_french='Wari';
                 break;
 
-            case 4:
+            case 5:
                 $channel='mtn-benin';
                 $channel_in_french= 'Mtn -Benin';
                 break;
 
-            case 5:
+            case 6:
                 $channel='moov-benin';
                 $channel_in_french= 'Moov -Benin';
 
                 break;
 
-            case 6:
+            case 7:
                 $channel='mtn-ci';
                 $channel_in_french= 'Mtn -Côte d\'Ivoire';
 
                 break;
 
-            case 7:
+            case 8:
                 $channel='orange-money-ci';
                 $channel_in_french= 'Orange Money -Côte d\'Ivoire';
 
                 break;
 
-            case 8:
+            case 9:
                 $channel='orange-money-senegal';
                 $channel_in_french= 'Orange Money -Senegal';
 
                 break;
 
-            case 9:
+            case 10:
                 $channel='free-money-senegal';
                 $channel_in_french= 'Free Money -Senegal';
 
                 break;
 
-            case 10:
+            case 11:
                 $channel='api-cash-senegal';
                 $channel_in_french= 'Api Cash -Senegal';
 
                 break;
 
-            case 11:
+            case 12:
                 $channel='wizall-senegal';
                 $channel_in_french= 'Wizall -Senegal';
 
@@ -399,6 +428,41 @@ class BaseController extends Controller
         }
 
         return $amount;
+    }
+
+    public function checkIfTransactionNotATest($client,$amount,$created_at){
+
+        $valid=true;
+
+
+        $email=$client->getEmail()==null?'':strtolower($client->getEmail());
+        $phone_number=$client->getPhoneNumber()==null?'':$client->getPhoneNumber();
+        $username=$client->getUsername()==null?'':$client->getUsername();
+
+        $lauching_date=strtotime('2020-10-01 00:00:00');
+
+        $excluded_phone_number_array=['93643212','98394059','91161986','99999374','92030205','+22899445410','99999375','+22891161986','90257154'];
+        $excluded_email_array=['ethiel97@gmail.com','jfkvirus@gmail.com','yao.azoumah@gmail.com','barno.ivas@gmail.com','yamine.zato@kya-energy.com','kya.energy2020@gmail.com'];
+
+
+        if($created_at < $lauching_date){
+            $valid=false;
+        }
+        if(in_array($phone_number,$excluded_phone_number_array)){
+            $valid=false;
+        }
+        if(in_array($email,$excluded_email_array)){
+            $valid=false;
+        }
+        if(in_array($username,$excluded_phone_number_array) || in_array($username,$excluded_email_array)){
+            $valid=false;
+        }
+        if(intval($amount) <900){
+            $valid=false;
+        }
+
+        return $valid;
+
     }
 
     public function getDelay($amount_category){
@@ -547,10 +611,7 @@ class BaseController extends Controller
 
         $transaction = new Transaction();
         $details = "Achat Clé d'activation de KYA-SolDesign à travers"." ".$payment_channel;
-        /*source is (wari,card,mtn,etc..)
-        *add +2 to source coz 1 and 2 are for flooz and tmoney
-        */
-        $source=$source+2;
+
 
         $transaction->setDetails($details);
         $transaction->setClientId($client_id);

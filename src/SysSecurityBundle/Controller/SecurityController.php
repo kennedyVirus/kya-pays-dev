@@ -524,4 +524,81 @@ class SecurityController extends BaseController
     }
 
 
+
+    /**
+     *@Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/transaction/stat/get",schemes={"https"})
+     */
+
+    public function getTransactionsAction(Request $request){
+
+        $json_data=$request->getContent();
+        $data=json_decode($json_data,true);
+
+        $start_date=strtotime(date('Y-m-d 00:00:01'));
+        $end_date=strtotime(date('Y-m-d 23:59:59'));
+
+        if(
+            isset($data["start"]) && $data["start"] !=null &&
+            isset($data["end"]) && $data["end"] !=null
+        ){
+            $start_date=strtotime($data["start"]);
+            $end_date=strtotime($data["end"]);
+        }
+
+        $query = $this->getDoctrine()->getManager()
+            ->createQuery('SELECT c FROM TransactionApiBundle:Transaction c WHERE 
+        ( c.createdAt < :ends AND c.createdAt > :starts ) ')
+
+            ->setParameter('ends', $end_date)
+            ->setParameter('starts', $start_date)
+        ;
+        $transactions = $query->execute();
+
+        $transaction_array=[];
+        $testing_transaction_array=[];
+
+        if($transactions !=null){
+            foreach ($transactions as $transaction){
+                $trans=[];
+                $trans["id"]=$transaction->getId();
+                $trans["client"]=[];
+                $client=$this->ClientRepo()->find($transaction->getClientId());
+                if($client !=null){
+                    $trans["client"]=$this->clientToArray($client);
+                }
+                $trans["state"]=$transaction->getState();
+
+                $trans["source"]=$this->getChannel($transaction->getPaymentMode())["channel_in_french"];
+                $trans["provider"]=$transaction->getProvider();
+                $trans["amount"]=$transaction->getAmount();
+                $trans["type"]=$transaction->getType();
+                $trans["username"]=$transaction->getUsername();
+                $trans["details"]=$transaction->getDetails();
+                $trans["created_at"]=date('d-m-Y H:i',$transaction->getCreatedAt());
+
+                $trans["key"]='';
+                $trans["code_sms"]='';
+
+                    //get licence code
+
+                    $licence_key=$this->LicenceKeyRepo()->findOneBy([
+                        'transactionId'=>$transaction->getId()
+                    ]);
+
+                    if($licence_key !=null){
+                        $trans["key"]=$licence_key->getName();
+                        $trans["code_sms"]=$licence_key->getCode();
+                        $trans["key_used"]=$licence_key->getUsed();
+                    }
+
+                if($this->checkIfTransactionNotATest($client,$transaction->getAmount(),$transaction->getCreatedAt())){
+                    array_push($transaction_array,$trans);
+                }else{
+                    array_push($testing_transaction_array,$trans);
+                }
+
+            }
+        }
+        return new Response($this->serialize($this->okResponseBlob(['transactions'=>$transaction_array,'testing_transactions'=>$testing_transaction_array])));
+    }
 }

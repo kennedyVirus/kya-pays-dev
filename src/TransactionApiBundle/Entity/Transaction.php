@@ -15,7 +15,7 @@ class Transaction
     /*
      * ClientId=>user id
      * state=>pending(0),success(1),failed(-1)
-     * paymentMode=>tmoney(1),flooz(2),card(3)
+     * paymentMode=>tmoney(1),flooz(2),card(3),wari(4),
      * provider=>paygate or paydunya
      * amount=>amount payed
      * type=>type of licence .enterprise(1),academic(2),student(3)
@@ -98,7 +98,6 @@ class Transaction
      * @ORM\Column(name="details", type="string", length=255)
      */
     private $details;
-
 
 
     /**

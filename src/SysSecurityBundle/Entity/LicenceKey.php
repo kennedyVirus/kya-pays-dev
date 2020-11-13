@@ -58,6 +58,13 @@ class LicenceKey
     /**
      * @var int
      *
+     * @ORM\Column(name="transaction_id", type="integer",nullable=true)
+     */
+    private $transactionId;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="amount_category", type="integer")
      */
     private $amountCategory;
@@ -203,6 +210,31 @@ class LicenceKey
     {
         return $this->amountCategory;
     }
+
+    /**
+     * Set transactionId
+     *
+     * @param integer $transactionId
+     *
+     * @return LicenceKey
+     */
+    public function setTransactionId($transactionId)
+    {
+        $this->transactionId = $transactionId;
+
+        return $this;
+    }
+
+    /**
+     * Get transactionId
+     *
+     * @return int
+     */
+    public function getTransactionId()
+    {
+        return $this->transactionId;
+    }
+
 
     /**
      * Set used

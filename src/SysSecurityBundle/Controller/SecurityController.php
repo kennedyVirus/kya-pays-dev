@@ -221,7 +221,7 @@ class SecurityController extends BaseController
                 $parameter=$data["phone_number"];
             }
 
-            if($no_parameter==false){
+            if($no_parameter==true){
                 return new Response($this->serialize($this->errorResponseBlob('Invalid parameters',303)));
             }else{
                 $check_code_sent=$this->VerificationRepo()->findOneBy([
@@ -522,7 +522,6 @@ class SecurityController extends BaseController
         }
 
     }
-
 
 
     /**

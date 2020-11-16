@@ -221,7 +221,7 @@ class SecurityController extends BaseController
                 $parameter=$data["phone_number"];
             }
 
-            if($no_parameter==true){
+            if($no_parameter==false){
                 return new Response($this->serialize($this->errorResponseBlob('Invalid parameters',303)));
             }else{
                 $check_code_sent=$this->VerificationRepo()->findOneBy([
@@ -525,7 +525,7 @@ class SecurityController extends BaseController
 
 
     /**
-     *@Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/transaction/stat/get",schemes={"https"})
+     *@Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/transaction/stat/get")
      */
 
     public function getTransactionsAction(Request $request){

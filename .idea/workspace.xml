@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29414d36-2dd5-4e26-96ba-a0579c4d8f65" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,8 +46,8 @@
       <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="222" lean-forward="true" selection-start-line="222" selection-end-line="222" />
+            <state relative-caret-position="255">
+              <caret line="227" column="71" lean-forward="true" selection-start-line="227" selection-start-column="71" selection-end-line="227" selection-end-column="71" />
               <folding>
                 <element signature="e#48#88#0#PHP" expanded="true" />
                 <element signature="e#471#520#0#PHP" />
@@ -356,12 +355,12 @@
       <workItem from="1604938106676" duration="31025000" />
       <workItem from="1605116606215" duration="26641000" />
       <workItem from="1605259054844" duration="9961000" />
-      <workItem from="1605552241604" duration="1995000" />
+      <workItem from="1605552241604" duration="2763000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="229868000" />
+    <option name="totallyTimeSpent" value="230636000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -746,8 +745,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="222" lean-forward="true" selection-start-line="222" selection-end-line="222" />
+        <state relative-caret-position="255">
+          <caret line="227" column="71" lean-forward="true" selection-start-line="227" selection-start-column="71" selection-end-line="227" selection-end-column="71" />
           <folding>
             <element signature="e#48#88#0#PHP" expanded="true" />
             <element signature="e#471#520#0#PHP" />

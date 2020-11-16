@@ -201,11 +201,11 @@ class SecurityController extends BaseController
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);
 
-        if(
-            isset($data["code"]) && $data["code"]!=null &&
-            isset($data["mac_address"]) && $data["mac_address"]!=null &&
-            isset($data["type"]) && $data["type"]!=null
-        ){
+//        if(
+//            isset($data["code"]) && $data["code"]!=null &&
+//            isset($data["mac_address"]) && $data["mac_address"]!=null &&
+//            isset($data["type"]) && $data["type"]!=null
+//        ){
             //check if either email or phone number is set
             $no_parameter=false;
             $parameter_title='';
@@ -221,9 +221,10 @@ class SecurityController extends BaseController
                 $parameter=$data["phone_number"];
             }
 
-            if($no_parameter==false){
-                return new Response($this->serialize($this->errorResponseBlob('Invalid parameters',303)));
-            }else{
+//            if($no_parameter==false){
+//                return new Response($this->serialize($this->errorResponseBlob('Invalid parameters',303)));
+//            }
+//            else{
                 $check_code_sent=$this->VerificationRepo()->findOneBy([
                     'code'=> $data["code"],
                     'state'=>0
@@ -294,11 +295,11 @@ class SecurityController extends BaseController
                 }else{
                     return new Response($this->serialize($this->errorResponseBlob('Wrong Licence key',301)));
                 }
-            }
-        }
-        else{
-            return new Response($this->serialize($this->errorResponseBlob('Invalid parameters',303)));
-        }
+          //  }
+       // }
+//        else{
+//            return new Response($this->serialize($this->errorResponseBlob('Invalid parameters',303)));
+//        }
     }
 
 

@@ -509,7 +509,7 @@ class BaseController extends Controller
             $temp_client->setFirstName($data["first_name"]);
             $temp_client->setLastName($data["last_name"]);
             $temp_client->setAddress($data["address"]);
-            $temp_client->setCountry($this->getCountry($data["country_selected"]));
+            $temp_client->setCountry($this->getCountryName($data["country_selected"]));
             $temp_client->setCity($data["city"]);
             $temp_client->setPhoneNumber($data["phone_number"]);
 

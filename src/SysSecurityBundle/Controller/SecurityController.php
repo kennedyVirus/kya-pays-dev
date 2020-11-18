@@ -6,13 +6,20 @@ use AppBundle\Controller\BaseController;
 use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use SysSecurityBundle\Entity\ClientLogin;
+use SysSecurityBundle\Entity\LicenceKey;
+use SysSecurityBundle\Entity\Verification;
 
 class SecurityController extends BaseController
 {
+
+
+
 
 //    public function oldlogin(Request $request){
 //        $json_data = $request->getContent();
@@ -192,7 +199,7 @@ class SecurityController extends BaseController
 //    }
 
     /**
-     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/login",schemes={"https"})
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/login,",schemes={"https"})
      */
     public function login(Request $request){
         $json_data = $request->getContent();
@@ -523,7 +530,7 @@ class SecurityController extends BaseController
 
 
     /**
-     *@Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/transaction/stat/get")
+     *@Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/transaction/stat/get",schemes={"https"})
      */
 
     public function getTransactionsAction(Request $request){
@@ -597,5 +604,107 @@ class SecurityController extends BaseController
             }
         }
         return new Response($this->serialize($this->okResponseBlob(['transactions'=>$transaction_array,'testing_transactions'=>$testing_transaction_array])));
+    }
+
+
+    /**
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/generate/code")
+     */
+
+    public function generateCoddAction(Request $request){
+
+        $json_data = $request->getContent();
+        $data = json_decode($json_data,true);
+
+        /*
+         * tx_reference
+         * payment_reference
+         * amount
+         * datetime
+         */
+//        $data["payment_reference"]="O28686712-194956";
+//        $data["identifier"]="197";
+//        $data["payment_method"]="T-Money";
+//        $data["tx_reference"]=194956;
+//        $data["datetime"]="2020-11-18T14:44:25.000Z";
+
+
+        $payment_reference='';
+        if(isset($data["payment_reference"])){
+            $payment_reference=$data["payment_reference"];
+        }
+        $fs = new Filesystem();
+        $fs->appendToFile('callback_logs.txt', 'identifier: '. $data["identifier"].' '. 'payment:' .$data["payment_method"].' '.'tx_reference:'.$data["tx_reference"].' '.'payment_reference:'.$payment_reference.' '.'datetime:'.$data['datetime']);
+
+        $transaction = $this->TransactionRepo()->find(intval($data["identifier"]));
+
+        if ($transaction != null) {
+            // set transaction to confirmed
+            $transaction->setState(1);
+            $transaction->setUpdatedAt(new \DateTime());
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            //generate key
+
+            $licence_key=$this->generateRandomString(12).$this->generateRandomNumber(4);
+
+            $code_to_unlock_licence_key=$this->generateRandomNumberBasedOnTimestamp(6);
+
+
+            $key=new LicenceKey();
+            $key->setName($licence_key);
+            $key->setCode($code_to_unlock_licence_key);
+            $key->setType($transaction->getType());
+            $key->setTransactionId($transaction->getId());
+            $key->setAmountCategory($transaction->getAmountCategory());
+            $key->setPrice($transaction->getAmount());
+            $delay=$this->getDelay($transaction->getAmountCategory());
+            $key->setDelay($delay*86400);
+            $key->setUsed(0);
+            $key->setCreatedAt(strtotime(date('Y-m-d H:i:s')));
+            $key->setUpdatedAt(new \DateTime());
+
+            $em->persist($key);
+            $em->flush();
+
+            //save verification
+
+            $verification=new Verification();
+            $verification->setPhoneNumber($transaction->getUsername());
+            $verification->setState(0);
+            $verification->setCode($licence_key);
+            $verification->setUnlockCode($code_to_unlock_licence_key);
+            $verification->setLicenceKeyId($key->getId());
+            $verification->setTransactionCode("".$data["tx_reference"].$this->generateRandomNumber(4));
+            $verification->setCreatedAt(strtotime(date('Y-m-d H:i:s')));
+            $verification->setUpdatedAt(new \DateTime());
+
+            $em->persist($verification);
+            $em->flush();
+
+            //send licence key unlock code instead .user will enter on the page to show the licence key
+
+            // $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " .$licence_key;
+            $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+d%C3%A9bloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
+
+            $res=$this->sendZedekaMessage("228".$transaction->getUsername(),$unlock_code_to_send);
+
+
+            $client=$this->ClientRepo()->findOneBy([
+                'id'=>$transaction->getClientId()
+            ]);
+
+            if($client !=null){
+                if($client->getEmail() !=null){
+                    $result=$this->sendLicenceCodeByEmail($client->getEmail(),$licence_key);
+                }
+            }
+
+            return new RedirectResponse(BaseController::BASE_URL);
+
+        }else  {
+            return new RedirectResponse(BaseController::BASE_URL);
+        }
     }
 }

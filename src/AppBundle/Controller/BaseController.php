@@ -139,8 +139,8 @@ class BaseController extends Controller
 
     function generateRandomString($length){
         $str= ''.$this->getNowTimeStamp();
-        //$res = sha1($str);
-        $res=hash('sha3-512',$str);
+        $res = sha1($str);
+        //$res=hash('sha3-512',$str);
 
         $total='';
         $value2='';

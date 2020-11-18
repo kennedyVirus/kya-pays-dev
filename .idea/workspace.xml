@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29414d36-2dd5-4e26-96ba-a0579c4d8f65" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="368">
-              <caret line="642" column="38" lean-forward="true" selection-start-line="642" selection-start-column="38" selection-end-line="642" selection-end-column="38" />
+              <caret line="649" column="46" selection-start-line="649" selection-start-column="46" selection-end-line="649" selection-end-column="46" />
               <folding>
                 <element signature="e#48#88#0#PHP" expanded="true" />
                 <element signature="e#471#520#0#PHP" />
@@ -76,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BaseController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="511" column="60" lean-forward="true" selection-start-line="511" selection-start-column="60" selection-end-line="511" selection-end-column="60" />
+            <state relative-caret-position="101">
+              <caret line="142" column="37" lean-forward="true" selection-start-line="142" selection-start-column="37" selection-end-line="142" selection-end-column="37" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
                 <element signature="e#5418#5749#0#PHP" />
@@ -158,8 +157,8 @@
         <option value="$PROJECT_DIR$/src/SysSecurityBundle/Entity/LicenceKey.php" />
         <option value="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" />
         <option value="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" />
       </list>
     </option>
   </component>
@@ -306,12 +305,12 @@
       <workItem from="1605116606215" duration="26641000" />
       <workItem from="1605259054844" duration="9961000" />
       <workItem from="1605552241604" duration="5373000" />
-      <workItem from="1605689677980" duration="3574000" />
+      <workItem from="1605689677980" duration="3990000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="236820000" />
+    <option name="totallyTimeSpent" value="237236000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -677,22 +676,6 @@
     <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/.htaccess">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="511" column="60" lean-forward="true" selection-start-line="511" selection-start-column="60" selection-end-line="511" selection-end-column="60" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-            <element signature="e#5418#5749#0#PHP" />
-            <element signature="e#5755#5852#0#PHP" />
-            <element signature="e#5857#6105#0#PHP" />
-            <element signature="e#17537#19588#0#PHP" />
-            <element signature="e#19594#20542#0#PHP" />
-            <element signature="e#20548#21385#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
@@ -709,7 +692,7 @@
     <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
-          <caret line="642" column="38" lean-forward="true" selection-start-line="642" selection-start-column="38" selection-end-line="642" selection-end-column="38" />
+          <caret line="649" column="46" selection-start-line="649" selection-start-column="46" selection-end-line="649" selection-end-column="46" />
           <folding>
             <element signature="e#48#88#0#PHP" expanded="true" />
             <element signature="e#471#520#0#PHP" />
@@ -717,6 +700,22 @@
             <element signature="e#15040#24427#0#PHP" />
             <element signature="e#24551#25711#0#PHP" />
             <element signature="e#25828#28725#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="142" column="37" lean-forward="true" selection-start-line="142" selection-start-column="37" selection-end-line="142" selection-end-column="37" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+            <element signature="e#5418#5749#0#PHP" />
+            <element signature="e#5755#5852#0#PHP" />
+            <element signature="e#5857#6105#0#PHP" />
+            <element signature="e#17537#19588#0#PHP" />
+            <element signature="e#19594#20542#0#PHP" />
+            <element signature="e#20548#21385#0#PHP" />
           </folding>
         </state>
       </provider>

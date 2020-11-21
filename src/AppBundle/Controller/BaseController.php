@@ -313,6 +313,36 @@ class BaseController extends Controller
         return $data;
     }
 
+    public function checkIfPhoneNumberValid($phone_number=null){
+
+        $valid=false;
+        $source=0;
+        $source_litteral='';
+
+        if($phone_number !=null){
+
+            if (preg_match("#^[9,7]{1}[0-3]{1}[0-9]{6}$#", $phone_number))
+            {
+                $source_litteral = "T-Money.";
+                $source=1;
+                $valid=true;
+            } else {
+                if(preg_match("#^[9]{1}[6-9]{1}[0-9]{6}$#", $phone_number)){
+                    $source_litteral = "Flooz.";
+                    $source=2;
+                    $valid=true;
+                }
+            }
+        }
+
+        $data=[];
+        $data["source"]=$source;
+        $data["source_litteral"]=$source_litteral;
+        $data["valid"]=$valid;
+
+        return $data;
+    }
+
     /*
      * INIT paygate transaction
      */
@@ -320,20 +350,16 @@ class BaseController extends Controller
     public function initPaygateTransaction($client_id, $phone_number=null, $amount,$type,$amount_category){
         $transaction = new Transaction();
 
-        $details = "Achat Clé d'activation de KYA-SolDesign";
-        $source=0;
-        $data=[];
+        $check_phone_valid=$this->checkIfPhoneNumberValid($phone_number);
 
-        if (preg_match("#^[9,7]{1}[0-3]{1}[0-9]{6}$#", $phone_number))
-        {
-            $details = "Achat Clé d'activation de KYA-SolDesign à travers T-Money.";
-            $source=1;
-        } else {
-            if(preg_match("#^[9]{1}[6-9]{1}[0-9]{6}$#", $phone_number)){
-                $details = "Achat Clé d'activation de KYA-SolDesign à travers Flooz.";
-                $source=2;
-            }
+        $details = "Achat Clé d'activation de KYA-SolDesign";
+        $source=$check_phone_valid["source"];
+
+        if($check_phone_valid["valid"]){
+            $details = "Achat Clé d'activation de KYA-SolDesign"." ".$check_phone_valid["source_litteral"];
         }
+
+        $data=[];
 
         if($source==0) {
             $data['response'] = false;
@@ -664,6 +690,8 @@ class BaseController extends Controller
     }
 
     public function sendZedekaMessage($destination,$body="ok"){
+
+
         $host=BaseController::SMS_ZEDEKA_HOST;
         $ApiKey=$this->getParameter('sms_zedeka_api_key');
         $ClientId=$this->getParameter('sms_zedeka_client_id');

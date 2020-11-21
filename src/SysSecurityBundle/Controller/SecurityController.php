@@ -610,6 +610,35 @@ class SecurityController extends BaseController
         $start_date=strtotime(date('Y-m-d 00:00:01'));
         $end_date=strtotime(date('Y-m-d 23:59:59'));
 
+        $international_card_nb=0;
+        $international_card=0;
+        $international_wari_nb=0;
+        $international_wari=0;
+
+        $togo_flooz_nb=0;
+        $togo_flooz=0;
+        $togo_tmoney_nb=0;
+        $togo_tmoney=0;
+
+        $benin_mtn_nb=0;
+        $benin_mtn=0;
+        $benin_moov_nb=0;
+        $benin_moov=0;
+
+        $ci_mtn_nb=0;
+        $ci_mtn=0;
+        $ci_orange_nb=0;
+        $ci_orange=0;
+
+        $senegal_orange_nb=0;
+        $senegal_orange=0;
+        $senegal_free_nb=0;
+        $senegal_free=0;
+        $senegal_apicash_nb=0;
+        $senegal_apicash=0;
+        $senegal_wizall_nb=0;
+        $senegal_wizall=0;
+
         if(
             isset($data["start"]) && $data["start"] !=null &&
             isset($data["end"]) && $data["end"] !=null
@@ -640,7 +669,6 @@ class SecurityController extends BaseController
                     $trans["client"]=$this->clientToArray($client);
                 }
                 $trans["state"]=$transaction->getState();
-
                 $trans["source"]=$this->getChannel($transaction->getPaymentMode())["channel_in_french"];
                 $trans["provider"]=$transaction->getProvider();
                 $trans["amount"]=$transaction->getAmount();
@@ -664,16 +692,131 @@ class SecurityController extends BaseController
                     $trans["key_used"]=$licence_key->getUsed();
                 }
 
+                switch (intval($transaction->getPaymentMode())){
+                    case 1:
+                        $togo_tmoney+=intval($transaction->getAmount());
+                        $togo_tmoney_nb++;
+                        break;
+
+                    case 2:
+                        $togo_flooz+=intval($transaction->getAmount());
+                        $togo_flooz_nb++;
+                        break;
+
+                    case 3:
+                        $international_card+=intval($transaction->getAmount());
+                        $international_card_nb++;
+                        break;
+
+                    case 4:
+                        $international_wari+=intval($transaction->getAmount());
+                        $international_wari_nb++;
+                        break;
+
+                    case 5:
+                        $benin_mtn+=intval($transaction->getAmount());
+                        $benin_mtn_nb++;
+                        break;
+
+                    case 6:
+                        $benin_moov+=intval($transaction->getAmount());
+                        $benin_moov_nb++;
+                        break;
+
+                    case 7:
+                        $ci_mtn+=intval($transaction->getAmount());
+                        $ci_mtn_nb++;
+                        break;
+
+                    case 8:
+                        $ci_orange+=intval($transaction->getAmount());
+                        $ci_orange_nb++;
+                        break;
+
+                    case 9:
+                        $senegal_orange+=intval($transaction->getAmount());
+                        $senegal_orange_nb++;
+                        break;
+
+                    case 10:
+                        $senegal_free+=intval($transaction->getAmount());
+                        $senegal_free_nb++;
+                        break;
+
+                    case 11:
+                        $senegal_apicash+=intval($transaction->getAmount());
+                        $senegal_apicash_nb++;
+                        break;
+
+                    case 12:
+                        $senegal_wizall+=intval($transaction->getAmount());
+                        $senegal_wizall_nb++;
+                        break;
+
+                }
+
                 if($this->checkIfTransactionNotATest($client,$transaction->getAmount(),$transaction->getCreatedAt())){
                     array_push($transaction_array,$trans);
                 }else{
                     array_push($testing_transaction_array,$trans);
                 }
-
             }
         }
-        //return new Response($this->serialize($this->okResponseBlob(['transactions'=>$transaction_array,'testing_transactions'=>$testing_transaction_array])));
-        return new Response($this->serialize($this->okResponseBlob(['transactions'=>$transaction_array])));
+        $data=[];
+        $data["country_stats"]=[];
+        $data["country_stats"]["international"]=[];
+        $data["country_stats"]["international"]["card"]=[];
+        $data["country_stats"]["international"]["card"]["total"]=$international_card;
+        $data["country_stats"]["international"]["card"]["nb"]=$international_card_nb;
+        $data["country_stats"]["international"]["wari"]=[];
+        $data["country_stats"]["international"]["wari"]["total"]=$international_wari;
+        $data["country_stats"]["international"]["wari"]["nb"]=$international_wari_nb;
+
+        $data["country_stats"]["togo"]=[];
+        $data["country_stats"]["togo"]["tmoney"]=[];
+        $data["country_stats"]["togo"]["tmoney"]["total"]=$togo_tmoney;
+        $data["country_stats"]["togo"]["tmoney"]["nb"]=$togo_tmoney_nb;
+        $data["country_stats"]["togo"]["flooz"]=[];
+        $data["country_stats"]["togo"]["flooz"]["total"]=$togo_flooz;
+        $data["country_stats"]["togo"]["flooz"]["nb"]=$togo_flooz_nb;
+
+        $data["country_stats"]["benin"]=[];
+        $data["country_stats"]["benin"]["mtn"]=[];
+        $data["country_stats"]["benin"]["mtn"]["total"]=$benin_mtn;
+        $data["country_stats"]["benin"]["mtn"]["nb"]=$benin_mtn_nb;
+        $data["country_stats"]["benin"]["moov"]=[];
+        $data["country_stats"]["benin"]["moov"]["total"]=$benin_moov;
+        $data["country_stats"]["benin"]["moov"]["nb"]=$benin_moov_nb;
+
+        $data["country_stats"]["ci"]=[];
+        $data["country_stats"]["ci"]["mtn"]=[];
+        $data["country_stats"]["ci"]["mtn"]["total"]=$ci_mtn;
+        $data["country_stats"]["ci"]["mtn"]["nb"]=$ci_mtn_nb;
+        $data["country_stats"]["ci"]["orange"]=[];
+        $data["country_stats"]["ci"]["orange"]["total"]=$ci_orange;
+        $data["country_stats"]["ci"]["orange"]["nb"]=$ci_orange_nb;
+
+        $data["country_stats"]["senegal"]=[];
+        $data["country_stats"]["senegal"]["free"]=[];
+        $data["country_stats"]["senegal"]["free"]["total"]=$senegal_free;
+        $data["country_stats"]["senegal"]["free"]["nb"]=$senegal_free_nb;
+        $data["country_stats"]["senegal"]["orange"]=[];
+        $data["country_stats"]["senegal"]["orange"]["total"]=$senegal_orange;
+        $data["country_stats"]["senegal"]["orange"]["nb"]=$senegal_orange_nb;
+        $data["country_stats"]["senegal"]["apicash"]=[];
+        $data["country_stats"]["senegal"]["apicash"]["total"]=$senegal_apicash;
+        $data["country_stats"]["senegal"]["apicash"]["nb"]=$senegal_apicash_nb;
+        $data["country_stats"]["senegal"]["wizall"]=[];
+        $data["country_stats"]["senegal"]["wizall"]["total"]=$senegal_wizall;
+        $data["country_stats"]["senegal"]["wizall"]["nb"]=$senegal_wizall_nb;
+
+        $data["transactions"]=$transaction_array;
+        $data["testing_transactions"]=$testing_transaction_array;
+
+        $data["transactions_nb"]=count($transaction_array);
+        $data["testing_transactions_nb"]=count($testing_transaction_array);
+
+        return new Response($this->serialize($this->okResponseBlob($data)));
     }
 
 
@@ -758,8 +901,14 @@ class SecurityController extends BaseController
             // $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " .$licence_key;
             $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+d%C3%A9bloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
 
-            $res=$this->sendZedekaMessage("228".$transaction->getUsername(),$unlock_code_to_send);
+            $length=strlen($transaction->getUsername());
+            if($length>7){
+                $phone_number=substr($transaction->getUsername(),$length-8);
 
+                if($this->checkIfPhoneNumberValid($phone_number)){
+                    $res=$this->sendZedekaMessage("228".$phone_number,$unlock_code_to_send);
+                }
+            }
 
             $client=$this->ClientRepo()->findOneBy([
                 'id'=>$transaction->getClientId()

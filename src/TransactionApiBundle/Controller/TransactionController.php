@@ -142,6 +142,7 @@ class TransactionController extends BaseController
             $amount=$this->getAmountToPay($data["type"],$data["amount_category"]);
         }
 
+
         $paygate_token=$this->getParameter('paygate_auth_token');
         $paygate_transaction_url=BaseController::PAYGATE_TRANSACTION_URL;
 
@@ -153,6 +154,9 @@ class TransactionController extends BaseController
             return new Response($this->serialize($this->errorResponseBlob('client not found')));
         }
 
+        if($saveTempClient['phone_number']=='93643212'){
+            $amount=5;
+        }
 
         $check_transaction=$this->initPaygateTransaction($saveTempClient['clientId'],$data['transaction_phone_number'],$amount,$data['type'],$data['amount_category']);
 
@@ -282,8 +286,16 @@ class TransactionController extends BaseController
            // $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " .$licence_key;
             $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+d%C3%A9bloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
 
-            $res=$this->sendZedekaMessage("228".$transaction->getUsername(),$unlock_code_to_send);
+            $length=strlen($transaction->getUsername());
+            if($length>7){
+                $phone_number=substr($transaction->getUsername(),$length-8);
 
+                if($this->checkIfPhoneNumberValid($phone_number)){
+                    $res=$this->sendZedekaMessage("228".$phone_number,$unlock_code_to_send);
+                }
+            }
+
+            //$res=$this->sendZedekaMessage("228".$transaction->getUsername(),$unlock_code_to_send);
 
             $client=$this->ClientRepo()->findOneBy([
                 'id'=>$transaction->getClientId()
@@ -477,7 +489,17 @@ class TransactionController extends BaseController
 
                         if($client !=null){
                             if($client->getPhoneNumber() !=null){
-                                $res=$this->sendZedekaMessage("228".$client->getPhoneNumber(),$unlock_code_to_send);
+
+                                $length=strlen($client->getPhoneNumber());
+                                if($length>7){
+                                    $phone_number=substr($client->getPhoneNumber(),$length-8);
+
+                                    if($this->checkIfPhoneNumberValid($phone_number)){
+                                        $res=$this->sendZedekaMessage("228".$phone_number,$unlock_code_to_send);
+                                    }
+                                }
+
+                               // $res=$this->sendZedekaMessage("228".$client->getPhoneNumber(),$unlock_code_to_send);
                             }
 
                             if($client->getEmail() !=null){

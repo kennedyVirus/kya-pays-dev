@@ -625,6 +625,8 @@ class SecurityController extends BaseController
         $transaction_array=[];
         $testing_transaction_array=[];
 
+        $total=0;
+
         $international_card_nb=0;
         $international_card=0;
         $international_wari_nb=0;
@@ -713,6 +715,8 @@ class SecurityController extends BaseController
                         }
 
                         if($transaction->getState()==1){
+                            $total+=intval($transaction->getAmount());
+
                             switch (intval($transaction->getPaymentMode())){
                                 case 1:
                                     $togo_tmoney+=intval($transaction->getAmount());
@@ -773,7 +777,6 @@ class SecurityController extends BaseController
                                     $senegal_wizall+=intval($transaction->getAmount());
                                     $senegal_wizall_nb++;
                                     break;
-
                             }
                         }
 
@@ -839,6 +842,7 @@ class SecurityController extends BaseController
         $data["transactions"]=$transaction_array;
         $data["testing_transactions"]=$testing_transaction_array;
 
+        $data["transactions_total"]=$total;
         $data["transactions_nb"]=count($transaction_array);
         $data["testing_transactions_nb"]=count($testing_transaction_array);
 

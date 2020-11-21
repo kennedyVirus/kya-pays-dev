@@ -541,6 +541,9 @@ class SecurityController extends BaseController
         $start_date=strtotime(date('Y-m-d 00:00:01'));
         $end_date=strtotime(date('Y-m-d 23:59:59'));
 
+        $login_array=[];
+        $testing_login_array=[];
+
         if(
             isset($data["start"]) && $data["start"] !=null &&
             isset($data["end"]) && $data["end"] !=null
@@ -549,53 +552,60 @@ class SecurityController extends BaseController
             $end_date=strtotime($data["end"]);
         }
 
-        $query = $this->getDoctrine()->getManager()
-            ->createQuery('SELECT c FROM SysSecurityBundle:ClientLogin c WHERE 
+        //check if security key is sent and correct
+
+        if(isset($data["server_key"]) && $data["server_key"] !=null){
+
+            if(md5('kyapay')==$data["server_key"]){
+                $query = $this->getDoctrine()->getManager()
+                    ->createQuery('SELECT c FROM SysSecurityBundle:ClientLogin c WHERE 
         ( c.createdAt < :ends AND c.createdAt > :starts ) ')
 
-            ->setParameter('ends', $end_date)
-            ->setParameter('starts', $start_date)
-        ;
-        $logins = $query->execute();
+                    ->setParameter('ends', $end_date)
+                    ->setParameter('starts', $start_date)
+                ;
+                $logins = $query->execute();
 
-        $login_array=[];
-        $testing_login_array=[];
+                if($logins !=null){
+                    foreach ($logins as $login){
+                        $logs=[];
+                        $logs["id"]=$login->getId();
+                        $logs["client"]=[];
+                        $client=$this->ClientRepo()->find($login->getClientId());
+                        if($client !=null){
+                            $logs["client"]=$this->clientToArray($client);
+                        }
+                        $logs["mac_address"]=$login->getMacAddress();
+                        $logs["ip_address"]=$login->getIpAddress();
 
-        if($logins !=null){
-            foreach ($logins as $login){
-                $logs=[];
-                $logs["id"]=$login->getId();
-                $logs["client"]=[];
-                $client=$this->ClientRepo()->find($login->getClientId());
-                if($client !=null){
-                    $logs["client"]=$this->clientToArray($client);
-                }
-                $logs["mac_address"]=$login->getMacAddress();
-                $logs["ip_address"]=$login->getIpAddress();
+                        $logs["created_at"]=date('d-m-Y H:i',$login->getCreatedAt());
 
+                        //get licence code
 
-                $logs["created_at"]=date('d-m-Y H:i',$login->getCreatedAt());
+                        $licence_key=$this->LicenceKeyRepo()->find($login->getLicenceKeyId());
 
+                        if($licence_key !=null){
+                            $logs["key"]=$licence_key->getName();
+                            $logs["code_sms"]=$licence_key->getCode();
+                            $logs["key_used"]=$licence_key->getUsed();
+                        }
 
-                    //get licence code
+                        if($this->checkIfClientLoginNotATest($client,$login->getCreatedAt())){
+                            array_push($login_array,$logs);
+                        }else{
+                            array_push($testing_login_array,$logs);
+                        }
 
-                    $licence_key=$this->LicenceKeyRepo()->find($login->getLicenceKeyId());
-
-                    if($licence_key !=null){
-                        $logs["key"]=$licence_key->getName();
-                        $logs["code_sms"]=$licence_key->getCode();
-                        $logs["key_used"]=$licence_key->getUsed();
                     }
-
-                if($this->checkIfClientLoginNotATest($client,$login->getCreatedAt())){
-                    array_push($login_array,$logs);
-                }else{
-                    array_push($testing_login_array,$logs);
                 }
-
             }
         }
-        return new Response($this->serialize($this->okResponseBlob(['logins'=>$login_array,'testing_logins'=>$testing_login_array])));
+
+        $data=[];
+        $data["logins"]=$login_array;
+        $data["testing_logins"]=$testing_login_array;
+
+        return new Response($this->serialize($this->okResponseBlob($data)));
     }
 
     /**
@@ -609,6 +619,9 @@ class SecurityController extends BaseController
 
         $start_date=strtotime(date('Y-m-d 00:00:01'));
         $end_date=strtotime(date('Y-m-d 23:59:59'));
+
+        $transaction_array=[];
+        $testing_transaction_array=[];
 
         $international_card_nb=0;
         $international_card=0;
@@ -647,121 +660,129 @@ class SecurityController extends BaseController
             $end_date=strtotime($data["end"]);
         }
 
-        $query = $this->getDoctrine()->getManager()
-            ->createQuery('SELECT c FROM TransactionApiBundle:Transaction c WHERE 
+        //check if security key is sent and correct
+
+        if(isset($data["server_key"]) && $data["server_key"] !=null){
+
+            if(md5('kyapay')==$data["server_key"]){
+
+                $query = $this->getDoctrine()->getManager()
+                    ->createQuery('SELECT c FROM TransactionApiBundle:Transaction c WHERE 
         ( c.createdAt < :ends AND c.createdAt > :starts ) ')
 
-            ->setParameter('ends', $end_date)
-            ->setParameter('starts', $start_date)
-        ;
-        $transactions = $query->execute();
+                    ->setParameter('ends', $end_date)
+                    ->setParameter('starts', $start_date)
+                ;
+                $transactions = $query->execute();
 
-        $transaction_array=[];
-        $testing_transaction_array=[];
 
-        if($transactions !=null){
-            foreach ($transactions as $transaction){
-                $trans=[];
-                $trans["id"]=$transaction->getId();
-                $trans["client"]=[];
-                $client=$this->ClientRepo()->find($transaction->getClientId());
-                if($client !=null){
-                    $trans["client"]=$this->clientToArray($client);
-                }
-                $trans["state"]=$transaction->getState();
-                $trans["source"]=$this->getChannel($transaction->getPaymentMode())["channel_in_french"];
-                $trans["provider"]=$transaction->getProvider();
-                $trans["amount"]=$transaction->getAmount();
-                $trans["type"]=$transaction->getType();
-                $trans["username"]=$transaction->getUsername();
-                $trans["details"]=$transaction->getDetails();
-                $trans["created_at"]=date('d-m-Y H:i',$transaction->getCreatedAt());
 
-                $trans["key"]='';
-                $trans["code_sms"]='';
+                if($transactions !=null){
+                    foreach ($transactions as $transaction){
+                        $trans=[];
+                        $trans["id"]=$transaction->getId();
+                        $trans["client"]=[];
+                        $client=$this->ClientRepo()->find($transaction->getClientId());
+                        if($client !=null){
+                            $trans["client"]=$this->clientToArray($client);
+                        }
+                        $trans["state"]=$transaction->getState();
+                        $trans["source"]=$this->getChannel($transaction->getPaymentMode())["channel_in_french"];
+                        $trans["provider"]=$transaction->getProvider();
+                        $trans["amount"]=$transaction->getAmount();
+                        $trans["type"]=$transaction->getType();
+                        $trans["username"]=$transaction->getUsername();
+                        $trans["details"]=$transaction->getDetails();
+                        $trans["created_at"]=date('d-m-Y H:i',$transaction->getCreatedAt());
 
-                //get licence code
+                        $trans["key"]='';
+                        $trans["code_sms"]='';
 
-                $licence_key=$this->LicenceKeyRepo()->findOneBy([
-                    'transactionId'=>$transaction->getId()
-                ]);
+                        //get licence code
 
-                if($licence_key !=null){
-                    $trans["key"]=$licence_key->getName();
-                    $trans["code_sms"]=$licence_key->getCode();
-                    $trans["key_used"]=$licence_key->getUsed();
-                }
+                        $licence_key=$this->LicenceKeyRepo()->findOneBy([
+                            'transactionId'=>$transaction->getId()
+                        ]);
 
-                switch (intval($transaction->getPaymentMode())){
-                    case 1:
-                        $togo_tmoney+=intval($transaction->getAmount());
-                        $togo_tmoney_nb++;
-                        break;
+                        if($licence_key !=null){
+                            $trans["key"]=$licence_key->getName();
+                            $trans["code_sms"]=$licence_key->getCode();
+                            $trans["key_used"]=$licence_key->getUsed();
+                        }
 
-                    case 2:
-                        $togo_flooz+=intval($transaction->getAmount());
-                        $togo_flooz_nb++;
-                        break;
+                        switch (intval($transaction->getPaymentMode())){
+                            case 1:
+                                $togo_tmoney+=intval($transaction->getAmount());
+                                $togo_tmoney_nb++;
+                                break;
 
-                    case 3:
-                        $international_card+=intval($transaction->getAmount());
-                        $international_card_nb++;
-                        break;
+                            case 2:
+                                $togo_flooz+=intval($transaction->getAmount());
+                                $togo_flooz_nb++;
+                                break;
 
-                    case 4:
-                        $international_wari+=intval($transaction->getAmount());
-                        $international_wari_nb++;
-                        break;
+                            case 3:
+                                $international_card+=intval($transaction->getAmount());
+                                $international_card_nb++;
+                                break;
 
-                    case 5:
-                        $benin_mtn+=intval($transaction->getAmount());
-                        $benin_mtn_nb++;
-                        break;
+                            case 4:
+                                $international_wari+=intval($transaction->getAmount());
+                                $international_wari_nb++;
+                                break;
 
-                    case 6:
-                        $benin_moov+=intval($transaction->getAmount());
-                        $benin_moov_nb++;
-                        break;
+                            case 5:
+                                $benin_mtn+=intval($transaction->getAmount());
+                                $benin_mtn_nb++;
+                                break;
 
-                    case 7:
-                        $ci_mtn+=intval($transaction->getAmount());
-                        $ci_mtn_nb++;
-                        break;
+                            case 6:
+                                $benin_moov+=intval($transaction->getAmount());
+                                $benin_moov_nb++;
+                                break;
 
-                    case 8:
-                        $ci_orange+=intval($transaction->getAmount());
-                        $ci_orange_nb++;
-                        break;
+                            case 7:
+                                $ci_mtn+=intval($transaction->getAmount());
+                                $ci_mtn_nb++;
+                                break;
 
-                    case 9:
-                        $senegal_orange+=intval($transaction->getAmount());
-                        $senegal_orange_nb++;
-                        break;
+                            case 8:
+                                $ci_orange+=intval($transaction->getAmount());
+                                $ci_orange_nb++;
+                                break;
 
-                    case 10:
-                        $senegal_free+=intval($transaction->getAmount());
-                        $senegal_free_nb++;
-                        break;
+                            case 9:
+                                $senegal_orange+=intval($transaction->getAmount());
+                                $senegal_orange_nb++;
+                                break;
 
-                    case 11:
-                        $senegal_apicash+=intval($transaction->getAmount());
-                        $senegal_apicash_nb++;
-                        break;
+                            case 10:
+                                $senegal_free+=intval($transaction->getAmount());
+                                $senegal_free_nb++;
+                                break;
 
-                    case 12:
-                        $senegal_wizall+=intval($transaction->getAmount());
-                        $senegal_wizall_nb++;
-                        break;
+                            case 11:
+                                $senegal_apicash+=intval($transaction->getAmount());
+                                $senegal_apicash_nb++;
+                                break;
 
-                }
+                            case 12:
+                                $senegal_wizall+=intval($transaction->getAmount());
+                                $senegal_wizall_nb++;
+                                break;
 
-                if($this->checkIfTransactionNotATest($client,$transaction->getAmount(),$transaction->getCreatedAt())){
-                    array_push($transaction_array,$trans);
-                }else{
-                    array_push($testing_transaction_array,$trans);
+                        }
+
+                        if($this->checkIfTransactionNotATest($client,$transaction->getAmount(),$transaction->getCreatedAt())){
+                            array_push($transaction_array,$trans);
+                        }else{
+                            array_push($testing_transaction_array,$trans);
+                        }
+                    }
                 }
             }
         }
+
         $data=[];
         $data["country_stats"]=[];
         $data["country_stats"]["international"]=[];

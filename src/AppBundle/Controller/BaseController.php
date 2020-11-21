@@ -464,6 +464,37 @@ class BaseController extends Controller
         return $valid;
 
     }
+    public function checkIfClientLoginNotATest($client,$created_at){
+
+        $valid=true;
+
+
+        $email=$client->getEmail()==null?'':strtolower($client->getEmail());
+        $phone_number=$client->getPhoneNumber()==null?'':$client->getPhoneNumber();
+        $username=$client->getUsername()==null?'':$client->getUsername();
+
+        $lauching_date=strtotime('2020-10-01 00:00:00');
+
+        $excluded_phone_number_array=['93643212','98394059','91161986','99999374','92030205','+22899445410','99999375','+22891161986','90257154'];
+        $excluded_email_array=['ethiel97@gmail.com','jfkvirus@gmail.com','yao.azoumah@gmail.com','barno.ivas@gmail.com','yamine.zato@kya-energy.com','kya.energy2020@gmail.com'];
+
+        if($created_at < $lauching_date){
+            $valid=false;
+        }
+        if(in_array($phone_number,$excluded_phone_number_array)){
+            $valid=false;
+        }
+        if(in_array($email,$excluded_email_array)){
+            $valid=false;
+        }
+        if(in_array($username,$excluded_phone_number_array) || in_array($username,$excluded_email_array)){
+            $valid=false;
+        }
+
+
+        return $valid;
+
+    }
 
     public function getDelay($amount_category){
         $delay=0;

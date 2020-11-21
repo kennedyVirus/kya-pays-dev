@@ -530,6 +530,75 @@ class SecurityController extends BaseController
 
 
     /**
+     *@Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/logins/stat/get",schemes={"https"})
+     */
+
+    public function getClientLoginsAction(Request $request){
+
+        $json_data=$request->getContent();
+        $data=json_decode($json_data,true);
+
+        $start_date=strtotime(date('Y-m-d 00:00:01'));
+        $end_date=strtotime(date('Y-m-d 23:59:59'));
+
+        if(
+            isset($data["start"]) && $data["start"] !=null &&
+            isset($data["end"]) && $data["end"] !=null
+        ){
+            $start_date=strtotime($data["start"]);
+            $end_date=strtotime($data["end"]);
+        }
+
+        $query = $this->getDoctrine()->getManager()
+            ->createQuery('SELECT c FROM SysSecurityBundle:ClientLogin c WHERE 
+        ( c.createdAt < :ends AND c.createdAt > :starts ) ')
+
+            ->setParameter('ends', $end_date)
+            ->setParameter('starts', $start_date)
+        ;
+        $logins = $query->execute();
+
+        $login_array=[];
+        $testing_login_array=[];
+
+        if($logins !=null){
+            foreach ($logins as $login){
+                $logs=[];
+                $logs["id"]=$login->getId();
+                $logs["client"]=[];
+                $client=$this->ClientRepo()->find($login->getClientId());
+                if($client !=null){
+                    $logs["client"]=$this->clientToArray($client);
+                }
+                $logs["mac_address"]=$login->getMacAddress();
+                $logs["ip_address"]=$login->getIpAddress();
+
+
+                $logs["created_at"]=date('d-m-Y H:i',$login->getCreatedAt());
+
+
+                    //get licence code
+
+                    $licence_key=$this->LicenceKeyRepo()->find($login->getLicenceKeyId());
+
+                    if($licence_key !=null){
+                        $logs["key"]=$licence_key->getName();
+                        $logs["code_sms"]=$licence_key->getCode();
+                        $logs["key_used"]=$licence_key->getUsed();
+                    }
+
+                if($this->checkIfClientLoginNotATest($client,$login->getCreatedAt())){
+                    array_push($login_array,$logs);
+                }else{
+                    array_push($testing_login_array,$logs);
+                }
+
+            }
+        }
+        return new Response($this->serialize($this->okResponseBlob(['logins'=>$login_array,'testing_logins'=>$testing_login_array])));
+    }
+
+    /**
      *@Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/transaction/stat/get",schemes={"https"})
      */
 
@@ -583,17 +652,17 @@ class SecurityController extends BaseController
                 $trans["key"]='';
                 $trans["code_sms"]='';
 
-                    //get licence code
+                //get licence code
 
-                    $licence_key=$this->LicenceKeyRepo()->findOneBy([
-                        'transactionId'=>$transaction->getId()
-                    ]);
+                $licence_key=$this->LicenceKeyRepo()->findOneBy([
+                    'transactionId'=>$transaction->getId()
+                ]);
 
-                    if($licence_key !=null){
-                        $trans["key"]=$licence_key->getName();
-                        $trans["code_sms"]=$licence_key->getCode();
-                        $trans["key_used"]=$licence_key->getUsed();
-                    }
+                if($licence_key !=null){
+                    $trans["key"]=$licence_key->getName();
+                    $trans["code_sms"]=$licence_key->getCode();
+                    $trans["key_used"]=$licence_key->getUsed();
+                }
 
                 if($this->checkIfTransactionNotATest($client,$transaction->getAmount(),$transaction->getCreatedAt())){
                     array_push($transaction_array,$trans);
@@ -603,7 +672,8 @@ class SecurityController extends BaseController
 
             }
         }
-        return new Response($this->serialize($this->okResponseBlob(['transactions'=>$transaction_array,'testing_transactions'=>$testing_transaction_array])));
+        //return new Response($this->serialize($this->okResponseBlob(['transactions'=>$transaction_array,'testing_transactions'=>$testing_transaction_array])));
+        return new Response($this->serialize($this->okResponseBlob(['transactions'=>$transaction_array])));
     }
 
 

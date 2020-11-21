@@ -604,6 +604,8 @@ class SecurityController extends BaseController
         $data=[];
         $data["logins"]=$login_array;
         $data["testing_logins"]=$testing_login_array;
+        $data["logins_nb"]=count($login_array);
+        $data["testing_logins_nb"]=count($testing_login_array);
 
         return new Response($this->serialize($this->okResponseBlob($data)));
     }

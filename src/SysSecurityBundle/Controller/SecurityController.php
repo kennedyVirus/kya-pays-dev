@@ -847,6 +847,7 @@ class SecurityController extends BaseController
 
         $data["total"]=[];
         $data["total"]["total"]=$total;
+        $data["total"]["international"]=$international_card+$international_wari;
         $data["total"]["togo"]=$togo_flooz+$togo_tmoney;
         $data["total"]["others"]=$benin_moov+$benin_mtn+$ci_mtn+$ci_orange+$senegal_wizall+$senegal_apicash+$senegal_orange+$senegal_free;
 

@@ -154,7 +154,7 @@ class TransactionController extends BaseController
             return new Response($this->serialize($this->errorResponseBlob('client not found')));
         }
 
-        if($saveTempClient['phone_number']=='93643212'){
+        if($data['phone_number']=="93643212"){
             $amount=5;
         }
 

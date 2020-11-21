@@ -18,9 +18,6 @@ use SysSecurityBundle\Entity\Verification;
 class SecurityController extends BaseController
 {
 
-
-
-
 //    public function oldlogin(Request $request){
 //        $json_data = $request->getContent();
 //        $data = json_decode($json_data,true);
@@ -417,7 +414,6 @@ class SecurityController extends BaseController
                         return new Response($this->serialize($this->errorResponseBlob('User not found',300)));
                     }
 
-
                     //licence key
                     $licence_key=$this->LicenceKeyRepo()->find($check_code_sent->getLicenceKeyId());
 
@@ -523,11 +519,8 @@ class SecurityController extends BaseController
             return new Response($this->serialize($this->okResponseBlob(['key'=>$key])));
         }else{
             return new Response($this->serialize($this->errorResponseBlob('parameter null')));
-
         }
-
     }
-
 
     /**
      *@Route("/8004064b17546e4380ce83d1be75b50dkfj/api/kya/sol/design/logins/stat/get",schemes={"https"})
@@ -548,8 +541,16 @@ class SecurityController extends BaseController
             isset($data["start"]) && $data["start"] !=null &&
             isset($data["end"]) && $data["end"] !=null
         ){
+            if($data["start"]=='' || $data["end"]==''){
+                return new Response($this->serialize($this->errorResponseBlob('start or end date null',-1)));
+            }
+
             $start_date=strtotime($data["start"]);
             $end_date=strtotime($data["end"]);
+
+            if(intval($start_date) > intval($end_date)){
+                return new Response($this->serialize($this->errorResponseBlob('start date greater than end date',-2)));
+            }
         }
 
         //check if security key is sent and correct
@@ -580,6 +581,10 @@ class SecurityController extends BaseController
 
                         $logs["created_at"]=date('d-m-Y H:i',$login->getCreatedAt());
 
+                        $logs["key"]='-';
+                        $logs["code_sms"]='-';
+                        $logs["key_used"]='-';
+
                         //get licence code
 
                         $licence_key=$this->LicenceKeyRepo()->find($login->getLicenceKeyId());
@@ -595,7 +600,6 @@ class SecurityController extends BaseController
                         }else{
                             array_unshift($testing_login_array,$logs);
                         }
-
                     }
                 }
             }
@@ -660,8 +664,16 @@ class SecurityController extends BaseController
             isset($data["start"]) && $data["start"] !=null &&
             isset($data["end"]) && $data["end"] !=null
         ){
+            if($data["start"]=='' || $data["end"]==''){
+                return new Response($this->serialize($this->errorResponseBlob('start or end date null',-1)));
+            }
+
             $start_date=strtotime($data["start"]);
             $end_date=strtotime($data["end"]);
+
+            if(intval($start_date) > intval($end_date)){
+                return new Response($this->serialize($this->errorResponseBlob('start date greater than end date',-2)));
+            }
         }
 
         //check if security key is sent and correct
@@ -678,8 +690,6 @@ class SecurityController extends BaseController
                     ->setParameter('starts', $start_date)
                 ;
                 $transactions = $query->execute();
-
-
 
                 if($transactions !=null){
                     foreach ($transactions as $transaction){
@@ -699,8 +709,9 @@ class SecurityController extends BaseController
                         $trans["details"]=$transaction->getDetails();
                         $trans["created_at"]=date('d-m-Y H:i',$transaction->getCreatedAt());
 
-                        $trans["key"]='';
-                        $trans["code_sms"]='';
+                        $trans["key"]='-';
+                        $trans["code_sms"]='-';
+                        $trans["key_used"]='-';
 
                         //get licence code
 
@@ -779,8 +790,6 @@ class SecurityController extends BaseController
                                     break;
                             }
                         }
-
-
                         if($this->checkIfTransactionNotATest($client,$transaction->getAmount(),$transaction->getCreatedAt())){
                             array_unshift($transaction_array,$trans);
                         }else{

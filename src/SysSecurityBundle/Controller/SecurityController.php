@@ -842,9 +842,13 @@ class SecurityController extends BaseController
         $data["transactions"]=$transaction_array;
         $data["testing_transactions"]=$testing_transaction_array;
 
-        $data["transactions_total"]=$total;
         $data["transactions_nb"]=count($transaction_array);
         $data["testing_transactions_nb"]=count($testing_transaction_array);
+
+        $data["total"]=[];
+        $data["total"]["total"]=$total;
+        $data["total"]["togo"]=$togo_flooz+$togo_tmoney;
+        $data["total"]["others"]=$benin_moov+$benin_mtn+$ci_mtn+$ci_orange+$senegal_wizall+$senegal_apicash+$senegal_orange+$senegal_free;
 
         return new Response($this->serialize($this->okResponseBlob($data)));
     }

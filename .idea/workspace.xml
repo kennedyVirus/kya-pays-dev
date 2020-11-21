@@ -56,8 +56,8 @@
       <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="844" column="43" lean-forward="true" selection-start-line="844" selection-start-column="43" selection-end-line="844" selection-end-column="43" />
+            <state relative-caret-position="213">
+              <caret line="853" column="5" lean-forward="true" selection-start-line="853" selection-start-column="5" selection-end-line="853" selection-end-column="5" />
               <folding>
                 <element signature="e#48#88#0#PHP" expanded="true" />
                 <element signature="e#26043#28852#0#PHP" />
@@ -345,12 +345,12 @@
       <workItem from="1605259054844" duration="9961000" />
       <workItem from="1605552241604" duration="5373000" />
       <workItem from="1605689677980" duration="18129000" />
-      <workItem from="1605899315308" duration="14363000" />
+      <workItem from="1605899315308" duration="15061000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265738000" />
+    <option name="totallyTimeSpent" value="266436000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -754,8 +754,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="844" column="43" lean-forward="true" selection-start-line="844" selection-start-column="43" selection-end-line="844" selection-end-column="43" />
+        <state relative-caret-position="213">
+          <caret line="853" column="5" lean-forward="true" selection-start-line="853" selection-start-column="5" selection-end-line="853" selection-end-column="5" />
           <folding>
             <element signature="e#48#88#0#PHP" expanded="true" />
             <element signature="e#26043#28852#0#PHP" />

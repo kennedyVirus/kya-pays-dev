@@ -591,9 +591,9 @@ class SecurityController extends BaseController
                         }
 
                         if($this->checkIfClientLoginNotATest($client,$login->getCreatedAt())){
-                            array_push($login_array,$logs);
+                            array_unshift($login_array,$logs);
                         }else{
-                            array_push($testing_login_array,$logs);
+                            array_unshift($testing_login_array,$logs);
                         }
 
                     }
@@ -712,73 +712,76 @@ class SecurityController extends BaseController
                             $trans["key_used"]=$licence_key->getUsed();
                         }
 
-                        switch (intval($transaction->getPaymentMode())){
-                            case 1:
-                                $togo_tmoney+=intval($transaction->getAmount());
-                                $togo_tmoney_nb++;
-                                break;
+                        if($transaction->getState()==1){
+                            switch (intval($transaction->getPaymentMode())){
+                                case 1:
+                                    $togo_tmoney+=intval($transaction->getAmount());
+                                    $togo_tmoney_nb++;
+                                    break;
 
-                            case 2:
-                                $togo_flooz+=intval($transaction->getAmount());
-                                $togo_flooz_nb++;
-                                break;
+                                case 2:
+                                    $togo_flooz+=intval($transaction->getAmount());
+                                    $togo_flooz_nb++;
+                                    break;
 
-                            case 3:
-                                $international_card+=intval($transaction->getAmount());
-                                $international_card_nb++;
-                                break;
+                                case 3:
+                                    $international_card+=intval($transaction->getAmount());
+                                    $international_card_nb++;
+                                    break;
 
-                            case 4:
-                                $international_wari+=intval($transaction->getAmount());
-                                $international_wari_nb++;
-                                break;
+                                case 4:
+                                    $international_wari+=intval($transaction->getAmount());
+                                    $international_wari_nb++;
+                                    break;
 
-                            case 5:
-                                $benin_mtn+=intval($transaction->getAmount());
-                                $benin_mtn_nb++;
-                                break;
+                                case 5:
+                                    $benin_mtn+=intval($transaction->getAmount());
+                                    $benin_mtn_nb++;
+                                    break;
 
-                            case 6:
-                                $benin_moov+=intval($transaction->getAmount());
-                                $benin_moov_nb++;
-                                break;
+                                case 6:
+                                    $benin_moov+=intval($transaction->getAmount());
+                                    $benin_moov_nb++;
+                                    break;
 
-                            case 7:
-                                $ci_mtn+=intval($transaction->getAmount());
-                                $ci_mtn_nb++;
-                                break;
+                                case 7:
+                                    $ci_mtn+=intval($transaction->getAmount());
+                                    $ci_mtn_nb++;
+                                    break;
 
-                            case 8:
-                                $ci_orange+=intval($transaction->getAmount());
-                                $ci_orange_nb++;
-                                break;
+                                case 8:
+                                    $ci_orange+=intval($transaction->getAmount());
+                                    $ci_orange_nb++;
+                                    break;
 
-                            case 9:
-                                $senegal_orange+=intval($transaction->getAmount());
-                                $senegal_orange_nb++;
-                                break;
+                                case 9:
+                                    $senegal_orange+=intval($transaction->getAmount());
+                                    $senegal_orange_nb++;
+                                    break;
 
-                            case 10:
-                                $senegal_free+=intval($transaction->getAmount());
-                                $senegal_free_nb++;
-                                break;
+                                case 10:
+                                    $senegal_free+=intval($transaction->getAmount());
+                                    $senegal_free_nb++;
+                                    break;
 
-                            case 11:
-                                $senegal_apicash+=intval($transaction->getAmount());
-                                $senegal_apicash_nb++;
-                                break;
+                                case 11:
+                                    $senegal_apicash+=intval($transaction->getAmount());
+                                    $senegal_apicash_nb++;
+                                    break;
 
-                            case 12:
-                                $senegal_wizall+=intval($transaction->getAmount());
-                                $senegal_wizall_nb++;
-                                break;
+                                case 12:
+                                    $senegal_wizall+=intval($transaction->getAmount());
+                                    $senegal_wizall_nb++;
+                                    break;
 
+                            }
                         }
 
+
                         if($this->checkIfTransactionNotATest($client,$transaction->getAmount(),$transaction->getCreatedAt())){
-                            array_push($transaction_array,$trans);
+                            array_unshift($transaction_array,$trans);
                         }else{
-                            array_push($testing_transaction_array,$trans);
+                            array_unshift($testing_transaction_array,$trans);
                         }
                     }
                 }

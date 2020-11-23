@@ -1,0 +1,15 @@
+#Getting project from git
+ git clone [link to github repo]
+#Before launching the project
+
+    *Install dependencies
+        composer install
+
+    *Create Local Database
+       create local database
+       change db name and pwd in parameter.yml (if parameter.yml missing create it and copy parameter.yml.dist and paste it)
+
+    *Update database
+        php bin/console doctrine:scheme:update
+
+Enjoy :-)

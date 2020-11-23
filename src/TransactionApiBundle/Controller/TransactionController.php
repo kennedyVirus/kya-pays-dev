@@ -284,7 +284,7 @@ class TransactionController extends BaseController
             //send licence key unlock code instead .user will enter on the page to show the licence key
 
            // $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " .$licence_key;
-            $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+d%C3%A9bloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
+            $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+debloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
 
             $length=strlen($transaction->getUsername());
             if($length>7){
@@ -480,7 +480,7 @@ class TransactionController extends BaseController
 
                         //send licence key
 
-                        $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+d%C3%A9bloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
+                        $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+debloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
 
 
                         $client=$this->ClientRepo()->findOneBy([

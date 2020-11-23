@@ -17,3 +17,13 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    # Some useful credentials
+
+    paygate_auth_token: d2db21ea-fbca-485c-b8b3-1c68d79b8d47
+    paydunya_key_main: RbXP0VEg-17rE-AtO8-DmIW-9p72ddc8ue9D
+    paydunya_token: Ext7fzGiAiYPeKtrCq6Y
+    paydunya_key_public: live_public_rbVdt9ewGG2eB7j9kQJrOuV697R
+    paydunya_key_private: live_private_wAT4HHvg0Pam1kJpp62nRKKYSoE
+    sms_zedeka_api_key: ISnqx7tbigE7OQxnGnsBuY4xrZC3m2Uj7wRpbOuIjtk
+    sms_zedeka_client_id: 54911dcd-e69c-4030-9328-4b848c64c4db

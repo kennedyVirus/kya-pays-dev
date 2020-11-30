@@ -234,17 +234,6 @@ class BaseController extends Controller
 
     public function getChannel($pay_method=0){
 
-        /*
-                            mtn-benin 4
-                            moov-benin 5
-                            mtn-ci 6
-                            orange-ci 7
-                            orange-sen 8
-                            free-money 9
-                            api-cash 10
-                            wizall 11
-         */
-
         $channel='';
         $channel_in_french='';
 
@@ -306,7 +295,7 @@ class BaseController extends Controller
                 break;
 
             case 11:
-                $channel='api-cash-senegal';
+                $channel='apicash-senegal';
                 $channel_in_french= 'Api Cash -Senegal';
 
                 break;

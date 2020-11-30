@@ -545,8 +545,8 @@ class SecurityController extends BaseController
                 return new Response($this->serialize($this->errorResponseBlob('start or end date null',-1)));
             }
 
-            $start_date=strtotime($data["start"]);
-            $end_date=strtotime($data["end"]);
+            $start_date=strtotime($data["start"].' '.'00:00:01');
+            $end_date=strtotime($data["end"].' '.'23:59:59');
 
             if(intval($start_date) > intval($end_date)){
                 return new Response($this->serialize($this->errorResponseBlob('start date greater than end date',-2)));

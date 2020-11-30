@@ -97,7 +97,7 @@ window.onload = function () {
                         app.cote_ivoire_selected=false
                         app.senegal_selected=false
 
-                        if(this.selected_payment_method===3){
+                        if(this.selected_payment_method===0){
                             app.showTransactionPhoneInputStudent=true
                         }else {
                             app.showTransactionPhoneInputStudent=false
@@ -143,7 +143,7 @@ window.onload = function () {
                         app.cote_ivoire_selected=false
                         app.senegal_selected=false
 
-                        if(this.selected_payment_method===3){
+                        if(this.selected_payment_method===0){
                             app.showTransactionPhoneInputAcademic=true
                         }else {
                             app.showTransactionPhoneInputAcademic=false
@@ -186,7 +186,7 @@ window.onload = function () {
                         app.cote_ivoire_selected=false
                         app.senegal_selected=false
 
-                        if(this.selected_payment_method===3){
+                        if(this.selected_payment_method===0){
                             app.showTransactionPhoneInputEnterprise=true
                         }else {
                             app.showTransactionPhoneInputEnterprise=false
@@ -233,13 +233,13 @@ window.onload = function () {
 
                     let selected = '';
 
-                    for (let i = 1;  i < 12 ; i++) {
+                    for (let i = 0;  i < 11 ; i++) {
 
                         if($('#pay_student'+i).is(':checked')) {
                             checked = true;
                             selected = i;
 
-                            if(selected ===3){
+                            if(selected === 0){
                                 app.showTransactionPhoneInputStudent=true
                             }else {
                                 app.showTransactionPhoneInputStudent=false
@@ -257,13 +257,13 @@ window.onload = function () {
 
                     let selected = '';
 
-                    for (let i = 1;  i < 12 ; i++) {
+                    for (let i = 0;  i < 11 ; i++) {
 
                         if($('#pay_academic'+i).is(':checked')) {
                             checked = true;
                             selected = i;
 
-                            if(selected ===3){
+                            if(selected === 0){
                                     app.showTransactionPhoneInputAcademic=true
 
                             }else {
@@ -282,13 +282,13 @@ window.onload = function () {
 
                     let selected = '';
 
-                    for (let i = 1;  i < 12 ; i++) {
+                    for (let i = 0;  i < 11 ; i++) {
 
                         if($('#pay_enterprise'+i).is(':checked')) {
                             checked = true;
                             selected = i;
 
-                            if(selected ===3){
+                            if(selected === 0){
                                     app.showTransactionPhoneInputEnterprise=true
 
                             }else {

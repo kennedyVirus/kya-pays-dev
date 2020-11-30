@@ -706,6 +706,7 @@ class SecurityController extends BaseController
                         $trans["amount"]=$transaction->getAmount();
                         $trans["type"]=$transaction->getType();
                         $trans["username"]=$transaction->getUsername();
+                        $trans["delay"]=$this->getDelay($transaction->getAmountCategory());
                         $trans["details"]=$transaction->getDetails();
                         $trans["created_at"]=date('d-m-Y H:i',$transaction->getCreatedAt());
 

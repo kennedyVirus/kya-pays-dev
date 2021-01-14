@@ -131,8 +131,6 @@ class TransactionController extends BaseController
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);
         $url='';
-
-
         $amount=0;
 
         if(
@@ -154,9 +152,6 @@ class TransactionController extends BaseController
             return new Response($this->serialize($this->errorResponseBlob('client not found')));
         }
 
-        if($data['phone_number']=="93643212"){
-            $amount=5;
-        }
 
         $check_transaction=$this->initPaygateTransaction($saveTempClient['clientId'],$data['transaction_phone_number'],$amount,$data['type'],$data['amount_category']);
 
@@ -169,7 +164,6 @@ class TransactionController extends BaseController
             if($transaction->getPaymentMode()==1){
                 //t-money
                 $url= "".$paygate_transaction_url.$paygate_token."&amount=".$amount."&description=".urlencode($description)."&identifier=".$identifier;
-
 
                 return new Response($this->serialize($this->okResponseBlob([
                     "url" => $url,
@@ -335,8 +329,6 @@ class TransactionController extends BaseController
         //if(isset($data["country_selected"]))
 
         $saveTempClient=$this->savePaydunyaTempClient($data);
-
-
 
         if(!($saveTempClient['status'])){
             //return error

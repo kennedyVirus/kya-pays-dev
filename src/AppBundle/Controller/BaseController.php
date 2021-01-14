@@ -385,6 +385,7 @@ class BaseController extends Controller
 
         $data['response'] = true;
         $data['transaction'] = $transaction;
+        $data['transaction_id'] = $transaction->getId();
         return $data;
     }
 
@@ -605,7 +606,6 @@ class BaseController extends Controller
 
             return $dat;
         }
-
     }
 
 

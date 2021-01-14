@@ -865,11 +865,165 @@ class SecurityController extends BaseController
     }
 
 
+    /*
+     * @Scripts for generating codes
+     * */
+
+    /**
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/generate/code/init")
+     */
+
+    public function initGenerateCoddAction(Request $request) {
+        $json_data = $request->getContent();
+        $data = json_decode($json_data,true);
+        $url='';
+        $amount=0;
+
+        if(
+            isset($data["type"]) && $data["type"]!=null &&
+            isset($data["amount_category"]) && $data["amount_category"]!=null
+        ){
+            $amount=$this->getAmountToPay($data["type"],$data["amount_category"]);
+        }
+
+//        $paygate_token=$this->getParameter('paygate_auth_token');
+//        $paygate_transaction_url=BaseController::PAYGATE_TRANSACTION_URL;
+
+        $saveTempClient=$this->savePaygateTempClient($data);
+
+        if(!($saveTempClient['status'])){
+            //return error
+
+            return new Response($this->serialize($this->errorResponseBlob('client not found')));
+        }
+
+        $check_transaction=$this->initPaygateTransaction($saveTempClient['clientId'],$data['transaction_phone_number'],$amount,$data['type'],$data['amount_category']);
+
+        if($check_transaction['response']==true){
+            return new Response($this->serialize($this->okResponseBlob(['transaction Id'=>$check_transaction["transaction_id"]])));
+
+        }else{
+            return new Response($this->serialize($this->errorResponseBlob('Phone number not togolese',-2)));
+        }
+    }
+
     /**
      * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/generate/code")
      */
 
     public function generateCoddAction(Request $request){
+
+        $json_data = $request->getContent();
+        $data = json_decode($json_data,true);
+
+        /*
+         * tx_reference
+         * payment_reference
+         * amount
+         * datetime
+         */
+//        $data["payment_reference"]="O28686712-194956";
+//        $data["identifier"]="197";
+//        $data["payment_method"]="T-Money";
+//        $data["tx_reference"]=194956;
+//        $data["datetime"]="2020-11-18T14:44:25.000Z";
+
+
+        $payment_reference='';
+        if(isset($data["payment_reference"])){
+            $payment_reference=$data["payment_reference"];
+        }
+        $fs = new Filesystem();
+        $fs->appendToFile('callback_logs.txt', 'identifier: '. $data["identifier"].' '. 'payment:' .$data["payment_method"].' '.'tx_reference:'.$data["tx_reference"].' '.'payment_reference:'.$payment_reference.' '.'datetime:'.$data['datetime']);
+
+        $transaction = $this->TransactionRepo()->find(intval($data["identifier"]));
+
+        if ($transaction != null) {
+
+            // set transaction to confirmed
+            $transaction->setState(1);
+            $transaction->setUpdatedAt(new \DateTime());
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            //generate key
+
+            $licence_key=$this->generateRandomString(12).$this->generateRandomNumber(4);
+
+            $code_to_unlock_licence_key=$this->generateRandomNumberBasedOnTimestamp(6);
+
+
+            $key=new LicenceKey();
+            $key->setName($licence_key);
+            $key->setCode($code_to_unlock_licence_key);
+            $key->setType($transaction->getType());
+            $key->setTransactionId($transaction->getId());
+            $key->setAmountCategory($transaction->getAmountCategory());
+            $key->setPrice($transaction->getAmount());
+            $delay=$this->getDelay($transaction->getAmountCategory());
+            $key->setDelay($delay*86400);
+            $key->setUsed(0);
+            $key->setCreatedAt(strtotime(date('Y-m-d H:i:s')));
+            $key->setUpdatedAt(new \DateTime());
+
+            $em->persist($key);
+            $em->flush();
+
+            //save verification
+
+            $verification=new Verification();
+            $verification->setPhoneNumber($transaction->getUsername());
+            $verification->setState(0);
+            $verification->setCode($licence_key);
+            $verification->setUnlockCode($code_to_unlock_licence_key);
+            $verification->setLicenceKeyId($key->getId());
+            $verification->setTransactionCode("".$data["tx_reference"].$this->generateRandomNumber(4));
+            $verification->setCreatedAt(strtotime(date('Y-m-d H:i:s')));
+            $verification->setUpdatedAt(new \DateTime());
+
+            $em->persist($verification);
+            $em->flush();
+
+            //send licence key unlock code instead .user will enter on the page to show the licence key
+
+            // $licence_key_to_send= "<%23>%20CLE%20ACTIVATION%20KYA%20SOL%20DESIGN%20: " .$licence_key;
+//            $unlock_code_to_send= "Veuillez+entrer+ce+code+d%27activation+sur+le+site+web+pour+d%C3%A9bloquer+votre+licence+d%27activation+KYA-SolDesign: " .$code_to_unlock_licence_key;
+
+//            $length=strlen($transaction->getUsername());
+//            if($length>7){
+//                $phone_number=substr($transaction->getUsername(),$length-8);
+//
+//                if($this->checkIfPhoneNumberValid($phone_number)){
+//                    $res=$this->sendZedekaMessage("228".$phone_number,$unlock_code_to_send);
+//                }
+//            }
+
+            $client=$this->ClientRepo()->findOneBy([
+                'id'=>$transaction->getClientId()
+            ]);
+
+            if($client !=null){
+                if($client->getEmail() !=null){
+                    $result=$this->sendLicenceCodeByEmail($client->getEmail(),$licence_key);
+                }
+            }
+
+            return new Response($this->serialize($this->okResponseBlob(['unlock_code'=>$code_to_unlock_licence_key,'licence key'=>$licence_key])));
+
+        }else  {
+            return new Response($this->serialize($this->errorResponseBlob('error occured',303)));
+        }
+    }
+
+    /*
+     * @End of script
+     * */
+
+    /**
+     * @Route("/8004064b17546e4380ce83d1be75b50dkfj/api/generate/missed/code")
+     */
+
+    public function generateMissedCoddAction(Request $request){
 
         $json_data = $request->getContent();
         $data = json_decode($json_data,true);

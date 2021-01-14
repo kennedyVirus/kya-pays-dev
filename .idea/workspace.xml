@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29414d36-2dd5-4e26-96ba-a0579c4d8f65" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +22,8 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="876" column="85" selection-start-line="876" selection-start-column="85" selection-end-line="876" selection-end-column="85" />
+            <state relative-caret-position="9180">
+              <caret line="540" column="97" selection-start-line="540" selection-start-column="88" selection-end-line="540" selection-end-column="97" />
             </state>
           </provider>
         </entry>
@@ -28,15 +31,8 @@
       <file leaf-file-name="pay-transaction.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/assets/js/pay-transaction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="185" column="54" lean-forward="true" selection-start-line="185" selection-start-column="54" selection-end-line="185" selection-end-column="54" />
-              <folding>
-                <element signature="e#8678#9387#0" />
-                <element signature="e#9482#10201#0" />
-                <element signature="e#10298#11025#0" />
-                <element signature="e#25553#32651#0" />
-                <element signature="e#32681#35002#0" />
-              </folding>
+            <state relative-caret-position="5474">
+              <caret line="322" column="35" selection-start-line="322" selection-start-column="27" selection-end-line="322" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -44,8 +40,8 @@
       <file leaf-file-name="base2.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/base2.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2771">
-              <caret line="163" column="116" selection-start-line="163" selection-end-line="164" />
+            <state relative-caret-position="1575">
+              <caret line="165" column="99" selection-start-line="165" selection-start-column="99" selection-end-line="165" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -53,8 +49,8 @@
       <file leaf-file-name="BaseController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="524" column="26" selection-start-line="524" selection-start-column="26" selection-end-line="524" selection-end-column="26" />
+            <state relative-caret-position="195">
+              <caret line="370" column="46" lean-forward="true" selection-start-line="370" selection-start-column="46" selection-end-line="370" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -62,11 +58,14 @@
       <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="712" column="42" lean-forward="true" selection-start-line="712" selection-start-column="42" selection-end-line="712" selection-end-column="42" />
+            <state relative-caret-position="339">
+              <caret line="1006" column="55" selection-start-line="1006" selection-start-column="55" selection-end-line="1006" selection-end-column="55" />
               <folding>
-                <element signature="e#26036#29420#0#PHP" />
-                <element signature="e#40362#44442#0#PHP" />
+                <element signature="e#652#701#0#PHP" />
+                <element signature="e#15239#24625#0#PHP" />
+                <element signature="e#26036#29450#0#PHP" />
+                <element signature="e#29584#40403#0#PHP" />
+                <element signature="e#40499#44579#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -75,13 +74,14 @@
       <file leaf-file-name="TransactionController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="457" column="60" lean-forward="true" selection-start-line="457" selection-start-column="60" selection-end-line="457" selection-end-column="60" />
+            <state relative-caret-position="-689">
+              <caret line="129" column="64" selection-start-line="129" selection-start-column="64" selection-end-line="129" selection-end-column="64" />
               <folding>
                 <element signature="e#51#91#0#PHP" expanded="true" />
                 <element signature="e#887#2274#0#PHP" />
                 <element signature="e#2820#3360#0#PHP" />
-                <element signature="e#10846#14471#0#PHP" />
+                <element signature="e#3579#6633#0#PHP" />
+                <element signature="e#6760#10714#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -100,15 +100,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>geto</find>
       <find>gets</find>
       <find>getc</find>
       <find>getcr</find>
       <find>wari</find>
       <find>initp</find>
       <find>channe</find>
-      <find>type</find>
-      <find>amount_category</find>
       <find>getam</find>
       <find>getpa</find>
       <find>pay_method</find>
@@ -130,6 +127,9 @@
       <find>selected_payment_method</find>
       <find>Floo</find>
       <find>Api Cash</find>
+      <find>type</find>
+      <find>amount_category</find>
+      <find>academic2</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,11 +157,11 @@
         <option value="$PROJECT_DIR$/src/TransactionApiBundle/Entity/Transaction.php" />
         <option value="$PROJECT_DIR$/src/SysSecurityBundle/Entity/LicenceKey.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/readme.kennedy" />
         <option value="$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/web/assets/js/pay-transaction.js" />
+        <option value="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" />
         <option value="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" />
       </list>
@@ -244,34 +244,13 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="kya-pays-dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kya-pays-dev" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kya-pays-dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kya-pays-dev" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kya-pays-dev" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kya-pays-dev" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/web/assets/js/pay-transaction.js&#10;pay&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/web/assets/js/pay-transaction.js&#10;base&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/TransactionApiBundle/Resources/views/Default/base2.html.twig&#10;st&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/web/asset/assets/css/style.css&#10;tra&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/TransactionApiBundle/Controller/TransactionController.php&#10;ver&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/SysSecurityBundle/Entity/Verification.php&#10;securi&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/SysSecurityBundle/Controller/SecurityController.php&#10;ba&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/AppBundle/Controller/BaseController.php&#10;git&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/.gitignore&#10;cli&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/SysSecurityBundle/Entity/ClientLogin.php&#10;transac&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/TransactionApiBundle/Controller/TransactionController.php&#10;pa&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/app/config/parameters.yml&#10;lice&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/SysSecurityBundle/Entity/LicenceKey.php&#10;clie&#9;null&#9;null&#10;baseco&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/AppBundle/Controller/BaseController.php&#10;css&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/web/asset/assets/css/style.css&#10;base2&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/TransactionApiBundle/Resources/views/Default/base2.html.twig&#10;transa&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/TransactionApiBundle/Controller/TransactionController.php&#10;secu&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/SysSecurityBundle/Controller/SecurityController.php&#10;index&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/app/Resources/views/default/index.html.twig&#10;inde&#9;null&#9;null&#10;in&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-payement/src/TransactionApiBundle/Resources/views/Default/index.html.twig&#10;licence&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/SysSecurityBundle/Entity/LicenceKey.php&#10;tr&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/TransactionApiBundle/Controller/TransactionController.php&#10;para&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/app/config/parameters.yml&#10;bas&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/AppBundle/Controller/BaseController.php&#10;mai&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/TransactionApiBundle/Resources/views/Default/mail.html.twig&#10;sty&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/web/asset/assets/css/style.css&#10;se&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/SysSecurityBundle/Controller/SecurityController.php&#10;b&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pays-dev/src/AppBundle/Controller/BaseController.php&#10;Appk&#9;null&#9;null&#10;S&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pay/src/SysSecurityBundle/Controller/SecurityController.php&#10;config&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pay/app/config/config.yml&#10;confi&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pay/app/config/config.yml&#10;client&#9;null&#9;null&#10;clien&#9;null&#9;null&#10;verifi&#9;null&#9;null&#10;parameter&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pay/app/config/parameters.yml&#10;compo&#9;FILE&#9;file://C:/wamp64/www/new_kya/kya-pay/composer.json" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kya-pay-dashboard" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -319,58 +298,43 @@
       <workItem from="1605689677980" duration="18129000" />
       <workItem from="1605899315308" duration="26571000" />
       <workItem from="1606303168073" duration="726000" />
-      <workItem from="1606746925254" duration="7434000" />
+      <workItem from="1606746925254" duration="8294000" />
+      <workItem from="1606821544254" duration="599000" />
+      <workItem from="1607442759523" duration="235000" />
+      <workItem from="1607595604582" duration="8822000" />
+      <workItem from="1608036063282" duration="90000" />
+      <workItem from="1610161190507" duration="721000" />
+      <workItem from="1610617239216" duration="8428000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286106000" />
+    <option name="totallyTimeSpent" value="305861000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25113463" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5015129" side_tool="true" weight="0.21783876" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49848714" weight="0.2607204" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25113463" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5015129" side_tool="true" weight="0.21783876" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3567753" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25113463" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3567753" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49848714" weight="0.010291595" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5015129" side_tool="true" weight="0.21783876" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49848714" weight="0.2607204" />
       <window_info id="Favorites" order="2" side_tool="true" />
-    </layout-to-restore>
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.3567753" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -387,7 +351,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php</url>
-          <line>530</line>
+          <line>522</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -408,7 +372,8 @@
             <element signature="e#51#91#0#PHP" expanded="true" />
             <element signature="e#887#2274#0#PHP" />
             <element signature="e#2820#3360#0#PHP" />
-            <element signature="e#10846#14471#0#PHP" />
+            <element signature="e#3579#6633#0#PHP" />
+            <element signature="e#6760#10714#0#PHP" />
           </folding>
         </state>
       </provider>
@@ -551,9 +516,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/.htaccess">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/fz3temp-2/.htaccess" />
     <entry file="file://$PROJECT_DIR$/web/app_dev.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -631,13 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/base2.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2771">
-          <caret line="163" column="116" selection-start-line="163" selection-end-line="164" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/installation.md" />
     <entry file="file://$PROJECT_DIR$/app/config/parameters.yml.dist">
       <provider selected="true" editor-type-id="text-editor">
@@ -662,52 +618,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/assets/js/pay-transaction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="185" column="54" lean-forward="true" selection-start-line="185" selection-start-column="54" selection-end-line="185" selection-end-column="54" />
-          <folding>
-            <element signature="e#8678#9387#0" />
-            <element signature="e#9482#10201#0" />
-            <element signature="e#10298#11025#0" />
-            <element signature="e#25553#32651#0" />
-            <element signature="e#32681#35002#0" />
-          </folding>
+        <state relative-caret-position="5474">
+          <caret line="322" column="35" selection-start-line="322" selection-start-column="27" selection-end-line="322" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="876" column="85" selection-start-line="876" selection-start-column="85" selection-end-line="876" selection-end-column="85" />
+        <state relative-caret-position="9180">
+          <caret line="540" column="97" selection-start-line="540" selection-start-column="88" selection-end-line="540" selection-end-column="97" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php">
+    <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/base2.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="524" column="26" selection-start-line="524" selection-start-column="26" selection-end-line="524" selection-end-column="26" />
+        <state relative-caret-position="1575">
+          <caret line="165" column="99" selection-start-line="165" selection-start-column="99" selection-end-line="165" selection-end-column="99" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="457" column="60" lean-forward="true" selection-start-line="457" selection-start-column="60" selection-end-line="457" selection-end-column="60" />
+        <state relative-caret-position="-689">
+          <caret line="129" column="64" selection-start-line="129" selection-start-column="64" selection-end-line="129" selection-end-column="64" />
           <folding>
             <element signature="e#51#91#0#PHP" expanded="true" />
             <element signature="e#887#2274#0#PHP" />
             <element signature="e#2820#3360#0#PHP" />
-            <element signature="e#10846#14471#0#PHP" />
+            <element signature="e#3579#6633#0#PHP" />
+            <element signature="e#6760#10714#0#PHP" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="370" column="46" lean-forward="true" selection-start-line="370" selection-start-column="46" selection-end-line="370" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="712" column="42" lean-forward="true" selection-start-line="712" selection-start-column="42" selection-end-line="712" selection-end-column="42" />
+        <state relative-caret-position="339">
+          <caret line="1006" column="55" selection-start-line="1006" selection-start-column="55" selection-end-line="1006" selection-end-column="55" />
           <folding>
-            <element signature="e#26036#29420#0#PHP" />
-            <element signature="e#40362#44442#0#PHP" />
+            <element signature="e#652#701#0#PHP" />
+            <element signature="e#15239#24625#0#PHP" />
+            <element signature="e#26036#29450#0#PHP" />
+            <element signature="e#29584#40403#0#PHP" />
+            <element signature="e#40499#44579#0#PHP" />
           </folding>
         </state>
       </provider>

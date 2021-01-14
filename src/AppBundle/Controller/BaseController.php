@@ -189,8 +189,8 @@ class BaseController extends Controller
         $ss=strtotime(date('Y-m-d H:i:s'));
         $st=mt_rand(1000,9999);
         $the_length=intval($length)-intval(strlen($st));
-        $starter=intval(strlen($ss))-1;
-        $response="".$ss.substr("".$ss,$starter,$the_length);
+        //$starter=intval(strlen($ss))-1;
+        $response="".$ss.substr("".$ss,-$the_length);
 
         return $response;
     }

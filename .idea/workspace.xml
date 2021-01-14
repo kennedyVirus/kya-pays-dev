@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="29414d36-2dd5-4e26-96ba-a0579c4d8f65" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,7 +28,7 @@
       <file leaf-file-name="pay-transaction.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/assets/js/pay-transaction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5474">
+            <state relative-caret-position="1147">
               <caret line="322" column="35" selection-start-line="322" selection-start-column="27" selection-end-line="322" selection-end-column="35" />
             </state>
           </provider>
@@ -46,25 +43,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BaseController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="370" column="46" lean-forward="true" selection-start-line="370" selection-start-column="46" selection-end-line="370" selection-end-column="46" />
+            <state relative-caret-position="382">
+              <caret line="188" column="43" lean-forward="true" selection-start-line="188" selection-start-column="43" selection-end-line="188" selection-end-column="43" />
+              <folding>
+                <element signature="e#10486#11891#0#PHP" />
+                <element signature="e#11897#14256#0#PHP" />
+                <element signature="e#14262#15491#0#PHP" />
+                <element signature="e#15496#16647#0#PHP" />
+                <element signature="e#16653#17219#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="1006" column="55" selection-start-line="1006" selection-start-column="55" selection-end-line="1006" selection-end-column="55" />
+            <state relative-caret-position="150">
+              <caret line="952" column="67" selection-start-line="952" selection-start-column="67" selection-end-line="952" selection-end-column="67" />
               <folding>
                 <element signature="e#652#701#0#PHP" />
                 <element signature="e#15239#24625#0#PHP" />
                 <element signature="e#26036#29450#0#PHP" />
                 <element signature="e#29584#40403#0#PHP" />
+                <element signature="e#40592#43646#0#PHP" />
                 <element signature="e#40499#44579#0#PHP" />
               </folding>
             </state>
@@ -100,7 +105,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gets</find>
       <find>getc</find>
       <find>getcr</find>
       <find>wari</find>
@@ -113,7 +117,7 @@
       <find>clien</find>
       <find>trans</find>
       <find>LicenceKey</find>
-      <find>Invalid parameters</find>
+      <find />
       <find>getCountry</find>
       <find>getch</find>
       <find>test</find>
@@ -126,10 +130,11 @@
       <find>Flooz/T-money</find>
       <find>selected_payment_method</find>
       <find>Floo</find>
-      <find>Api Cash</find>
+      <find />
       <find>type</find>
       <find>amount_category</find>
       <find>academic2</find>
+      <find>scrip</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,8 +167,8 @@
         <option value="$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/web/assets/js/pay-transaction.js" />
         <option value="$PROJECT_DIR$/src/TransactionApiBundle/Controller/TransactionController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" />
         <option value="$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php" />
       </list>
     </option>
   </component>
@@ -304,12 +309,12 @@
       <workItem from="1607595604582" duration="8822000" />
       <workItem from="1608036063282" duration="90000" />
       <workItem from="1610161190507" duration="721000" />
-      <workItem from="1610617239216" duration="8428000" />
+      <workItem from="1610617239216" duration="13874000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="305861000" />
+    <option name="totallyTimeSpent" value="311307000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -616,13 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/assets/js/pay-transaction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5474">
-          <caret line="322" column="35" selection-start-line="322" selection-start-column="27" selection-end-line="322" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TransactionApiBundle/Resources/views/Default/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9180">
@@ -651,23 +649,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php">
+    <entry file="file://$PROJECT_DIR$/web/assets/js/pay-transaction.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="370" column="46" lean-forward="true" selection-start-line="370" selection-start-column="46" selection-end-line="370" selection-end-column="46" />
+        <state relative-caret-position="1147">
+          <caret line="322" column="35" selection-start-line="322" selection-start-column="27" selection-end-line="322" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SysSecurityBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="1006" column="55" selection-start-line="1006" selection-start-column="55" selection-end-line="1006" selection-end-column="55" />
+        <state relative-caret-position="150">
+          <caret line="952" column="67" selection-start-line="952" selection-start-column="67" selection-end-line="952" selection-end-column="67" />
           <folding>
             <element signature="e#652#701#0#PHP" />
             <element signature="e#15239#24625#0#PHP" />
             <element signature="e#26036#29450#0#PHP" />
             <element signature="e#29584#40403#0#PHP" />
+            <element signature="e#40592#43646#0#PHP" />
             <element signature="e#40499#44579#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/BaseController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="188" column="43" lean-forward="true" selection-start-line="188" selection-start-column="43" selection-end-line="188" selection-end-column="43" />
+          <folding>
+            <element signature="e#10486#11891#0#PHP" />
+            <element signature="e#11897#14256#0#PHP" />
+            <element signature="e#14262#15491#0#PHP" />
+            <element signature="e#15496#16647#0#PHP" />
+            <element signature="e#16653#17219#0#PHP" />
           </folding>
         </state>
       </provider>

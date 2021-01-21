@@ -178,18 +178,10 @@ class BaseController extends Controller
     function generateRandomNumberBasedOnTimestamp($length){
 
 
-//        $ss=strtotime(date('Y-m-d H:i:s'));
-//        $st=mt_rand(1000,9999);
-//        $all=intval($ss)+intval($st);
-//
-//        $response=substr("".$all,1,$length);
-
-       // $ss=strtotime(date('Y-m-d H:i:s'));
-
         $ss=strtotime(date('Y-m-d H:i:s'));
         $st=mt_rand(1000,9999);
         $the_length=intval($length)-intval(strlen($st));
-        //$starter=intval(strlen($ss))-1;
+
         $response="".$st.substr("".$ss,-$the_length);
 
         return $response;

@@ -595,11 +595,12 @@ class SecurityController extends BaseController
                             $logs["key_used"]=$licence_key->getUsed();
                         }
 
-                        if($this->checkIfClientLoginNotATest($client,$login->getCreatedAt())){
+                       // if($this->checkIfClientLoginNotATest($client,$login->getCreatedAt())){
                             array_unshift($login_array,$logs);
-                        }else{
-                            array_unshift($testing_login_array,$logs);
-                        }
+                      //  }
+//                        else{
+//                            array_unshift($testing_login_array,$logs);
+//                        }
                     }
                 }
             }

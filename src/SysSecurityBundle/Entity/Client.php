@@ -110,6 +110,13 @@ class Client
     private $organisation;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(name="extra", type="array" ,nullable=true)
+     */
+    private $extra;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="status", type="integer")
@@ -389,6 +396,29 @@ class Client
         return $this->organisation;
     }
 
+    /**
+     * Set extra
+     *
+     * @param array $extra
+     *
+     * @return Client
+     */
+    public function setExtra($extra)
+    {
+        $this->extra = $extra;
+
+        return $this;
+    }
+
+    /**
+     * Get extra
+     *
+     * @return array
+     */
+    public function getExtra()
+    {
+        return $this->extra;
+    }
     /**
      * Set status
      *

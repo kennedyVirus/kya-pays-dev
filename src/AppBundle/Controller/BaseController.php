@@ -576,6 +576,9 @@ class BaseController extends Controller
             if(isset($data["email"]) && $data["email"]!=null){
                 $temp_client->setEmail($data["email"]);
             }
+            if(isset($data["extra"]) && $data["extra"]!=null){
+                $temp_client->setExtra($data["extra"]);
+            }
 
             if(isset($data["job_title"]) && $data["job_title"]!=null){
                 $temp_client->setJobTitle($data["job_title"]);
@@ -642,6 +645,9 @@ class BaseController extends Controller
 
             if(isset($data["organisation"]) && $data["organisation"]!=null){
                 $temp_client->setOrganisation($data["organisation"]);
+            }
+            if(isset($data["extra"]) && $data["extra"]!=null){
+                $temp_client->setExtra($data["extra"]);
             }
 
             $temp_client->setStatus(0);
@@ -762,8 +768,6 @@ class BaseController extends Controller
         if($countryObject){
             $country=$countryObject["name"];
         }
-
-
         return $country;
     }
 }

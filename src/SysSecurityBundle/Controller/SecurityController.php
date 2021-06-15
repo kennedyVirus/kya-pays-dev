@@ -285,6 +285,7 @@ class SecurityController extends BaseController
 
                                 $response=[];
                                 $response["delay"]=$licence_key->getDelay();
+                                $response["extra"]=$client->getExtra();
 
                                 return new Response($this->serialize($this->okResponseBlob($response)));
                             }
